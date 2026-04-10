@@ -98,11 +98,8 @@ export default function DashboardLayout() {
             </DropdownMenu>
           </div>
         </header>
-        <div className="relative flex-1 bg-white">
-          <div className="relative z-0">
-            <Outlet />
-          </div>
-          <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-size-[14px_24px] mask-[radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+        <div className="flex-1 bg-foreground">
+          <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>

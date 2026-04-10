@@ -6,7 +6,7 @@ export default function RewardsPage() {
   ];
 
   return (
-    <div className="p-8 bg-zinc-950 min-h-screen text-white">
+    <div className="p-8 min-h-screen text-white">
       <header className="mb-12">
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
           Rewards Portal

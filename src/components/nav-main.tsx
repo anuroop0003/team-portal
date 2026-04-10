@@ -1,9 +1,4 @@
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
@@ -13,7 +8,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { ChevronRightIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function NavMain({
@@ -35,20 +29,14 @@ export function NavMain({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            defaultOpen={item.isActive}
-            className="group/collapsible"
-            render={<SidebarMenuItem />}
-          >
-            <CollapsibleTrigger render={<SidebarMenuButton />}>
+          <SidebarMenuItem key={item.title}>
+            <SidebarMenuButton isActive={item.isActive}>
               {item.icon}
               <span>{item.title}</span>
-              <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-open/collapsible:rotate-90" />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
+            </SidebarMenuButton>
+            {item.items?.length ? (
               <SidebarMenuSub>
-                {item.items?.map((subItem) => (
+                {item.items.map((subItem) => (
                   <SidebarMenuSubItem key={subItem.title}>
                     <SidebarMenuSubButton render={<Link to={subItem.url} />}>
                       <span>{subItem.title}</span>
@@ -56,8 +44,8 @@ export function NavMain({
                   </SidebarMenuSubItem>
                 ))}
               </SidebarMenuSub>
-            </CollapsibleContent>
-          </Collapsible>
+            ) : null}
+          </SidebarMenuItem>
         ))}
       </SidebarMenu>
     </SidebarGroup>
