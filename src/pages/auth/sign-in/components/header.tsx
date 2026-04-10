@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { PATHS } from "@/routes/constants/paths";
+
 export default function Header() {
   return (
     <>
@@ -12,9 +15,12 @@ export default function Header() {
         <h2 className="text-2xl font-semibold">Login to Shadcnspace</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Don&apos;t have an account?{" "}
-          <a href="#" className="text-blue-500 hover:underline">
+          <Link
+            to={PATHS.AUTH.SIGN_UP}
+            className="text-blue-500 hover:underline"
+          >
             Sign up for free
-          </a>
+          </Link>
         </p>
       </div>
     </>
