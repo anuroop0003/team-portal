@@ -12,21 +12,29 @@ import {
 } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-// import Footer from "./footer";
 import Header from "./header";
 import {
-  loginSchema,
-  type LoginFormValues,
+  signInSchema,
+  type SignInFormValues,
 } from "@/validations/sign-in.schema";
 import SSOGroup from "./sso-group";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+// import Footer from "./footer";
 
-export function LoginForm() {
+export function SignInForm() {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<SignInFormValues>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -34,7 +42,7 @@ export function LoginForm() {
     },
   });
 
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (data: SignInFormValues) => {
     console.log("Form submitted:", data);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -54,7 +62,7 @@ export function LoginForm() {
               <Input
                 type="email"
                 placeholder="example@shadcnspace.com"
-                className="bg-transparent rounded-sm"
+                className="rounded-sm"
                 {...register("email")}
               />
               <FieldError errors={[errors.email]} />
@@ -64,16 +72,25 @@ export function LoginForm() {
             <Field data-invalid={!!errors.password}>
               <div className="flex items-center justify-between">
                 <FieldLabel>Password*</FieldLabel>
-                <a href="#" className="text-sm hover:underline">
+                <a href="#" className="text-sm hover:underline text-blue-500">
                   Forgot password?
                 </a>
               </div>
-              <Input
-                type="password"
-                placeholder="Enter your password"
-                className="bg-transparent rounded-sm"
-                {...register("password")}
-              />
+              <InputGroup className="rounded-sm">
+                <InputGroupInput
+                  id="inline-end-input"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  {...register("password")}
+                />
+                <InputGroupAddon
+                  align="inline-end"
+                  className="cursor-pointer"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                </InputGroupAddon>
+              </InputGroup>
               <FieldError errors={[errors.password]} />
             </Field>
 
@@ -93,7 +110,7 @@ export function LoginForm() {
                 disabled={isSubmitting}
                 className="w-full rounded-sm cursor-pointer"
               >
-                {isSubmitting ? "Logging in..." : "Log in"}
+                {isSubmitting ? "Signing in..." : "Sign in"}
               </Button>
             </Field>
 

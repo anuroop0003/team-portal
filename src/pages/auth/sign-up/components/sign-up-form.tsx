@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,20 +7,26 @@ import {
   Field,
   FieldGroup,
   FieldLabel,
+  FieldSeparator,
   FieldError,
 } from "@/components/ui/field";
-import { Link } from "react-router-dom";
-import { PATHS } from "@/routes/constants/paths";
-
-const signUpSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-});
-
-type SignUpFormValues = z.infer<typeof signUpSchema>;
+import Header from "./header";
+import {
+  signUpSchema,
+  type SignUpFormValues,
+} from "@/validations/sign-up.schema";
+import SSOGroup from "./sso-group";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+// import Footer from "./footer";
 
 export function SignUpForm() {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -37,72 +42,85 @@ export function SignUpForm() {
 
   const onSubmit = async (data: SignUpFormValues) => {
     console.log("Sign up data:", data);
+    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
   return (
     <Card className="w-full max-w-md rounded-2xl bg-foreground text-background shadow-xl">
       <CardContent className="p-8 space-y-6">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold">Create an Account</h1>
-          <p className="text-sm text-background/60">
-            Enter your details to join us
-          </p>
-        </div>
+        <Header />
 
+        {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup className="gap-3">
+            {/* Full Name */}
             <Field data-invalid={!!errors.fullName}>
               <FieldLabel>Full Name*</FieldLabel>
               <Input
                 placeholder="John Doe"
-                className="bg-transparent rounded-sm"
+                className="rounded-sm"
                 {...register("fullName")}
               />
               <FieldError errors={[errors.fullName]} />
             </Field>
 
+            {/* Email */}
             <Field data-invalid={!!errors.email}>
               <FieldLabel>Email*</FieldLabel>
               <Input
                 type="email"
                 placeholder="example@shadcnspace.com"
-                className="bg-transparent rounded-sm"
+                className="rounded-sm"
                 {...register("email")}
               />
               <FieldError errors={[errors.email]} />
             </Field>
 
+            {/* Password */}
             <Field data-invalid={!!errors.password}>
               <FieldLabel>Password*</FieldLabel>
-              <Input
-                type="password"
-                placeholder="********"
-                className="bg-transparent rounded-sm"
-                {...register("password")}
-              />
+              <InputGroup className="rounded-sm">
+                <InputGroupInput
+                  id="inline-end-input"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  {...register("password")}
+                />
+                <InputGroupAddon
+                  align="inline-end"
+                  className="cursor-pointer"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                </InputGroupAddon>
+              </InputGroup>
               <FieldError errors={[errors.password]} />
             </Field>
 
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full rounded-sm cursor-pointer mt-4"
-            >
-              {isSubmitting ? "Creating account..." : "Sign Up"}
-            </Button>
-
-            <p className="text-center text-sm text-background/60 mt-4">
-              Already have an account?{" "}
-              <Link
-                to={PATHS.AUTH.SIGN_IN}
-                className="text-background font-semibold hover:underline"
+            {/* Submit */}
+            <Field>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-sm cursor-pointer mt-2"
               >
-                Sign In
-              </Link>
-            </p>
+                {isSubmitting ? "Creating account..." : "Sign up"}
+              </Button>
+            </Field>
+
+            {/* Divider */}
+            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-foreground">
+              or sign up with
+            </FieldSeparator>
+
+            {/* OAuth */}
+            <SSOGroup />
           </FieldGroup>
         </form>
+
+        {/* Footer */}
+        {/* <Footer /> */}
       </CardContent>
     </Card>
   );

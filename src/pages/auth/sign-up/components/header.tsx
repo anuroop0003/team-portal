@@ -12,14 +12,14 @@ export default function Header() {
 
       {/* Heading */}
       <div>
-        <h2 className="text-2xl font-semibold">Sign in to Shadcnspace</h2>
+        <h2 className="text-2xl font-semibold">Create an account</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Don&apos;t have an account?{" "}
+          Already have an account?{" "}
           <Link
-            to={PATHS.AUTH.SIGN_UP}
+            to={PATHS.AUTH.SIGN_IN}
             className="text-blue-500 hover:underline"
           >
-            Sign up for free
+            Sign in
           </Link>
         </p>
       </div>
