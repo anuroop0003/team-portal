@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import Footer from "./footer";
+// import Footer from "./footer";
 import Header from "./header";
 import {
   loginSchema,
@@ -41,7 +41,7 @@ export function LoginForm() {
   };
 
   return (
-    <Card className="w-full max-w-md rounded-2xl bg-foreground text-background border-2 border-background/10 shadow-xl">
+    <Card className="w-full max-w-md rounded-2xl bg-foreground text-background shadow-xl">
       <CardContent className="p-8 space-y-6">
         <Header />
 
@@ -108,7 +108,7 @@ export function LoginForm() {
         </form>
 
         {/* Footer */}
-        <Footer />
+        {/* <Footer /> */}
       </CardContent>
     </Card>
   );
