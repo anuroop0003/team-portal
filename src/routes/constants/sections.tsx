@@ -2,7 +2,13 @@ import { Navigate, type RouteObject } from "react-router-dom";
 import { PATHS } from "./paths";
 import { PublicRoute } from "../guards/public-route";
 import { PrivateRoute } from "../guards/private-route";
-import { SignInPage, SignUpPage, DashboardPage, RewardsPage } from "./elements";
+import {
+  SignInPage,
+  SignUpPage,
+  DashboardPage,
+  RewardsPage,
+  DashboardLayout,
+} from "./elements";
 
 export const routes: RouteObject[] = [
   {
@@ -28,12 +34,17 @@ export const routes: RouteObject[] = [
     element: <PrivateRoute />,
     children: [
       {
-        path: PATHS.DASHBOARD,
-        element: <DashboardPage />,
-      },
-      {
-        path: PATHS.REWARDS,
-        element: <RewardsPage />,
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: PATHS.DASHBOARD,
+            element: <DashboardPage />,
+          },
+          {
+            path: PATHS.REWARDS,
+            element: <RewardsPage />,
+          },
+        ],
       },
     ],
   },
