@@ -1,9 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 import { BellIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,8 +13,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useThemeColor } from "@/components/theme-context";
 
 export default function DashboardLayout() {
+  const { setThemeColor } = useThemeColor();
+
+  const themes = [
+    { name: "teal", color: "var(--teal-swatch)" },
+    { name: "blue", color: "var(--blue-swatch)" },
+    { name: "green", color: "var(--green-swatch)" },
+    { name: "orange", color: "var(--orange-swatch)" },
+    { name: "rose", color: "var(--rose-swatch)" },
+  ] as const;
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -31,16 +38,15 @@ export default function DashboardLayout() {
               className="relative hover:bg-transparent cursor-pointer"
             >
               <BellIcon className="size-5 text-background" />
-              <span className="absolute animate-pulse right-1 top-1 flex size-2 rounded-full bg-red-600"></span>
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
                   <Button
                     variant="ghost"
-                    className="relative h-8 w-8 rounded-full"
+                    className="relative size-8 rounded-full cursor-pointer"
                   >
-                    <Avatar className="h-8 w-8">
+                    <Avatar>
                       <AvatarImage src="/avatars/shadcn.jpg" alt="@shadcn" />
                       <AvatarFallback>SC</AvatarFallback>
                     </Avatar>
@@ -74,12 +80,15 @@ export default function DashboardLayout() {
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup className="flex items-center justify-between px-3 py-1.5">
-                  <DropdownMenuItem className="size-6 cursor-pointer rounded-xs bg-slate-950 hover:bg-slate-950! hover:scale-105" />
-                  <DropdownMenuItem className="size-6 cursor-pointer rounded-xs bg-blue-600 hover:bg-blue-600! hover:scale-105" />
-                  <DropdownMenuItem className="size-6 cursor-pointer rounded-xs bg-emerald-600 hover:bg-emerald-600! hover:scale-105" />
-                  <DropdownMenuItem className="size-6 cursor-pointer rounded-xs bg-orange-500 hover:bg-orange-500! hover:scale-105" />
-                  <DropdownMenuItem className="size-6 cursor-pointer rounded-xs bg-violet-600 hover:bg-violet-600! hover:scale-105" />
+                <DropdownMenuGroup className="flex items-center justify-between px-3 py-1.5 gap-2">
+                  {themes.map((t) => (
+                    <DropdownMenuItem
+                      key={t.name}
+                      className="size-6 cursor-pointer rounded-xs hover:scale-110 transition-transform p-0"
+                      style={{ backgroundColor: t.color }}
+                      onClick={() => setThemeColor(t.name)}
+                    />
+                  ))}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer rounded-sm hover:bg-red-300! hover:text-red-700!">

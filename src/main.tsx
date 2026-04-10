@@ -5,11 +5,14 @@ import "./global.css";
 import { router } from "@/routes";
 import { Suspense } from "react";
 import { PageLoader } from "@/routes/components/page-loader";
+import { ThemeProvider } from "@/components/theme-context";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Suspense fallback={<PageLoader />}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <ThemeProvider>
+      <Suspense fallback={<PageLoader />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </ThemeProvider>
   </StrictMode>,
 );
