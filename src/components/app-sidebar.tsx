@@ -2,37 +2,105 @@ import { NavMain } from "@/components/nav-main";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   GalleryVerticalEndIcon,
-  LayoutDashboardIcon,
+  AudioLinesIcon,
+  TerminalIcon,
+  TerminalSquareIcon,
+  BotIcon,
+  BookOpenIcon,
   Settings2Icon,
-  PanelLeftIcon,
 } from "lucide-react";
-import { PATHS } from "@/routes/constants/paths";
 
 // This is sample data.
 const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: <GalleryVerticalEndIcon />,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: <AudioLinesIcon />,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: <TerminalIcon />,
+      plan: "Free",
+    },
+  ],
   navMain: [
     {
-      title: "Navigation",
+      title: "Playground",
       url: "#",
-      icon: <LayoutDashboardIcon />,
+      icon: <TerminalSquareIcon />,
       isActive: true,
       items: [
         {
-          title: "Dashboard",
-          url: PATHS.DASHBOARD,
+          title: "History",
+          url: "#",
         },
         {
-          title: "Rewards",
-          url: PATHS.REWARDS,
+          title: "Starred",
+          url: "#",
+        },
+        {
+          title: "Settings",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Models",
+      url: "#",
+      icon: <BotIcon />,
+      items: [
+        {
+          title: "Genesis",
+          url: "#",
+        },
+        {
+          title: "Explorer",
+          url: "#",
+        },
+        {
+          title: "Quantum",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Documentation",
+      url: "#",
+      icon: <BookOpenIcon />,
+      items: [
+        {
+          title: "Introduction",
+          url: "#",
+        },
+        {
+          title: "Get Started",
+          url: "#",
+        },
+        {
+          title: "Tutorials",
+          url: "#",
+        },
+        {
+          title: "Changelog",
+          url: "#",
         },
       ],
     },
@@ -42,11 +110,19 @@ const data = {
       icon: <Settings2Icon />,
       items: [
         {
-          title: "Profile",
+          title: "General",
           url: "#",
         },
         {
           title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
           url: "#",
         },
       ],
@@ -55,37 +131,28 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { toggleSidebar } = useSidebar();
-
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" variant="floating" {...props}>
       <SidebarHeader>
-        <div className="flex items-center gap-2 px-1 py-2">
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <GalleryVerticalEndIcon />
-          </div>
-          <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="truncate font-semibold">Team Portal</span>
-            <span className="truncate text-xs">Management</span>
-          </div>
-        </div>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton>
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                {data.teams[0].logo}
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">
+                  {data.teams[0].name}
+                </span>
+                <span className="truncate text-xs">{data.teams[0].plan}</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              className="cursor-pointer"
-              onClick={toggleSidebar}
-            >
-              <PanelLeftIcon />
-              <span>Collapse Sidebar</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
     </Sidebar>
   );
 }
