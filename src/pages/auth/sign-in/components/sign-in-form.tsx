@@ -75,7 +75,7 @@ export function SignInForm() {
                 <FieldLabel>Password*</FieldLabel>
                 <Link
                   to={PATHS.AUTH.FORGOT_PASSWORD}
-                  className="text-sm hover:underline hover:underline-offset-4 text-primary"
+                  className="text-xs hover:underline hover:underline-offset-4 text-primary"
                 >
                   Forgot password?
                 </Link>
