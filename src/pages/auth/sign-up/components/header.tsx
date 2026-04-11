@@ -6,7 +6,7 @@ export default function Header() {
     <>
       {/* Logo */}
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-white" />
+        <div className="size-8 rounded-full bg-white" />
         <span className="text-lg font-semibold">shadcnspace.</span>
       </div>
 
@@ -17,7 +17,7 @@ export default function Header() {
           Already have an account?{" "}
           <Link
             to={PATHS.AUTH.SIGN_IN}
-            className="text-blue-500 hover:underline"
+            className="text-primary hover:underline hover:underline-offset-4"
           >
             Sign in
           </Link>

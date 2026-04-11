@@ -25,7 +25,8 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-// import Footer from "./footer";
+import { Link } from "react-router-dom";
+import { PATHS } from "@/routes/constants/paths";
 
 export function SignInForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -49,7 +50,7 @@ export function SignInForm() {
   };
 
   return (
-    <Card className="w-full max-w-md rounded-2xl bg-foreground text-background shadow-xl">
+    <Card className="w-full max-w-md rounded-2xl shadow-xl bg-card/95 backdrop-blur-md border border-border/60">
       <CardContent className="p-8 space-y-6">
         <Header />
 
@@ -72,9 +73,12 @@ export function SignInForm() {
             <Field data-invalid={!!errors.password}>
               <div className="flex items-center justify-between">
                 <FieldLabel>Password*</FieldLabel>
-                <a href="#" className="text-sm hover:underline text-blue-500">
+                <Link
+                  to={PATHS.AUTH.FORGOT_PASSWORD}
+                  className="text-sm hover:underline hover:underline-offset-4 text-primary"
+                >
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <InputGroup className="rounded-sm">
                 <InputGroupInput
@@ -115,7 +119,7 @@ export function SignInForm() {
             </Field>
 
             {/* Divider */}
-            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-foreground">
+            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-card">
               or sign in with
             </FieldSeparator>
 
@@ -123,9 +127,6 @@ export function SignInForm() {
             <SSOGroup />
           </FieldGroup>
         </form>
-
-        {/* Footer */}
-        {/* <Footer /> */}
       </CardContent>
     </Card>
   );

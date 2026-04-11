@@ -23,7 +23,6 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-// import Footer from "./footer";
 
 export function SignUpForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -47,7 +46,7 @@ export function SignUpForm() {
   };
 
   return (
-    <Card className="w-full max-w-md rounded-2xl bg-foreground text-background shadow-xl">
+    <Card className="w-full max-w-md rounded-2xl shadow-xl">
       <CardContent className="p-8 space-y-6">
         <Header />
 
@@ -110,7 +109,7 @@ export function SignUpForm() {
             </Field>
 
             {/* Divider */}
-            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-foreground">
+            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-card">
               or sign up with
             </FieldSeparator>
 
@@ -118,9 +117,6 @@ export function SignUpForm() {
             <SSOGroup />
           </FieldGroup>
         </form>
-
-        {/* Footer */}
-        {/* <Footer /> */}
       </CardContent>
     </Card>
   );

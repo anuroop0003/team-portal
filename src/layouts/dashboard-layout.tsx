@@ -25,7 +25,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useThemeColor } from "@/components/theme-context";
+import { useTheme } from "@/components/theme-context";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 // ─── Breadcrumb helper ────────────────────────────────────────────────────────
 
@@ -86,7 +87,7 @@ function Breadcrumbs() {
 }
 
 function ThemeSwitcher() {
-  const { themeColor, setThemeColor } = useThemeColor();
+  const { themeColor, setThemeColor } = useTheme();
 
   return (
     <DropdownMenu>
@@ -133,6 +134,26 @@ function ThemeSwitcher() {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+function ModeToggle() {
+  const { mode, toggleMode } = useTheme();
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleMode}
+      className="size-9 rounded-full hover:bg-primary/10 cursor-pointer transition-all duration-200"
+      aria-label="Toggle light/dark mode"
+    >
+      {mode === "light" ? (
+        <MoonIcon className="size-4.5 text-primary" />
+      ) : (
+        <SunIcon className="size-4.5 text-primary" />
+      )}
+    </Button>
   );
 }
 
@@ -290,6 +311,8 @@ export default function DashboardLayout() {
           <div className="flex items-center gap-1.5 shrink-0">
             <SearchButton />
             <Separator orientation="vertical" className="h-6 mx-1" />
+
+            <ModeToggle />
             <ThemeSwitcher />
             <NotificationButton />
             <Separator orientation="vertical" className="h-6 mx-1" />

@@ -10,7 +10,7 @@ export default function SSOGroup() {
         <Button
           variant="outline"
           type="button"
-          className="w-full rounded-sm cursor-pointer text-primary hover:text-primary"
+          className="w-full rounded-sm cursor-pointer"
         >
           <GoogleLogo />
           Sign in with Google
@@ -21,7 +21,7 @@ export default function SSOGroup() {
         <Button
           variant="outline"
           type="button"
-          className="w-full rounded-sm cursor-pointer text-primary hover:text-primary"
+          className="w-full rounded-sm cursor-pointer"
         >
           <MicrosoftLogo />
           Sign in with Microsoft
