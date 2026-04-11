@@ -15,7 +15,9 @@ import {
   BotIcon,
   BookOpenIcon,
   Settings2Icon,
+  TrophyIcon,
 } from "lucide-react";
+import { PATHS } from "@/routes/constants/paths";
 
 // This is sample data.
 const data = {
@@ -103,6 +105,11 @@ const data = {
           url: "#",
         },
       ],
+    },
+    {
+      title: "Rewards",
+      url: PATHS.REWARDS,
+      icon: <TrophyIcon />,
     },
     {
       title: "Settings",
