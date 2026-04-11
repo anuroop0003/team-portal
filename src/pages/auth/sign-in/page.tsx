@@ -7,7 +7,7 @@ export default function SignInPage() {
   const { mode, toggleMode } = useTheme();
 
   return (
-    <div className="bg-[url('@/assets/login/login.webp')] bg-cover bg-center bg-no-repeat w-full h-full min-h-screen relative">
+    <div className="bg-[url('@/assets/login/login.webp')] bg-cover bg-center bg-no-repeat size-full min-h-screen relative">
       {/* Theme Toggle */}
       <div className="absolute top-6 right-6 z-10">
         <Button

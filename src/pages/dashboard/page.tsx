@@ -56,7 +56,7 @@ export default function DashboardPage() {
               <CardTitle className="text-sm font-medium">
                 {stat.title}
               </CardTitle>
-              <stat.icon className={`h-4 w-4 ${stat.color}`} />
+              <stat.icon className={`size-4 ${stat.color}`} />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
@@ -87,7 +87,7 @@ export default function DashboardPage() {
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="flex items-center gap-4">
-                  <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center font-bold text-xs">
+                  <div className="size-9 rounded-full bg-muted flex items-center justify-center font-bold text-xs">
                     RT
                   </div>
                   <div className="flex-1 space-y-1">

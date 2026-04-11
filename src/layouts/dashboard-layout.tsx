@@ -62,8 +62,8 @@ export default function DashboardLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-10 px-4">
+      <SidebarInset className="min-h-screen">
+        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 m-2 px-4 md:px-6 rounded-lg border border-white/10 dark:border-white/5 bg-card/70 shadow-sm backdrop-blur-md sticky top-2 z-10">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -94,14 +94,18 @@ export default function DashboardLayout() {
 
           <div className="flex items-center gap-4">
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <div className="relative inline-flex">
-                  <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <BellIcon className="h-4 w-4" />
-                    <span className="absolute top-1 right-1 flex h-2 w-2 rounded-full bg-primary" />
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="relative size-9"
+                  >
+                    <BellIcon className="size-4" />
+                    <span className="absolute top-1 right-1 flex size-2 rounded-full bg-primary" />
                   </Button>
-                </div>
-              </DropdownMenuTrigger>
+                }
+              />
               <DropdownMenuContent align="end" className="w-80">
                 <DropdownMenuGroup>
                   <DropdownMenuLabel>Notifications</DropdownMenuLabel>
@@ -116,17 +120,19 @@ export default function DashboardLayout() {
             </DropdownMenu>
 
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button
-                  variant="ghost"
-                  className="relative h-9 w-9 rounded-full"
-                >
-                  <Avatar className="h-9 w-9">
-                    <AvatarImage src={user.avatar} alt={user.name} />
-                    <AvatarFallback>SC</AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    className="relative size-9 rounded-full"
+                  >
+                    <Avatar className="size-9">
+                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarFallback>SC</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                }
+              />
               <DropdownMenuContent className="w-64" align="end">
                 <DropdownMenuGroup>
                   <DropdownMenuLabel className="font-normal">
@@ -143,18 +149,18 @@ export default function DashboardLayout() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <UserIcon className="mr-2 h-4 w-4" />
+                    <UserIcon className="mr-2 size-4" />
                     <span>Profile</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <SettingsIcon className="mr-2 h-4 w-4" />
+                    <SettingsIcon className="mr-2 size-4" />
                     <span>Settings</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <div className="flex items-center justify-between px-2 py-2">
                   <div className="flex items-center gap-2">
-                    <SunIcon className="h-4 w-4 text-muted-foreground" />
+                    <SunIcon className="size-4 text-muted-foreground" />
                     <span className="text-sm font-medium">Light</span>
                   </div>
                   <Switch
@@ -163,19 +169,19 @@ export default function DashboardLayout() {
                   />
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium">Dark</span>
-                    <MoonIcon className="h-4 w-4 text-muted-foreground" />
+                    <MoonIcon className="size-4 text-muted-foreground" />
                   </div>
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem variant="destructive">
-                  <LogOutIcon className="mr-2 h-4 w-4" />
+                  <LogOutIcon className="mr-2 size-4" />
                   <span>Log out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:p-6">
+        <main className="flex flex-1 flex-col gap-4 p-4 md:p-6 m-2 rounded-lg border border-white/10 dark:border-white/5 bg-card/70 shadow-sm backdrop-blur-md">
           <Outlet />
         </main>
       </SidebarInset>
