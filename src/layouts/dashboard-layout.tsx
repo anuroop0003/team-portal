@@ -66,7 +66,7 @@ export default function DashboardLayout() {
         <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 m-2 px-4 md:px-6 rounded-lg border border-white/10 dark:border-white/5 bg-card/70 shadow-sm backdrop-blur-md sticky top-2 z-10">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
+            <Separator orientation="vertical" className="mr-2" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
