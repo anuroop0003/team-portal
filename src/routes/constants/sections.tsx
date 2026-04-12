@@ -13,6 +13,7 @@ import {
   RedeemShopPage,
   GlobalLeaderboardPage,
   DashboardLayout,
+  AddRewardPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -68,6 +69,10 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.REWARDS.GLOBAL_LEADERBOARD,
                 element: <GlobalLeaderboardPage />,
+              },
+              {
+                path: PATHS.REWARDS.ADD_REWARD,
+                element: <AddRewardPage />,
               },
             ],
           },

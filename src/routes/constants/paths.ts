@@ -11,5 +11,6 @@ export const PATHS = {
     POINTS_HISTORY: "/rewards/points-history",
     REDEEM_SHOP: "/rewards/redeem-shop",
     GLOBAL_LEADERBOARD: "/rewards/global-leaderboard",
+    ADD_REWARD: "/rewards/add",
   },
 };

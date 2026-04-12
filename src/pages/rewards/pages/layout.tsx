@@ -1,6 +1,8 @@
-import { Outlet } from "react-router-dom";
-import { CreateRewardDrawer } from "../components/create-reward-drawer";
+import { Outlet, Link } from "react-router-dom";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { RewardStats } from "../components/reward-stats";
+import { PATHS } from "@/routes/constants/paths";
 
 export default function RewardsLayout() {
   return (
@@ -16,7 +18,11 @@ export default function RewardsLayout() {
           </p>
         </div>
 
-        <CreateRewardDrawer />
+        <Link to={PATHS.REWARDS.ADD_REWARD}>
+          <Button className="cursor-pointer gap-2">
+            <Plus className="size-4" /> Add New Reward
+          </Button>
+        </Link>
       </div>
 
       <RewardStats />

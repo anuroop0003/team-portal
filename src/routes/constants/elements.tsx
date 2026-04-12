@@ -25,3 +25,6 @@ export const RedeemShopPage = lazy(
 export const GlobalLeaderboardPage = lazy(
   () => import("@/pages/rewards/pages/global-leaderboard/page"),
 );
+export const AddRewardPage = lazy(
+  () => import("@/pages/rewards/pages/add-reward/page"),
+);
