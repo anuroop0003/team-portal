@@ -36,7 +36,7 @@ export default function AddRewardPage() {
 
   return (
     <FormProvider {...methods}>
-      <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
+      <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <RewardHeader
           isSubmitting={isSubmitting}
           onAssign={handleSubmit(onSubmit)}
