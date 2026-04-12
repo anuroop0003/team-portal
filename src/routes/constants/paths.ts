@@ -5,5 +5,11 @@ export const PATHS = {
     FORGOT_PASSWORD: "/auth/forgot-password",
   },
   DASHBOARD: "/dashboard",
-  REWARDS: "/rewards",
+  REWARDS: {
+    ROOT: "/rewards",
+    MY_REWARDS: "/rewards/my-rewards",
+    POINTS_HISTORY: "/rewards/points-history",
+    REDEEM_SHOP: "/rewards/redeem-shop",
+    GLOBAL_LEADERBOARD: "/rewards/global-leaderboard",
+  },
 };

@@ -6,7 +6,12 @@ import {
   SignInPage,
   SignUpPage,
   DashboardPage,
+  RewardsLayout,
   RewardsPage,
+  MyRewardsPage,
+  PointsHistoryPage,
+  RedeemShopPage,
+  GlobalLeaderboardPage,
   DashboardLayout,
 } from "./elements";
 
@@ -41,8 +46,30 @@ export const routes: RouteObject[] = [
             element: <DashboardPage />,
           },
           {
-            path: PATHS.REWARDS,
-            element: <RewardsPage />,
+            path: PATHS.REWARDS.ROOT,
+            element: <RewardsLayout />,
+            children: [
+              {
+                index: true,
+                element: <RewardsPage />,
+              },
+              {
+                path: PATHS.REWARDS.MY_REWARDS,
+                element: <MyRewardsPage />,
+              },
+              {
+                path: PATHS.REWARDS.POINTS_HISTORY,
+                element: <PointsHistoryPage />,
+              },
+              {
+                path: PATHS.REWARDS.REDEEM_SHOP,
+                element: <RedeemShopPage />,
+              },
+              {
+                path: PATHS.REWARDS.GLOBAL_LEADERBOARD,
+                element: <GlobalLeaderboardPage />,
+              },
+            ],
           },
         ],
       },
