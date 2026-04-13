@@ -40,10 +40,7 @@ export function TicketCard({ reward }: TicketCardProps) {
         </p>
       </CardContent>
       <CardFooter>
-        <Button
-          size="sm"
-          className="ml-auto text-secondary bg-amber-500 hover:bg-amber-500/80 cursor-pointer"
-        >
+        <Button size="sm" className="ml-auto cursor-pointer">
           Redeem Now
         </Button>
       </CardFooter>
