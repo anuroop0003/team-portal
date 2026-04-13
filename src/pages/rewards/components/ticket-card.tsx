@@ -21,17 +21,17 @@ export function TicketCard({ reward }: TicketCardProps) {
         <CardTitle className="text-sm font-medium line-clamp-1">
           {reward.title}
         </CardTitle>
-        <CardAction className="size-8 rounded-lg flex items-center justify-center shadow-sm border bg-teal-500/10">
-          <Ticket className="text-teal-500 size-5" />
+        <CardAction className="size-8 rounded-lg flex items-center justify-center shadow-sm border bg-amber-500/10">
+          <Ticket className="text-amber-500 size-5" />
         </CardAction>
       </CardHeader>
 
       <CardContent>
         <div className="flex items-baseline gap-1 mb-2">
-          <span className="text-2xl font-bold tracking-tighter text-teal-500">
+          <span className="text-2xl font-bold tracking-tighter text-amber-500">
             {reward.points.toLocaleString()}
           </span>
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          <span className="text-[10px] font-bold text-muted-foreground tracking-widest">
             pts
           </span>
         </div>
@@ -42,7 +42,7 @@ export function TicketCard({ reward }: TicketCardProps) {
       <CardFooter>
         <Button
           size="sm"
-          className="ml-auto text-secondary bg-teal-500 hover:bg-teal-500/80 cursor-pointer"
+          className="ml-auto text-secondary bg-amber-500 hover:bg-amber-500/80 cursor-pointer"
         >
           Redeem Now
         </Button>

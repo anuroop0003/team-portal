@@ -28,7 +28,7 @@ export function RewardCard({ reward }: RewardCardProps) {
           <span className="text-2xl font-bold tracking-tighter text-amber-500">
             {reward.points.toLocaleString()}
           </span>
-          <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+          <span className="text-[10px] font-bold text-muted-foreground tracking-widest">
             pts
           </span>
         </div>
