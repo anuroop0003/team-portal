@@ -16,7 +16,7 @@ export default function AddRewardPage() {
     defaultValues: {
       template: 1,
       tone: "gold",
-      awardName: "Star Performer",
+      awardName: "STAR PERFORMER",
       year: new Date().getFullYear().toString(),
       nameYOffset: 60,
       nameFontSize: 36,

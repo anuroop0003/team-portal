@@ -106,7 +106,7 @@ export function RewardPreview({
         >
           <h3
             className={cn(
-              "font-lato font-black uppercase tracking-wider leading-normal wrap-break-word whitespace-normal",
+              "font-lato font-black tracking-wider leading-normal wrap-break-word whitespace-normal",
               currentTone.text,
             )}
             style={{
