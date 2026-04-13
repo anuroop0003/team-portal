@@ -1,5 +1,7 @@
+import PageLoaderIcon from "@/assets/loader/page-loader.svg?react";
+
 export const PageLoader = () => (
-  <div className="flex size-screen items-center justify-center">
-    <div className="animate-spin rounded-full size-8 border-b-2 border-primary"></div>
+  <div className="flex items-center justify-center min-h-screen">
+    <PageLoaderIcon className="size-28 md:size-36" />
   </div>
 );
