@@ -11,10 +11,7 @@ import {
   GalleryVerticalEndIcon,
   AudioLinesIcon,
   TerminalIcon,
-  TerminalSquareIcon,
-  BotIcon,
-  BookOpenIcon,
-  Settings2Icon,
+  LayoutDashboardIcon,
   TrophyIcon,
 } from "lucide-react";
 import { PATHS } from "@/routes/constants/paths";
@@ -45,92 +42,39 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: <TerminalSquareIcon />,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: <BotIcon />,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: <BookOpenIcon />,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      title: "Dashboard",
+      url: PATHS.DASHBOARD,
+      icon: <LayoutDashboardIcon />,
     },
     {
       title: "Rewards",
-      url: PATHS.REWARDS,
+      url: PATHS.REWARDS.ROOT,
       icon: <TrophyIcon />,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: <Settings2Icon />,
+      isActive: true,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Overview",
+          url: PATHS.REWARDS.ROOT,
         },
         {
-          title: "Team",
-          url: "#",
+          title: "My Rewards",
+          url: PATHS.REWARDS.MY_REWARDS,
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "Points History",
+          url: PATHS.REWARDS.POINTS_HISTORY,
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "Redeem Shop",
+          url: PATHS.REWARDS.REDEEM_SHOP,
+        },
+        {
+          title: "Global Leaderboard",
+          url: PATHS.REWARDS.GLOBAL_LEADERBOARD,
+        },
+        {
+          title: "Add Reward",
+          url: PATHS.REWARDS.ADD_REWARD,
         },
       ],
     },
