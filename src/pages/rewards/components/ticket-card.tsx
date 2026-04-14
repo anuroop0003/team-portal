@@ -21,7 +21,7 @@ export function TicketCard({ reward }: TicketCardProps) {
         <CardTitle className="text-sm font-medium line-clamp-1">
           {reward.title}
         </CardTitle>
-        <CardAction className="size-8 rounded-lg flex items-center justify-center shadow-sm border bg-amber-500/10">
+        <CardAction className="size-8 rounded-md flex items-center justify-center shadow-sm border bg-amber-500/10">
           <Ticket className="text-amber-500 size-5" />
         </CardAction>
       </CardHeader>
