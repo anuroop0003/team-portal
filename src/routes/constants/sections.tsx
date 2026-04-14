@@ -14,6 +14,8 @@ import {
   GlobalLeaderboardPage,
   DashboardLayout,
   AddRewardPage,
+  WorkforceDirectoryPage,
+  WorkforceOrganizationPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -73,6 +75,19 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.REWARDS.ADD_REWARD,
                 element: <AddRewardPage />,
+              },
+            ],
+          },
+          {
+            path: PATHS.WORKFORCE.ROOT,
+            children: [
+              {
+                index: true,
+                element: <WorkforceDirectoryPage />,
+              },
+              {
+                path: PATHS.WORKFORCE.ORGANIZATION,
+                element: <WorkforceOrganizationPage />,
               },
             ],
           },

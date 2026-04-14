@@ -1,0 +1,8 @@
+.rd3t-link {
+  stroke: var(--border) !important;
+  stroke-width: 1.5;
+}
+
+.rd3t-tree-container {
+  background: transparent;
+}

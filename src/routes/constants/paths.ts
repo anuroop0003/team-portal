@@ -13,4 +13,8 @@ export const PATHS = {
     GLOBAL_LEADERBOARD: "/rewards/global-leaderboard",
     ADD_REWARD: "/rewards/add",
   },
+  WORKFORCE: {
+    ROOT: "/workforce",
+    ORGANIZATION: "/workforce/organization",
+  },
 };

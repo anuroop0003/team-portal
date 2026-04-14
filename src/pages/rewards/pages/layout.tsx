@@ -19,8 +19,9 @@ export default function RewardsLayout() {
         </div>
 
         <Link to={PATHS.REWARDS.ADD_REWARD}>
-          <Button className="cursor-pointer gap-2">
-            <Plus className="size-4" /> Add New Reward
+          <Button className="cursor-pointer">
+            <Plus />
+            Add New Reward
           </Button>
         </Link>
       </div>

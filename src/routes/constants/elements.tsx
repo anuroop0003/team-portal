@@ -28,3 +28,11 @@ export const GlobalLeaderboardPage = lazy(
 export const AddRewardPage = lazy(
   () => import("@/pages/rewards/pages/add-reward/page"),
 );
+
+// Workforce
+export const WorkforceDirectoryPage = lazy(
+  () => import("@/pages/workforce/pages/directory/page"),
+);
+export const WorkforceOrganizationPage = lazy(
+  () => import("@/pages/workforce/pages/organization/page"),
+);

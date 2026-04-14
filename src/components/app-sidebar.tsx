@@ -13,6 +13,7 @@ import {
   TerminalIcon,
   LayoutDashboardIcon,
   TrophyIcon,
+  UsersIcon,
 } from "lucide-react";
 import { PATHS } from "@/routes/constants/paths";
 
@@ -75,6 +76,21 @@ const data = {
         {
           title: "Add Reward",
           url: PATHS.REWARDS.ADD_REWARD,
+        },
+      ],
+    },
+    {
+      title: "Workforce",
+      url: PATHS.WORKFORCE.ROOT,
+      icon: <UsersIcon />,
+      items: [
+        {
+          title: "Directory",
+          url: PATHS.WORKFORCE.ROOT,
+        },
+        {
+          title: "Organization",
+          url: PATHS.WORKFORCE.ORGANIZATION,
         },
       ],
     },
