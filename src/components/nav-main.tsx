@@ -82,6 +82,7 @@ export function NavMain({
                       <SidebarMenuSubButton
                         render={<NavLink to={subItem.url} />}
                         isActive={pathname === subItem.url}
+                        className="hover:bg-primary hover:text-primary-foreground data-active:bg-primary data-active:text-primary-foreground"
                       >
                         <span>{subItem.title}</span>
                       </SidebarMenuSubButton>
