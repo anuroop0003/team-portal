@@ -122,7 +122,7 @@ export function EditMemberForm({
           <FieldError errors={[errors.role]} />
         </Field>
       </FieldGroup>
-      <DialogFooter className="mt-4 flex flex-col sm:flex-row gap-2">
+      <DialogFooter className="mt-4 flex flex-col sm:flex-row gap-2 rounded-b-md">
         <Button
           type="button"
           variant="destructive"
