@@ -100,7 +100,7 @@ export function PasswordFormView({
               type="button"
               variant="link"
               render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Login</Link>}
-              className="cursor-pointer"
+              className="rounded-sm cursor-pointer"
             />
           </p>
         </Field>
