@@ -3,6 +3,15 @@ import { lazy } from "react";
 // Auth Pages
 export const SignInPage = lazy(() => import("@/pages/auth/sign-in/page"));
 export const SignUpPage = lazy(() => import("@/pages/auth/sign-up/page"));
+export const ForgotPasswordPage = lazy(
+  () => import("@/pages/auth/forgot-password/page"),
+);
+export const ResetPasswordPage = lazy(
+  () => import("@/pages/auth/reset-password/page"),
+);
+export const VerifyEmailPage = lazy(
+  () => import("@/pages/auth/verify-email/page"),
+);
 
 // Dashboard & Features
 export const DashboardPage = lazy(() => import("@/pages/dashboard/page"));

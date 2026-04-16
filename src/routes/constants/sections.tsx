@@ -16,6 +16,9 @@ import {
   AddRewardPage,
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  VerifyEmailPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -34,6 +37,18 @@ export const routes: RouteObject[] = [
       {
         path: PATHS.AUTH.SIGN_UP,
         element: <SignUpPage />,
+      },
+      {
+        path: PATHS.AUTH.FORGOT_PASSWORD,
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: PATHS.AUTH.RESET_PASSWORD,
+        element: <ResetPasswordPage />,
+      },
+      {
+        path: PATHS.AUTH.VERIFY_EMAIL,
+        element: <VerifyEmailPage />,
       },
     ],
   },

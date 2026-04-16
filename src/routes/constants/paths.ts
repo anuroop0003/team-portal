@@ -1,8 +1,10 @@
 export const PATHS = {
   AUTH: {
     SIGN_IN: "/auth/sign-in",
-    SIGN_UP: "/auth/sign-up",
+    SIGN_UP: "/auth/register-organization",
     FORGOT_PASSWORD: "/auth/forgot-password",
+    RESET_PASSWORD: "/auth/reset-password",
+    VERIFY_EMAIL: "/auth/verify-email",
   },
   DASHBOARD: "/dashboard",
   REWARDS: {

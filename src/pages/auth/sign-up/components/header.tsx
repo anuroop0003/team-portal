@@ -12,7 +12,7 @@ export default function Header() {
 
       {/* Heading */}
       <div>
-        <h2 className="text-2xl font-semibold">Create an account</h2>
+        <h2 className="text-2xl font-semibold">Register your Workspace</h2>
         <p className="text-sm text-muted-foreground mt-1">
           Already have an account?{" "}
           <Link
