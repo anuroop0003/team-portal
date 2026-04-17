@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { type AddMemberValues } from "@/validations/member.schema";
+import { type AddMemberFormValues } from "@/validations/member.schema";
 import { InviteForm } from "./invite-form";
 import { InviteSuccess } from "./invite-success";
 
@@ -18,7 +18,7 @@ export function AddMemberModal() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
 
-  const onSubmit = async (data: AddMemberValues) => {
+  const onSubmit = async (data: AddMemberFormValues) => {
     setIsSubmitting(true);
     setSubmittedEmail(data.email);
     console.log("Creating workforce member with data:", data);

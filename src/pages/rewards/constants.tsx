@@ -1,7 +1,7 @@
 import { type ColumnDef } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Clock, XCircle } from "lucide-react";
+import { CheckCircle2, Clock, XCircle, type LucideIcon } from "lucide-react";
 
 // --- Types ---
 
@@ -293,11 +293,16 @@ export const columns: ColumnDef<HistoryItem>[] = [
     header: "Status",
     cell: ({ row }) => {
       const status = row.getValue("status") as string;
-      const config = {
+      const statusConfig: Record<
+        string,
+        { variant: "success" | "warning" | "destructive"; icon: LucideIcon }
+      > = {
         Completed: { variant: "success" as const, icon: CheckCircle2 },
         Pending: { variant: "warning" as const, icon: Clock },
         Cancelled: { variant: "destructive" as const, icon: XCircle },
-      }[status as keyof typeof config] || {
+      };
+
+      const config = statusConfig[status] || {
         variant: "outline" as const,
         icon: null,
       };

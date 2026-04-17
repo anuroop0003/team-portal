@@ -26,11 +26,10 @@ export const registerOrganizationSchema = z
     orgWebsite: z
       .string()
       .trim()
-      .optional()
-      .transform((val) => (val === "" ? undefined : val))
       .refine((val) => !val || /^https?:\/\/.+/.test(val), {
         message: "Invalid URL",
-      }),
+      })
+      .optional(),
     orgIndustry: z.string().min(1, "Select industry"),
     orgCompanySize: z.string().min(1, "Select size"),
     termsAccepted: z.boolean().refine((val) => val === true, {

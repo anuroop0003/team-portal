@@ -15,11 +15,11 @@ import {
 } from "@/components/ui/select";
 import {
   addMemberSchema,
-  type AddMemberValues,
+  type AddMemberFormValues,
 } from "@/validations/member.schema";
 
 interface InviteFormProps {
-  onSubmit: (data: AddMemberValues) => Promise<void>;
+  onSubmit: (data: AddMemberFormValues) => Promise<void>;
   isSubmitting: boolean;
 }
 
@@ -28,7 +28,7 @@ const ROLE_OPTIONS = [
   { label: "User", value: "user" },
   { label: "Manager", value: "manager" },
   { label: "Admin", value: "admin" },
-] as const;
+];
 
 export function InviteForm({ onSubmit, isSubmitting }: InviteFormProps) {
   const {
@@ -36,13 +36,13 @@ export function InviteForm({ onSubmit, isSubmitting }: InviteFormProps) {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<AddMemberValues>({
+  } = useForm<AddMemberFormValues>({
     resolver: zodResolver(addMemberSchema),
     defaultValues: {
       name: "",
       email: "",
       position: "",
-      role: null,
+      role: undefined,
     },
   });
 

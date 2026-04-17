@@ -15,12 +15,12 @@ import {
 } from "@/components/ui/select";
 import {
   addMemberSchema,
-  type AddMemberValues,
+  type AddMemberFormValues,
 } from "@/validations/member.schema";
 
 interface EditMemberFormProps {
-  initialValues: AddMemberValues;
-  onSubmit: (data: AddMemberValues) => Promise<void>;
+  initialValues: AddMemberFormValues;
+  onSubmit: (data: AddMemberFormValues) => Promise<void>;
   onDelete: () => void;
   isSubmitting: boolean;
 }
@@ -43,7 +43,7 @@ export function EditMemberForm({
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<AddMemberValues>({
+  } = useForm<AddMemberFormValues>({
     resolver: zodResolver(addMemberSchema),
     defaultValues: initialValues,
   });

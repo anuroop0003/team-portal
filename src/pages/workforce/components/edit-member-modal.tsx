@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { type AddMemberValues } from "@/validations/member.schema";
+import { type AddMemberFormValues } from "@/validations/member.schema";
 import { EditMemberForm } from "./edit-member-form";
 import { DeleteMemberDialog } from "./delete-member-dialog";
 
@@ -32,7 +32,7 @@ export function EditMemberModal({
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
 
   // Map member role string to schema object
-  const initialValues: AddMemberValues = {
+  const initialValues: AddMemberFormValues = {
     name: member.name,
     email: member.email,
     position: member.position,
@@ -42,7 +42,7 @@ export function EditMemberModal({
     },
   };
 
-  const onSubmit = async (data: AddMemberValues) => {
+  const onSubmit = async (data: AddMemberFormValues) => {
     setIsSubmitting(true);
     console.log("Updating member data:", data);
 
