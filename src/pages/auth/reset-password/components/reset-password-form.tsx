@@ -7,8 +7,9 @@ import {
   type ResetPasswordFormValues,
 } from "@/validations/reset-password.schema";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useResetPassword } from "@/services/query/auth/auth.query";
+import { PATHS } from "@/routes/constants/paths";
 import { AuthAlert } from "../../components/auth-alert";
 import { InvalidLinkView } from "./invalid-link-view";
 import { ResetSuccessView } from "./reset-success-view";
@@ -17,6 +18,7 @@ import { PasswordFormView } from "./password-form-view";
 export function ResetPasswordForm() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
@@ -39,6 +41,9 @@ export function ResetPasswordForm() {
     if (!token) return;
 
     await mutateAsync({ token, data });
+    setTimeout(() => {
+      navigate(PATHS.AUTH.SIGN_IN);
+    }, 3000);
   };
 
   const renderContent = () => {
@@ -60,6 +65,13 @@ export function ResetPasswordForm() {
             description={
               error?.message || "Something went wrong. Please try again."
             }
+          />
+        )}
+
+        {isSuccess && (
+          <AuthAlert
+            variant="success"
+            description="Password updated successfully. Redirecting to sign in..."
           />
         )}
 

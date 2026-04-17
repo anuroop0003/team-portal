@@ -15,12 +15,13 @@ import {
   type ForgotPasswordFormValues,
 } from "@/validations/forgot-password.schema";
 import { Loader2Icon } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PATHS } from "@/routes/constants/paths";
 import { useForgotPassword } from "@/services/query/auth/auth.query";
 import { AuthAlert } from "../../components/auth-alert";
 
 export function ForgotPasswordForm() {
+  const navigate = useNavigate();
   const { mutateAsync, isPending, isSuccess, error } = useForgotPassword();
 
   const {
@@ -36,6 +37,9 @@ export function ForgotPasswordForm() {
 
   const onSubmit = async (data: ForgotPasswordFormValues) => {
     await mutateAsync(data);
+    setTimeout(() => {
+      navigate(PATHS.AUTH.SIGN_IN);
+    }, 3000);
   };
 
   return (
@@ -60,35 +64,33 @@ export function ForgotPasswordForm() {
         )}
 
         {/* Form */}
-        {!isSuccess && (
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <FieldGroup>
-              {/* Email */}
-              <Field data-invalid={!!errors.email}>
-                <FieldLabel>Email*</FieldLabel>
-                <Input
-                  type="email"
-                  placeholder="example@shadcnspace.com"
-                  className="rounded-sm"
-                  {...register("email")}
-                />
-                <FieldError errors={[errors.email]} />
-              </Field>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FieldGroup>
+            {/* Email */}
+            <Field data-invalid={!!errors.email}>
+              <FieldLabel>Email*</FieldLabel>
+              <Input
+                type="email"
+                placeholder="example@shadcnspace.com"
+                className="rounded-sm"
+                {...register("email")}
+              />
+              <FieldError errors={[errors.email]} />
+            </Field>
 
-              {/* Submit */}
-              <Field>
-                <Button
-                  type="submit"
-                  disabled={isPending}
-                  className="w-full rounded-sm cursor-pointer"
-                >
-                  {isPending && <Loader2Icon className="animate-spin" />}
-                  Forgot password
-                </Button>
-              </Field>
-            </FieldGroup>
-          </form>
-        )}
+            {/* Submit */}
+            <Field>
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="w-full rounded-sm cursor-pointer"
+              >
+                {isPending && <Loader2Icon className="animate-spin" />}
+                Forgot password
+              </Button>
+            </Field>
+          </FieldGroup>
+        </form>
 
         {/* Footer Link */}
         <p className="text-center text-xs text-muted-foreground">

@@ -71,7 +71,7 @@ export function SignInForm() {
           />
         )}
 
-        {!isSuccess && (
+        {isSuccess && (
           <AuthAlert
             variant="success"
             description="Welcome back. Redirecting to your dashboard..."
