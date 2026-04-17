@@ -10,7 +10,7 @@ export function ActionView({ isPending, onVerify }: ActionViewProps) {
   return (
     <Button onClick={onVerify} className="cursor-pointer" disabled={isPending}>
       {isPending && <Loader2Icon className="animate-spin" />}
-      {isPending ? "Verifying" : "Verify Now"}
+      Verify Now
     </Button>
   );
 }

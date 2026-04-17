@@ -32,7 +32,7 @@ export function SignInForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const navigate = useNavigate();
-  const { mutateAsync, isPending, error } = useSignIn();
+  const { mutateAsync, isPending, error, isSuccess } = useSignIn();
 
   const {
     register,
@@ -48,9 +48,15 @@ export function SignInForm() {
   });
 
   const onSubmit = async (data: SignInFormValues) => {
-    const response = await mutateAsync(data);
-    localStorage.setItem("token", response.access_token);
-    navigate(PATHS.DASHBOARD);
+    try {
+      const response = await mutateAsync(data);
+      localStorage.setItem("token", response.access_token);
+      setTimeout(() => {
+        navigate(PATHS.DASHBOARD);
+      }, 3000);
+    } catch (err) {
+      // Error is handled by useSignIn
+    }
   };
 
   return (
@@ -65,9 +71,16 @@ export function SignInForm() {
           />
         )}
 
+        {!isSuccess && (
+          <AuthAlert
+            variant="success"
+            description="Welcome back. Redirecting to your dashboard..."
+          />
+        )}
+
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FieldGroup className="gap-3">
+          <FieldGroup>
             {/* Email */}
             <Field data-invalid={!!errors.email}>
               <FieldLabel>Email*</FieldLabel>
@@ -110,23 +123,26 @@ export function SignInForm() {
             </Field>
 
             {/* Remember */}
-            <Field
-              orientation="horizontal"
-              className="cursor-pointer select-none my-1"
-            >
-              <Checkbox id="remember-checkbox" {...register("remember")} />
-              <Label htmlFor="remember-checkbox">Remember this device</Label>
+            <Field orientation="horizontal">
+              <Checkbox
+                id="remember-checkbox"
+                className="cursor-pointer"
+                {...register("remember")}
+              />
+              <Label htmlFor="remember-checkbox" className="cursor-pointer">
+                Remember this device
+              </Label>
             </Field>
 
             {/* Submit */}
             <Field>
               <Button
                 type="submit"
-                disabled={isPending}
+                disabled={isPending || isSuccess}
                 className="w-full rounded-sm cursor-pointer"
               >
                 {isPending && <Loader2Icon className="animate-spin" />}
-                {isPending ? "Signing in" : "Sign in"}
+                Sign in
               </Button>
             </Field>
 

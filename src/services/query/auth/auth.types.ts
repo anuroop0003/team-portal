@@ -3,7 +3,7 @@ export interface SignInResponse {
   token_type: string;
 }
 
-export interface SignUpResponse {
+export interface RegisterOrganizationResponse {
   message: string;
 }
 

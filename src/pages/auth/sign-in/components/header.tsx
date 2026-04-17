@@ -16,7 +16,7 @@ export default function Header() {
         <p className="text-sm text-muted-foreground mt-1">
           Don't have a workspace?{" "}
           <Link
-            to={PATHS.AUTH.SIGN_UP}
+            to={PATHS.AUTH.REGISTER_ORGANIZATION}
             className="text-primary hover:underline hover:underline-offset-4"
           >
             Create one

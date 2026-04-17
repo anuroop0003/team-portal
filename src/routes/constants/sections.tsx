@@ -4,7 +4,7 @@ import { PublicRoute } from "../guards/public-route";
 import { PrivateRoute } from "../guards/private-route";
 import {
   SignInPage,
-  SignUpPage,
+  RegisterOrganizationPage,
   DashboardPage,
   RewardsLayout,
   RewardsPage,
@@ -35,8 +35,8 @@ export const routes: RouteObject[] = [
         element: <SignInPage />,
       },
       {
-        path: PATHS.AUTH.SIGN_UP,
-        element: <SignUpPage />,
+        path: PATHS.AUTH.REGISTER_ORGANIZATION,
+        element: <RegisterOrganizationPage />,
       },
       {
         path: PATHS.AUTH.FORGOT_PASSWORD,

@@ -3,12 +3,12 @@ import api from "@/services/interceptor";
 import type { AxiosError } from "axios";
 import type { ApiError } from "../api.types";
 import type { SignInFormValues } from "@/validations/sign-in.schema";
-import type { SignUpFormValues } from "@/validations/sign-up.schema";
+import type { RegisterOrganizationFormValues } from "@/validations/register-organization.schema";
 import type { ForgotPasswordFormValues } from "@/validations/forgot-password.schema";
 import type { ResetPasswordFormValues } from "@/validations/reset-password.schema";
 import type {
   SignInResponse,
-  SignUpResponse,
+  RegisterOrganizationResponse,
   UserMeResponse,
   VerifyEmailResponse,
 } from "./auth.types";
@@ -25,22 +25,31 @@ export const useSignIn = () => {
   });
 };
 
-export const useSignUp = () => {
-  return useMutation<SignUpResponse, AxiosError<ApiError>, SignUpFormValues>({
-    mutationFn: async (user: SignUpFormValues) => {
-      const { data } = await api.post<SignUpResponse>(
+export const useRegisterOrganization = () => {
+  return useMutation<
+    RegisterOrganizationResponse,
+    AxiosError<ApiError>,
+    RegisterOrganizationFormValues
+  >({
+    mutationFn: async (user: RegisterOrganizationFormValues) => {
+      const { data } = await api.post<RegisterOrganizationResponse>(
         "/auth/register-organization",
         {
           organization: {
             name: user.companyName,
-            initial: user.orgInitial,
-            full_name: user.companyName,
+            code: user.orgCode,
+            website_url: user.orgWebsite || null,
+            industry: user.orgIndustry,
+            company_size: user.orgCompanySize,
           },
           admin: {
             name: user.fullName,
             email: user.email,
             password: user.password,
+            phone: user.adminPhone,
+            job_title: user.adminJobTitle,
           },
+          accept_terms: user.termsAccepted,
         },
       );
       return data;

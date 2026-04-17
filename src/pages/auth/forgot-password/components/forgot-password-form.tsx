@@ -62,7 +62,7 @@ export function ForgotPasswordForm() {
         {/* Form */}
         {!isSuccess && (
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FieldGroup className="gap-3">
+            <FieldGroup>
               {/* Email */}
               <Field data-invalid={!!errors.email}>
                 <FieldLabel>Email*</FieldLabel>
@@ -83,7 +83,7 @@ export function ForgotPasswordForm() {
                   className="w-full rounded-sm cursor-pointer"
                 >
                   {isPending && <Loader2Icon className="animate-spin" />}
-                  {isPending ? "Sending link" : "Forgot password"}
+                  Forgot password
                 </Button>
               </Field>
             </FieldGroup>
@@ -97,6 +97,7 @@ export function ForgotPasswordForm() {
             type="button"
             variant="link"
             render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Login</Link>}
+            nativeButton={false}
             className="rounded-sm cursor-pointer"
           />
         </p>

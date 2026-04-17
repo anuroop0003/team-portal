@@ -2,7 +2,9 @@ import { lazy } from "react";
 
 // Auth Pages
 export const SignInPage = lazy(() => import("@/pages/auth/sign-in/page"));
-export const SignUpPage = lazy(() => import("@/pages/auth/sign-up/page"));
+export const RegisterOrganizationPage = lazy(
+  () => import("@/pages/auth/register-organization/page"),
+);
 export const ForgotPasswordPage = lazy(
   () => import("@/pages/auth/forgot-password/page"),
 );

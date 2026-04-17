@@ -39,7 +39,7 @@ export function PasswordFormView({
 }: PasswordFormViewProps) {
   return (
     <form onSubmit={onSubmit}>
-      <FieldGroup className="gap-3">
+      <FieldGroup>
         {/* New Password */}
         <Field data-invalid={!!errors.password}>
           <FieldLabel>New Password*</FieldLabel>
@@ -88,7 +88,7 @@ export function PasswordFormView({
             className="w-full rounded-sm cursor-pointer"
           >
             {isPending && <Loader2Icon className="animate-spin" />}
-            {isPending ? "Resetting" : "Reset Password"}
+            Reset Password
           </Button>
         </Field>
 
@@ -100,6 +100,7 @@ export function PasswordFormView({
               type="button"
               variant="link"
               render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Login</Link>}
+              nativeButton={false}
               className="rounded-sm cursor-pointer"
             />
           </p>

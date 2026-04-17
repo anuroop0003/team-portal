@@ -19,6 +19,7 @@ export function InstructionView() {
       <Field>
         <Button
           render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Login</Link>}
+          nativeButton={false}
           className="cursor-pointer"
         />
       </Field>

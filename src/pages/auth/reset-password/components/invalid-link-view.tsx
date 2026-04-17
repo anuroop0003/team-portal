@@ -15,6 +15,7 @@ export function InvalidLinkView() {
       <Button
         type="button"
         render={<Link to={PATHS.AUTH.FORGOT_PASSWORD}>Request new link</Link>}
+        nativeButton={false}
         className="w-full cursor-pointer"
       />
     </>

@@ -47,12 +47,13 @@ export function VerifyEmailContent() {
           />
         )}
 
-        <FieldGroup className="gap-3">
+        <FieldGroup>
           {isSuccess ? (
             <Field>
               <Button
                 variant="default"
                 render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Sign In</Link>}
+                nativeButton={false}
                 className="cursor-pointer"
               />
             </Field>

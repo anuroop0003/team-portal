@@ -15,6 +15,7 @@ export function ResetSuccessView() {
         <Button
           className="w-full rounded-sm cursor-pointer"
           render={<Link to={PATHS.AUTH.SIGN_IN}>Back to Login</Link>}
+          nativeButton={false}
         />
       </Field>
     </div>
