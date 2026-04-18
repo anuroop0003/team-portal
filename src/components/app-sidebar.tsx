@@ -97,9 +97,9 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" variant="floating" {...props}>
+    <Sidebar collapsible="icon" variant="floating" className="p-4 pr-0">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

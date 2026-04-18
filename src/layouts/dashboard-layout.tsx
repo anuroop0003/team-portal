@@ -63,7 +63,7 @@ export default function DashboardLayout() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className="min-h-screen">
-        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 m-2 px-4 md:px-6 rounded-lg border border-white/10 dark:border-white/5 bg-card/70 shadow-sm backdrop-blur-md sticky top-2 z-10">
+        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 m-4 px-4 md:px-6 rounded-lg bg-muted shadow-sm sticky top-4 z-10 ring-1 ring-sidebar-border">
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2" />
@@ -181,7 +181,7 @@ export default function DashboardLayout() {
             </DropdownMenu>
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:p-6 m-2 rounded-lg border border-white/10 dark:border-white/5 bg-card/70 shadow-sm backdrop-blur-md">
+        <main className="flex flex-1 flex-col gap-4 p-4 md:p-6 m-4 rounded-lg bg-muted shadow-sm backdrop-blur-md ring-1 ring-sidebar-border">
           <Outlet />
         </main>
       </SidebarInset>

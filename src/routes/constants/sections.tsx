@@ -19,6 +19,10 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
+  TestLoginPage,
+  TestRegisterPage,
+  TestResetPasswordPage,
+  TestForgotPasswordPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -49,6 +53,22 @@ export const routes: RouteObject[] = [
       {
         path: PATHS.AUTH.VERIFY_EMAIL,
         element: <VerifyEmailPage />,
+      },
+      {
+        path: PATHS.AUTH.TEST_LOGIN,
+        element: <TestLoginPage />,
+      },
+      {
+        path: PATHS.AUTH.TEST_REGISTER,
+        element: <TestRegisterPage />,
+      },
+      {
+        path: PATHS.AUTH.TEST_RESET_PASSWORD,
+        element: <TestResetPasswordPage />,
+      },
+      {
+        path: PATHS.AUTH.TEST_FORGOT_PASSWORD,
+        element: <TestForgotPasswordPage />,
       },
     ],
   },
