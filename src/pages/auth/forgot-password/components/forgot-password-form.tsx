@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Loader2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,8 +39,7 @@ export function ForgotPasswordForm() {
       onError: (error) => {
         toast.error("Process failed", {
           description:
-            error.response?.data?.message ||
-            "Something went wrong. Please try again.",
+            error.message || "Something went wrong. Please try again.",
         });
       },
     });
@@ -124,29 +123,35 @@ export function ForgotPasswordForm() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
-          <Field className="gap-1">
+          <Field className="gap-1" data-invalid={!!errors.email}>
             <Label htmlFor="email">Email address*</Label>
             <Input
               {...register("email")}
               spellCheck={false}
               type="email"
               id="email"
+              aria-invalid={!!errors.email}
               placeholder="Enter your email address"
             />
-            <FieldError error={[errors.email?.message]} />
+            <FieldError errors={[errors.email]} />
           </Field>
-          <Button type="submit" disabled={isPending}>
-            {isPending && <Loader2 className="animate-spin" />}
-            Send Reset Link
-          </Button>
-          <Button
-            variant="ghost"
-            render={<Link to={PATHS.AUTH.SIGN_IN} />}
-            nativeButton={false}
-            className="w-full"
-          >
-            Back to login
-          </Button>
+          <FieldGroup className="gap-2!">
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="cursor-pointer"
+            >
+              {isPending && <Loader className="animate-spin" />}
+              Send Reset Link
+            </Button>
+            <Button
+              variant="ghost"
+              render={<Link to={PATHS.AUTH.SIGN_IN} />}
+              nativeButton={false}
+            >
+              Back to login
+            </Button>
+          </FieldGroup>
         </FieldGroup>
       </form>
     </div>

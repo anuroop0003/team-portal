@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -215,12 +215,12 @@ export function SignInForm() {
               disabled={isPending}
               className="cursor-pointer"
             >
-              {isPending && <Loader2 className="animate-spin" />}
+              {isPending && <Loader className="animate-spin" />}
               Sign in to Shadcn Studio
             </Button>
           </FieldGroup>
         </form>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground select-none">
           New on our platform?{" "}
           <Link
             to={PATHS.AUTH.REGISTER_ORGANIZATION}

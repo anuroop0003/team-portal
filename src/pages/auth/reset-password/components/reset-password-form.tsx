@@ -1,9 +1,9 @@
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Field, FieldGroup } from "@/components/ui/field";
+import { Field, FieldError, FieldGroup } from "@/components/ui/field";
 import { useState } from "react";
 import { PATHS } from "@/routes/constants/paths";
 import { useForm } from "react-hook-form";
@@ -56,8 +56,7 @@ export function ResetPasswordForm() {
         },
         onError: (error) => {
           toast.error("Reset failed", {
-            description:
-              error.response?.data?.message || "Something went wrong.",
+            description: error.message || "Something went wrong.",
           });
         },
       },
@@ -140,86 +139,67 @@ export function ResetPasswordForm() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
-          <Field className="gap-1">
+          <Field className="gap-1" data-invalid={!!errors.password}>
             <Label htmlFor="password">New Password*</Label>
             <div className="relative">
               <Input
                 {...register("password")}
-                spellCheck={false}
                 type={showPassword ? "text" : "password"}
                 id="password"
+                aria-invalid={!!errors.password}
                 placeholder="••••••••••••••••"
-                className={`pr-9 ${errors.password ? "border-destructive" : ""}`}
+                className="pr-9"
               />
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent text-muted-foreground hover:text-accent-foreground"
+                className="absolute inset-y-0 right-0"
                 onClick={() => setShowPassword(!showPassword)}
-                type="button"
               >
-                {showPassword ? (
-                  <EyeOff className="size-4" />
-                ) : (
-                  <Eye className="size-4" />
-                )}
-                <span className="sr-only">
-                  {showPassword ? "Hide password" : "Show password"}
-                </span>
+                {showPassword ? <EyeOff /> : <Eye />}
               </Button>
             </div>
-            {errors.password && (
-              <p className="text-xs text-destructive">
-                {errors.password.message}
-              </p>
-            )}
+            <FieldError errors={[errors.password]} />
           </Field>
-          <Field className="gap-1">
+          <Field className="gap-1" data-invalid={!!errors.confirmPassword}>
             <Label htmlFor="confirmPassword">Confirm Password*</Label>
             <div className="relative">
               <Input
                 {...register("confirmPassword")}
-                spellCheck={false}
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
+                aria-invalid={!!errors.confirmPassword}
                 placeholder="••••••••••••••••"
-                className={`pr-9 ${errors.confirmPassword ? "border-destructive" : ""}`}
+                className="pr-9"
               />
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent text-muted-foreground hover:text-accent-foreground"
+                className="absolute inset-y-0 right-0"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                type="button"
               >
-                {showConfirmPassword ? (
-                  <EyeOff className="size-4" />
-                ) : (
-                  <Eye className="size-4" />
-                )}
-                <span className="sr-only">
-                  {showConfirmPassword ? "Hide password" : "Show password"}
-                </span>
+                {showConfirmPassword ? <EyeOff /> : <Eye />}
               </Button>
             </div>
-            {errors.confirmPassword && (
-              <p className="text-xs text-destructive">
-                {errors.confirmPassword.message}
-              </p>
-            )}
+            <FieldError errors={[errors.confirmPassword]} />
           </Field>
-          <Button type="submit" className="w-full" disabled={isPending}>
-            {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Reset Password
-          </Button>
-          <Button
-            variant="ghost"
-            render={<Link to={PATHS.AUTH.SIGN_IN} />}
-            nativeButton={false}
-            className="w-full"
-          >
-            Back to login
-          </Button>
+          <FieldGroup className="gap-2!">
+            <Button
+              type="submit"
+              className="cursor-pointer"
+              disabled={isPending}
+            >
+              {isPending && <Loader className="animate-spin" />}
+              Reset Password
+            </Button>
+            <Button
+              variant="ghost"
+              render={<Link to={PATHS.AUTH.SIGN_IN} />}
+              nativeButton={false}
+            >
+              Back to login
+            </Button>
+          </FieldGroup>
         </FieldGroup>
       </form>
     </div>
