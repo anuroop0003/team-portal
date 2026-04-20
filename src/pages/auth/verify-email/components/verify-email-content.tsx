@@ -115,7 +115,10 @@ export function VerifyEmailContent() {
           )}
 
           <FieldGroup className="gap-2!">
-            <Button render={<Link to={PATHS.DASHBOARD} />} nativeButton={false}>
+            <Button
+              render={<Link to={PATHS.AUTH.SIGN_IN} />}
+              nativeButton={false}
+            >
               Skip for now
             </Button>
             <Button
