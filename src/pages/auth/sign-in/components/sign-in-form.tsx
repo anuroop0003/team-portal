@@ -1,38 +1,30 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-  FieldError,
-} from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import Header from "./header";
-import { signInSchema } from "@/validations/sign-in.schema";
-import type { SignInFormValues } from "@/validations/sign-in.schema";
-import SSOGroup from "./sso-group";
-import { useState } from "react";
-import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { Link, useNavigate } from "react-router-dom";
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { PATHS } from "@/routes/constants/paths";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  signInSchema,
+  type SignInFormValues,
+} from "@/validations/sign-in.schema";
 import { useSignIn } from "@/services/query/auth/auth.query";
-import { AuthAlert } from "../../components/auth-alert";
+import { toast } from "sonner";
 
 export function SignInForm() {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-
   const navigate = useNavigate();
-  const { mutateAsync, isPending, error, isSuccess } = useSignIn();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -47,115 +39,197 @@ export function SignInForm() {
     },
   });
 
-  const onSubmit = async (data: SignInFormValues) => {
-    try {
-      const response = await mutateAsync(data);
-      localStorage.setItem("token", response.access_token);
-      setTimeout(() => {
-        navigate(PATHS.DASHBOARD);
-      }, 3000);
-    } catch (err) {
-      // Error is handled by useSignIn
-    }
+  const { mutate: signIn, isPending } = useSignIn();
+
+  const onSubmit = (data: SignInFormValues) => {
+    signIn(data, {
+      onSuccess: () => {
+        toast.success("Welcome back!", {
+          description: "You have successfully signed in.",
+        });
+        navigate("/dashboard");
+      },
+      onError: (error) => {
+        toast.error("Sign in failed", {
+          description: error.message || "Invalid credentials",
+        });
+      },
+    });
   };
 
   return (
-    <Card className="w-full max-w-md rounded-2xl shadow-xl bg-card/95 backdrop-blur-md border border-border/60">
-      <CardContent className="p-8 space-y-6">
-        <Header />
-
-        {error && (
-          <AuthAlert
-            variant="destructive"
-            description={error?.message || "Invalid email or password"}
-          />
-        )}
-
-        {isSuccess && (
-          <AuthAlert
-            variant="success"
-            description="Welcome back. Redirecting to your dashboard..."
-          />
-        )}
-
-        {/* Form */}
+    <div className="flex w-full flex-col gap-6 p-6 sm:max-w-lg">
+      <div className="flex items-center gap-3">
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 328 329"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="size-8.5"
+        >
+          <rect
+            y="0.5"
+            width="328"
+            height="328"
+            rx="164"
+            fill="black"
+            className="dark:fill-white"
+          ></rect>
+          <path
+            d="M165.018 72.3008V132.771C165.018 152.653 148.9 168.771 129.018 168.771H70.2288"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></path>
+          <path
+            d="M166.627 265.241L166.627 204.771C166.627 184.889 182.744 168.771 202.627 168.771L261.416 168.771"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></path>
+          <line
+            x1="238.136"
+            y1="98.8184"
+            x2="196.76"
+            y2="139.707"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></line>
+          <line
+            x1="135.688"
+            y1="200.957"
+            x2="94.3128"
+            y2="241.845"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></line>
+          <line
+            x1="133.689"
+            y1="137.524"
+            x2="92.5566"
+            y2="96.3914"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></line>
+          <line
+            x1="237.679"
+            y1="241.803"
+            x2="196.547"
+            y2="200.671"
+            stroke="white"
+            strokeWidth="20"
+            className="dark:stroke-black"
+          ></line>
+        </svg>
+        <span className="text-xl font-semibold">shadcn/studio</span>
+      </div>
+      <div>
+        <h2 className="mb-1.5 text-2xl font-semibold">Welcome Back</h2>
+        <p className="text-muted-foreground">
+          Welcome back! Select method to login:
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-4 sm:gap-6">
+        <Button variant="outline" className="grow cursor-pointer">
+          Login with Google
+        </Button>
+        <Button variant="outline" className="grow cursor-pointer">
+          Login with Microsoft
+        </Button>
+      </div>
+      <div className="flex items-center gap-4">
+        <Separator orientation="horizontal" className="flex-1" />
+        <p>Or continue with Email</p>
+        <Separator orientation="horizontal" className="flex-1" />
+      </div>
+      <div className="space-y-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
-            {/* Email */}
-            <Field data-invalid={!!errors.email}>
-              <FieldLabel>Email*</FieldLabel>
+            <Field className="gap-1" data-invalid={!!errors.email}>
+              <FieldLabel htmlFor="email">Email address*</FieldLabel>
               <Input
-                type="email"
-                placeholder="example@shadcnspace.com"
-                className="rounded-sm"
                 {...register("email")}
+                spellCheck={false}
+                type="email"
+                id="email"
+                aria-invalid={!!errors.email}
+                placeholder="Enter your email address"
               />
               <FieldError errors={[errors.email]} />
             </Field>
-
-            {/* Password */}
-            <Field data-invalid={!!errors.password}>
-              <div className="flex items-center justify-between">
-                <FieldLabel>Password*</FieldLabel>
-                <Link
-                  to={PATHS.AUTH.FORGOT_PASSWORD}
-                  className="text-xs hover:underline hover:underline-offset-4 text-primary"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <InputGroup className="rounded-sm">
-                <InputGroupInput
-                  id="inline-end-input"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+            <Field className="gap-1" data-invalid={!!errors.password}>
+              <Label htmlFor="password">Password*</Label>
+              <div className="relative">
+                <Input
                   {...register("password")}
+                  spellCheck={false}
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  aria-invalid={!!errors.password}
+                  placeholder="••••••••••••••••"
+                  className="pr-9"
                 />
-                <InputGroupAddon
-                  align="inline-end"
-                  className="cursor-pointer"
-                  onClick={() => setShowPassword((prev) => !prev)}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute inset-y-0 right-0 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeIcon /> : <EyeOffIcon />}
-                </InputGroupAddon>
-              </InputGroup>
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </Button>
+              </div>
               <FieldError errors={[errors.password]} />
             </Field>
-
-            {/* Remember */}
-            <Field orientation="horizontal">
-              <Checkbox
-                id="remember-checkbox"
-                className="cursor-pointer"
-                {...register("remember")}
-              />
-              <Label htmlFor="remember-checkbox" className="cursor-pointer">
-                Remember this device
-              </Label>
-            </Field>
-
-            {/* Submit */}
-            <Field>
-              <Button
-                type="submit"
-                disabled={isPending || isSuccess}
-                className="w-full rounded-sm cursor-pointer"
+            <FieldGroup className="flex-row items-center justify-between">
+              <div className="flex flex-row items-center gap-2">
+                <Checkbox
+                  id="rememberMe"
+                  className="size-6 cursor-pointer"
+                  onCheckedChange={(checked) => {
+                    const event = {
+                      target: {
+                        name: "remember",
+                        value: !!checked,
+                      },
+                    };
+                    register("remember").onChange(event);
+                  }}
+                />
+                <Label htmlFor="rememberMe" className="cursor-pointer">
+                  Remember Me
+                </Label>
+              </div>
+              <Link
+                to={PATHS.AUTH.FORGOT_PASSWORD}
+                className="text-sm font-medium hover:underline"
               >
-                {isPending && <Loader2Icon className="animate-spin" />}
-                Sign in
-              </Button>
-            </Field>
-
-            {/* Divider */}
-            <FieldSeparator className="my-2.5 *:data-[slot=field-separator-content]:bg-card">
-              or sign in with
-            </FieldSeparator>
-
-            {/* OAuth */}
-            <SSOGroup />
+                Forgot password?
+              </Link>
+            </FieldGroup>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="cursor-pointer"
+            >
+              {isPending && <Loader2 className="animate-spin" />}
+              Sign in to Shadcn Studio
+            </Button>
           </FieldGroup>
         </form>
-      </CardContent>
-    </Card>
+        <p className="text-muted-foreground">
+          New on our platform?{" "}
+          <Link
+            to={PATHS.AUTH.REGISTER_ORGANIZATION}
+            className="text-foreground hover:underline px-1"
+          >
+            Create an account
+          </Link>
+        </p>
+      </div>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,56 +9,51 @@ import {
   FieldGroup,
 } from "@/components/ui/field";
 import { LogoUploader } from "../logo-uploader";
+import { useRegistrationStore } from "@/store/use-registration-store";
 
-interface OrganizationStepProps {
-  onNext: () => void;
-}
-
-export function OrganizationStep({ onNext }: OrganizationStepProps) {
+export function OrganizationStep() {
+  const setStep = useRegistrationStore((state) => state.setStep);
   const {
     register,
     setValue,
-    watch,
+    trigger,
     formState: { errors },
   } = useFormContext();
 
-  const organizationName = watch("organizationName");
-
-  // Auto-generate slug from organization name
-  useEffect(() => {
-    if (organizationName) {
-      const generatedSlug = organizationName
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "");
-      setValue("slug", generatedSlug, { shouldValidate: true });
+  const handleNext = async () => {
+    const isValid = await trigger(["organizationName", "companyCode"]);
+    if (isValid) {
+      setStep(2);
     }
-  }, [organizationName, setValue]);
+  };
 
   return (
     <FieldGroup className="gap-4">
-      <Field className="gap-1">
+      <Field className="gap-1" data-invalid={!!errors.organizationName}>
         <FieldLabel htmlFor="organizationName">Organization Name*</FieldLabel>
         <Input
           {...register("organizationName")}
-          spellCheck={false}
-          type="text"
+          aria-invalid={!!errors.organizationName}
           id="organizationName"
           placeholder="e.g. Acme Corp"
         />
         <FieldError errors={[errors.organizationName]} />
       </Field>
 
-      <Field className="gap-1">
-        <FieldLabel htmlFor="slug">Slug*</FieldLabel>
+      <Field className="gap-1" data-invalid={!!errors.companyCode}>
+        <FieldLabel htmlFor="companyCode">Company Code*</FieldLabel>
         <Input
-          {...register("slug")}
-          spellCheck={false}
-          type="text"
-          id="slug"
-          placeholder="e.g. acme-corp"
+          {...register("companyCode")}
+          aria-invalid={!!errors.companyCode}
+          id="companyCode"
+          placeholder="e.g. ACME"
+          onChange={(e) => {
+            setValue("companyCode", e.target.value.toUpperCase(), {
+              shouldValidate: true,
+            });
+          }}
         />
-        <FieldError errors={[errors.slug]} />
+        <FieldError errors={[errors.companyCode]} />
       </Field>
 
       <Field className="gap-1">
@@ -70,7 +64,7 @@ export function OrganizationStep({ onNext }: OrganizationStepProps) {
         />
       </Field>
 
-      <Button type="button" onClick={onNext}>
+      <Button onClick={handleNext} className="cursor-pointer">
         Continue
         <ArrowRight />
       </Button>

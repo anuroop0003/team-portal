@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,18 +9,21 @@ import {
   FieldError,
 } from "@/components/ui/field";
 import { LogoUploader } from "../logo-uploader";
+import { useRegistrationStore } from "@/store/use-registration-store";
 
 interface AccountStepProps {
-  onPrev: () => void;
-  showPassword: boolean;
-  setShowPassword: (show: boolean) => void;
+  isSubmitting?: boolean;
 }
 
-export function AccountStep({
-  onPrev,
-  showPassword,
-  setShowPassword,
-}: AccountStepProps) {
+export function AccountStep({ isSubmitting }: AccountStepProps) {
+  const {
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
+    setStep,
+  } = useRegistrationStore();
+
   const {
     register,
     setValue,
@@ -29,23 +32,23 @@ export function AccountStep({
 
   return (
     <FieldGroup className="gap-4">
-      <Field className="gap-1">
+      <Field className="gap-1" data-invalid={!!errors.userName}>
         <FieldLabel htmlFor="userName">Name*</FieldLabel>
         <Input
           {...register("userName")}
+          aria-invalid={!!errors.userName}
           spellCheck={false}
-          type="text"
           id="userName"
           placeholder="Enter your name"
         />
         <FieldError errors={[errors.userName]} />
       </Field>
 
-      <Field className="gap-1">
+      <Field className="gap-1" data-invalid={!!errors.userEmail}>
         <FieldLabel htmlFor="userEmail">Email address*</FieldLabel>
         <Input
           {...register("userEmail")}
-          spellCheck={false}
+          aria-invalid={!!errors.userEmail}
           type="email"
           id="userEmail"
           placeholder="Enter your email address"
@@ -54,22 +57,21 @@ export function AccountStep({
       </Field>
 
       <FieldGroup className="flex-row gap-4">
-        <Field className="gap-1">
+        <Field className="gap-1" data-invalid={!!errors.password}>
           <FieldLabel htmlFor="password">Password*</FieldLabel>
           <div className="relative">
             <Input
               {...register("password")}
-              spellCheck={false}
+              aria-invalid={!!errors.password}
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="••••••••"
               className="pr-9"
             />
             <Button
-              type="button"
               variant="ghost"
               size="icon"
-              className="absolute inset-y-0 right-0"
+              className="absolute inset-y-0 right-0 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff /> : <Eye />}
@@ -77,25 +79,24 @@ export function AccountStep({
           </div>
           <FieldError errors={[errors.password]} />
         </Field>
-        <Field className="gap-1">
+        <Field className="gap-1" data-invalid={!!errors.confirmPassword}>
           <FieldLabel htmlFor="confirmPassword">Confirm Password*</FieldLabel>
           <div className="relative">
             <Input
               {...register("confirmPassword")}
-              spellCheck={false}
-              type={showPassword ? "text" : "password"}
+              aria-invalid={!!errors.confirmPassword}
+              type={showConfirmPassword ? "text" : "password"}
               id="confirmPassword"
               placeholder="••••••••"
               className="pr-9"
             />
             <Button
-              type="button"
               variant="ghost"
               size="icon"
-              className="absolute inset-y-0 right-0"
-              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 cursor-pointer"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
-              {showPassword ? <EyeOff /> : <Eye />}
+              {showConfirmPassword ? <EyeOff /> : <Eye />}
             </Button>
           </div>
           <FieldError errors={[errors.confirmPassword]} />
@@ -111,12 +112,21 @@ export function AccountStep({
       </Field>
 
       <FieldGroup className="flex-row gap-4">
-        <Button type="button" variant="outline" onClick={onPrev}>
+        <Button
+          variant="outline"
+          onClick={() => setStep(1)}
+          className="cursor-pointer"
+        >
           <ArrowLeft />
           Back
         </Button>
-        <Button type="submit" className="flex-1">
-          Sign up to Shadcn Studio
+        <Button
+          type="submit"
+          className="flex-1 cursor-pointer"
+          disabled={isSubmitting}
+        >
+          {isSubmitting && <Loader2 className="animate-spin" />}
+          Sign up to Team Portal
         </Button>
       </FieldGroup>
     </FieldGroup>

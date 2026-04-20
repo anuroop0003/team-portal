@@ -2,42 +2,37 @@ import { z } from "zod";
 
 export const registerOrganizationSchema = z
   .object({
-    fullName: z.string().trim().min(2, "Min. 2 characters"),
-    email: z.string().trim().toLowerCase().email("Invalid email"),
+    organizationName: z
+      .string()
+      .trim()
+      .min(2, "Enter a valid organization name"),
+
+    companyCode: z
+      .string()
+      .trim()
+      .min(2, "Use 2–6 characters")
+      .max(6, "Use 2–6 characters")
+      .regex(/^[A-Z0-9]+$/, "Use uppercase letters and numbers only"),
+
+    userName: z.string().trim().min(2, "Enter a valid name"),
+
+    userEmail: z
+      .string()
+      .trim()
+      .toLowerCase()
+      .email("Enter a valid email address"),
+
     password: z
       .string()
-      .min(8, "Min. 8 characters")
-      .regex(/[A-Z]/, "Must include at least one uppercase letter")
-      .regex(/[a-z]/, "Must include at least one lowercase letter")
-      .regex(/[0-9]/, "Must include at least one number"),
-    confirmPassword: z.string().min(8, "Min. 8 characters"),
-    adminPhone: z
-      .string()
-      .trim()
-      .regex(/^[0-9]{10,15}$/, "Invalid phone number"),
-    adminJobTitle: z.string().trim().min(2, "Min. 2 characters"),
-    companyName: z.string().trim().min(2, "Min. 2 characters"),
-    orgCode: z
-      .string()
-      .trim()
-      .min(2, "2-6 characters")
-      .max(6, "2-6 characters")
-      .regex(/^[A-Z0-9]+$/, "Only uppercase letters & numbers"),
-    orgWebsite: z
-      .string()
-      .trim()
-      .refine((val) => !val || /^https?:\/\/.+/.test(val), {
-        message: "Invalid URL",
-      })
-      .optional(),
-    orgIndustry: z.string().min(1, "Select industry"),
-    orgCompanySize: z.string().min(1, "Select size"),
-    termsAccepted: z.boolean().refine((val) => val === true, {
-      message: "Terms required",
-    }),
+      .min(8, "Use at least 8 characters")
+      .regex(/[A-Z]/, "Include at least one uppercase letter")
+      .regex(/[a-z]/, "Include at least one lowercase letter")
+      .regex(/[0-9]/, "Include at least one number"),
+
+    confirmPassword: z.string().min(8, "Use at least 8 characters"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords mismatch",
+    message: "Passwords do not match",
     path: ["confirmPassword"],
   });
 

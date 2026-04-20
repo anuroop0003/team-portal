@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./global.css";
 import "./index.css";
+import { Toaster } from "sonner";
 import { router } from "@/routes";
 import { Suspense } from "react";
 import { PageLoader } from "@/routes/components/page-loader";
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
       <ThemeProvider>
         <Suspense fallback={<PageLoader />}>
           <RouterProvider router={router} />
+          <Toaster richColors position="top-right" closeButton />
         </Suspense>
       </ThemeProvider>
     </QueryClientProvider>

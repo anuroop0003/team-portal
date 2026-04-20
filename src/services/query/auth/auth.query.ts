@@ -36,20 +36,14 @@ export const useRegisterOrganization = () => {
         "/auth/register-organization",
         {
           organization: {
-            name: user.companyName,
-            code: user.orgCode,
-            website_url: user.orgWebsite || null,
-            industry: user.orgIndustry,
-            company_size: user.orgCompanySize,
+            name: user.organizationName,
+            slug: user.companyCode,
           },
           admin: {
-            name: user.fullName,
-            email: user.email,
+            name: user.userName,
+            email: user.userEmail,
             password: user.password,
-            phone: user.adminPhone,
-            job_title: user.adminJobTitle,
           },
-          accept_terms: user.termsAccepted,
         },
       );
       return data;

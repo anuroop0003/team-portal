@@ -14,16 +14,6 @@ export const ResetPasswordPage = lazy(
 export const VerifyEmailPage = lazy(
   () => import("@/pages/auth/verify-email/page"),
 );
-export const TestLoginPage = lazy(() => import("@/pages/auth/test-login/page"));
-export const TestRegisterPage = lazy(
-  () => import("@/pages/auth/test-register/page"),
-);
-export const TestResetPasswordPage = lazy(
-  () => import("@/pages/auth/test-reset-password/page"),
-);
-export const TestForgotPasswordPage = lazy(
-  () => import("@/pages/auth/test-forgot-password/page"),
-);
 
 // Dashboard & Features
 export const DashboardPage = lazy(() => import("@/pages/dashboard/page"));

@@ -1,13 +1,9 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Field, FieldGroup } from "@/components/ui/field";
-import { PATHS } from "@/routes/constants/paths";
+import { useRegistrationStore } from "@/store/use-registration-store";
 
-export function TestForgotPasswordForm() {
+export function RegisterHeader() {
+  const step = useRegistrationStore((state) => state.step);
   return (
-    <div className="flex w-full flex-col gap-6 p-6 sm:max-w-lg">
+    <div className="space-y-6">
       <div className="flex items-center gap-3">
         <svg
           width="1em"
@@ -76,36 +72,17 @@ export function TestForgotPasswordForm() {
         </svg>
         <span className="text-xl font-semibold">shadcn/studio</span>
       </div>
+
       <div>
-        <h2 className="mb-1.5 text-2xl font-semibold">Forgot Password?</h2>
-        <p className="text-muted-foreground">
-          No worries, we'll send you reset instructions.
+        <h2 className="mb-1.5 text-2xl font-semibold">
+          {step === 1 ? "Setup your workspace" : "Create your account"}
+        </h2>
+        <p className="text-muted-foreground text-sm">
+          {step === 1
+            ? "Configure your organization and workspace"
+            : "Let's get started with your 30 days free trial"}
         </p>
       </div>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <FieldGroup>
-          <Field className="gap-1">
-            <Label htmlFor="email">Email address*</Label>
-            <Input
-              spellCheck={false}
-              type="email"
-              id="email"
-              placeholder="Enter your email address"
-            />
-          </Field>
-          <Button type="submit" className="w-full">
-            Send Reset Link
-          </Button>
-          <Button
-            variant="ghost"
-            render={<Link to={PATHS.AUTH.TEST_LOGIN} />}
-            nativeButton={false}
-            className="w-full"
-          >
-            Back to login
-          </Button>
-        </FieldGroup>
-      </form>
     </div>
   );
 }

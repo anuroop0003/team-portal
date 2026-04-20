@@ -5,10 +5,6 @@ export const PATHS = {
     FORGOT_PASSWORD: "/auth/forgot-password",
     RESET_PASSWORD: "/auth/reset-password",
     VERIFY_EMAIL: "/auth/verify-email",
-    TEST_LOGIN: "/auth/test-login",
-    TEST_REGISTER: "/auth/test-register",
-    TEST_RESET_PASSWORD: "/auth/test-reset-password",
-    TEST_FORGOT_PASSWORD: "/auth/test-forgot-password",
   },
   DASHBOARD: "/dashboard",
   REWARDS: {
