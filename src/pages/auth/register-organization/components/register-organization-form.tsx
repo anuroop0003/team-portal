@@ -44,7 +44,7 @@ export function RegisterOrganizationForm() {
           "Account created successfully. Redirecting to sign in...",
         );
         setTimeout(() => {
-          localStorage.setItem("email", data.userEmail);
+          sessionStorage.setItem("verification_email", data.userEmail);
           navigate(PATHS.AUTH.VERIFY_EMAIL);
         }, 1500);
       },

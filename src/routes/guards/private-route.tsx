@@ -1,14 +1,12 @@
-// import { Navigate, Outlet } from "react-router-dom";
-// import { PATHS } from "../constants/paths";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { PATHS } from "../constants/paths";
 
 export const PrivateRoute = () => {
-  // Mock authentication check
-  // const isAuthenticated = false; // Replace with actual auth logic
+  const isAuthenticated = localStorage.getItem("token");
 
-  // if (!isAuthenticated) {
-  // return <Navigate to={PATHS.AUTH.SIGN_IN} replace />;
-  // }
+  if (!isAuthenticated) {
+    return <Navigate to={PATHS.AUTH.SIGN_IN} replace />;
+  }
 
   return <Outlet />;
 };

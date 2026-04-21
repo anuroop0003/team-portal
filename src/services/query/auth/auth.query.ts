@@ -121,7 +121,6 @@ export const useVerifyTokenInfoQuery = (token: string | null) => {
       return data;
     },
     enabled: !!token,
-    retry: false,
   });
 };
 

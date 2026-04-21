@@ -24,7 +24,9 @@ export function VerifyEmailContent() {
   const [timer, setTimer] = useState<number>(0);
 
   const token = searchParams.get("token");
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>(
+    () => sessionStorage.getItem("verification_email") || "",
+  );
 
   const { data: tokenInfo, isLoading: isLoadingTokenInfo } =
     useVerifyTokenInfoQuery(token);
@@ -58,7 +60,10 @@ export function VerifyEmailContent() {
   const handleVerify = () => {
     if (!token) return;
     verify(token, {
-      onSuccess: () => toast.success("Email verified successfully!"),
+      onSuccess: () => {
+        toast.success("Email verified successfully!");
+        sessionStorage.removeItem("verification_email");
+      },
       onError: (error) => toast.error(error.message || "Verification failed."),
     });
   };
