@@ -1,6 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Trash2 } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DialogClose, DialogFooter } from "@/components/ui/dialog";
 import { Field, FieldGroup, FieldError } from "@/components/ui/field";
@@ -149,7 +149,7 @@ export function EditMemberForm({
           >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader className="animate-spin" />
                 Saving...
               </>
             ) : (

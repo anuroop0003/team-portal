@@ -7,7 +7,7 @@ export interface RegisterOrganizationResponse {
   message: string;
 }
 
-export interface VerifyEmailResponse {
+export interface SendVerificationResponse {
   message: string;
 }
 

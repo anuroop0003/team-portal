@@ -10,7 +10,6 @@ import type {
   SignInResponse,
   RegisterOrganizationResponse,
   UserMeResponse,
-  VerifyEmailResponse,
 } from "./auth.types";
 
 export const useSignIn = () => {
@@ -70,10 +69,10 @@ export const useForgotPassword = () => {
   });
 };
 
-export const useVerifyEmail = () => {
-  return useMutation<VerifyEmailResponse, AxiosError<ApiError>, string>({
-    mutationFn: async (token: string) => {
-      const { data } = await api.get(`/auth/verify-email?token=${token}`);
+export const useSendVerification = () => {
+  return useMutation<any, AxiosError<ApiError>, { email: string }>({
+    mutationFn: async (payload: { email: string }) => {
+      const { data } = await api.post("/auth/send-verification", payload);
       return data;
     },
   });
@@ -98,5 +97,43 @@ export const useResetPassword = () => {
       });
       return data;
     },
+  });
+};
+
+export const useVerifyEmail = () => {
+  return useMutation<any, AxiosError<ApiError>, string>({
+    mutationFn: async (token: string) => {
+      const { data } = await api.get(`/auth/verify-email`, {
+        params: { token },
+      });
+      return data;
+    },
+  });
+};
+
+export const useVerifyTokenInfoQuery = (token: string | null) => {
+  return useQuery<any, AxiosError<ApiError>>({
+    queryKey: ["auth", "verify-token-info", token],
+    queryFn: async () => {
+      const { data } = await api.get(`/auth/verify-token-info`, {
+        params: { token },
+      });
+      return data;
+    },
+    enabled: !!token,
+    retry: false,
+  });
+};
+
+export const useVerifyEmailQuery = (token: string | null) => {
+  return useQuery<any, AxiosError<ApiError>>({
+    queryKey: ["auth", "verify-email", token],
+    queryFn: async () => {
+      const { data } = await api.get(`/auth/verify-email`, {
+        params: { token },
+      });
+      return data;
+    },
+    enabled: !!token,
   });
 };

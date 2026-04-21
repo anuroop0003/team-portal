@@ -31,16 +31,15 @@ export function ForgotPasswordForm() {
   const onSubmit = (data: ForgotPasswordFormValues) => {
     forgotPassword(data, {
       onSuccess: () => {
-        toast.success("Reset link sent!", {
-          description:
-            "Check your email for instructions to reset your password.",
-        });
+        toast.success(
+          "If an account exists with this email, you'll receive reset instructions shortly. Please check your inbox and spam folder.",
+        );
       },
       onError: (error) => {
-        toast.error("Process failed", {
-          description:
-            error.message || "Something went wrong. Please try again.",
-        });
+        toast.error(
+          error.message ||
+            "We couldn't process your request. Please try again in a moment.",
+        );
       },
     });
   };

@@ -64,7 +64,7 @@ export function OrganizationStep() {
         />
       </Field>
 
-      <Button onClick={handleNext} className="cursor-pointer">
+      <Button type="button" onClick={handleNext} className="cursor-pointer">
         Continue
         <ArrowRight />
       </Button>

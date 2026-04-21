@@ -33,6 +33,7 @@ api.interceptors.response.use(
     // Handle global errors here
     if (error.response?.data?.detail) {
       const detail = error.response.data.detail;
+
       if (Array.isArray(detail)) {
         error.message = detail
           .map((d: any) => d.msg || JSON.stringify(d))

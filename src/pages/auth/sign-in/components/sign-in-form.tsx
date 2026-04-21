@@ -44,15 +44,26 @@ export function SignInForm() {
   const onSubmit = (data: SignInFormValues) => {
     signIn(data, {
       onSuccess: () => {
-        toast.success("Welcome back!", {
-          description: "You have successfully signed in.",
-        });
-        navigate("/dashboard");
+        toast.success("Signed in successfully.");
+        navigate(PATHS.DASHBOARD);
       },
       onError: (error) => {
-        toast.error("Sign in failed", {
-          description: error.message || "Invalid credentials",
-        });
+        const detail = error.response?.data?.detail as {
+          code: string;
+          email: string;
+        };
+
+        if (detail?.code === "EMAIL_NOT_VERIFIED") {
+          navigate(PATHS.AUTH.VERIFY_EMAIL);
+          toast.error(
+            "Please verify your email to continue. Check your inbox.",
+          );
+          return;
+        }
+
+        toast.error(
+          error.message || "Invalid email or password. Please try again.",
+        );
       },
     });
   };

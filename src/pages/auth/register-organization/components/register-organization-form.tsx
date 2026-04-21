@@ -40,18 +40,19 @@ export function RegisterOrganizationForm() {
   const onSubmit = (data: RegisterOrganizationFormValues) => {
     registerOrg(data, {
       onSuccess: () => {
-        toast.success("Organization registered!", {
-          description: "Your account has been created successfully. Loading...",
-        });
+        toast.success(
+          "Account created successfully. Redirecting to sign in...",
+        );
         setTimeout(() => {
-          navigate(PATHS.AUTH.SIGN_IN);
+          localStorage.setItem("email", data.userEmail);
+          navigate(PATHS.AUTH.VERIFY_EMAIL);
         }, 1500);
       },
       onError: (error) => {
-        toast.error("Registration failed", {
-          description:
-            error.message || "Something went wrong. Please try again.",
-        });
+        toast.error(
+          error.message ||
+            "We couldn’t complete this action. Please try again.",
+        );
       },
     });
   };

@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Eye, EyeOff, ArrowLeft, Loader2 } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -38,6 +38,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
           {...register("userName")}
           aria-invalid={!!errors.userName}
           spellCheck={false}
+          autoComplete="name"
           id="userName"
           placeholder="Enter your name"
         />
@@ -50,6 +51,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
           {...register("userEmail")}
           aria-invalid={!!errors.userEmail}
           type="email"
+          autoComplete="email"
           id="userEmail"
           placeholder="Enter your email address"
         />
@@ -64,6 +66,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
               {...register("password")}
               aria-invalid={!!errors.password}
               type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
               id="password"
               placeholder="••••••••"
               className="pr-9"
@@ -86,6 +89,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
               {...register("confirmPassword")}
               aria-invalid={!!errors.confirmPassword}
               type={showConfirmPassword ? "text" : "password"}
+              autoComplete="new-password"
               id="confirmPassword"
               placeholder="••••••••"
               className="pr-9"
@@ -113,6 +117,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
 
       <FieldGroup className="flex-row gap-4">
         <Button
+          type="button"
           variant="outline"
           onClick={() => setStep(1)}
           className="cursor-pointer"
@@ -125,7 +130,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
           className="flex-1 cursor-pointer"
           disabled={isSubmitting}
         >
-          {isSubmitting && <Loader2 className="animate-spin" />}
+          {isSubmitting && <Loader className="animate-spin" />}
           Sign up to Team Portal
         </Button>
       </FieldGroup>

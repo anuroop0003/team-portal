@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -69,7 +69,7 @@ export function DeleteMemberDialog({
           >
             {isDeleting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader className="animate-spin" />
                 Deleting...
               </>
             ) : (
