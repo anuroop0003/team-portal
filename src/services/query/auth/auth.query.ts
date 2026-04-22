@@ -36,7 +36,7 @@ export const useRegisterOrganization = () => {
         {
           organization: {
             name: user.organizationName,
-            slug: user.companyCode,
+            code: user.companyCode,
           },
           admin: {
             name: user.userName,
