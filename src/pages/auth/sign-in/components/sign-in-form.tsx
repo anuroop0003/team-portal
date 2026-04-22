@@ -43,8 +43,9 @@ export function SignInForm() {
 
   const onSubmit = (data: SignInFormValues) => {
     signIn(data, {
-      onSuccess: () => {
+      onSuccess: ({ access_token }) => {
         toast.success("Signed in successfully.");
+        localStorage.setItem("access-token", access_token);
         navigate(PATHS.DASHBOARD);
       },
       onError: (error) => {
