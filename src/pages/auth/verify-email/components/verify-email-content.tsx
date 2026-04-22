@@ -73,7 +73,10 @@ export function VerifyEmailContent() {
     resend(
       { email },
       {
-        onSuccess: () => {
+        onSuccess: (response) => {
+          if (response.link) {
+            console.log("VERIFICATION LINK:", response.link);
+          }
           toast.success("Verification email sent!");
           setTimer(RESEND_DELAY);
         },

@@ -4,11 +4,18 @@ export interface SignInResponse {
 }
 
 export interface RegisterOrganizationResponse {
-  message: string;
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  organization_id: string;
+  is_verified: boolean;
+  verification_link?: string;
 }
 
 export interface SendVerificationResponse {
   message: string;
+  link?: string;
 }
 
 export interface UserMeResponse {
@@ -17,4 +24,7 @@ export interface UserMeResponse {
   email: string;
   role: string;
   organization_id: string;
+  is_verified: boolean;
+  verification_link?: string;
+  invitation_link?: string;
 }

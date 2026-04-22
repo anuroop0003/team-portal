@@ -39,7 +39,10 @@ export function RegisterOrganizationForm() {
 
   const onSubmit = (data: RegisterOrganizationFormValues) => {
     registerOrg(data, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        if (response.verification_link) {
+          console.log("VERIFICATION LINK:", response.verification_link);
+        }
         toast.success(
           "Account created successfully. Redirecting to sign in...",
         );

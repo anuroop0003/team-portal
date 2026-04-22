@@ -30,7 +30,10 @@ export function ForgotPasswordForm() {
 
   const onSubmit = (data: ForgotPasswordFormValues) => {
     forgotPassword(data, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        if (response.link) {
+          console.log("RESET LINK:", response.link);
+        }
         toast.success(
           "If an account exists with this email, you'll receive reset instructions shortly. Please check your inbox and spam folder.",
         );

@@ -13,6 +13,7 @@ export interface UserResponse {
   date_of_birth: string | null;
   blood_group: string | null;
   emergency_contact: string | null;
+  invitation_link?: string;
 }
 
 export interface StatutoryResponse {

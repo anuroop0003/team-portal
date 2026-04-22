@@ -47,7 +47,10 @@ export const useCreateUser = () => {
       const { data } = await api.post<UserDetailResponse>("/users/", user);
       return data;
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
+      if (response.invitation_link) {
+        console.log("INVITATION LINK:", response.invitation_link);
+      }
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
   });
