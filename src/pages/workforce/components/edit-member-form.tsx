@@ -49,80 +49,82 @@ export function EditMemberForm({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FieldGroup>
-        <Field>
-          <Label htmlFor="edit-name">Full Name</Label>
-          <Input
-            {...register("name")}
-            id="edit-name"
-            placeholder="John Doe"
-            disabled={isSubmitting}
-          />
-          <FieldError errors={[errors.name]} />
-        </Field>
+    <>
+      <form id="edit-member-form" onSubmit={handleSubmit(onSubmit)}>
+        <FieldGroup className="gap-4">
+          <Field className="gap-2!">
+            <Label htmlFor="edit-name">Full Name</Label>
+            <Input
+              {...register("name")}
+              id="edit-name"
+              placeholder="John Doe"
+              disabled={isSubmitting}
+            />
+            <FieldError errors={[errors.name]} />
+          </Field>
 
-        <Field>
-          <Label htmlFor="edit-email">Email Address</Label>
-          <Input
-            {...register("email")}
-            id="edit-email"
-            type="email"
-            placeholder="john.doe@company.com"
-            disabled={true} // Email is locked for editing
-            className="bg-muted/50"
-          />
-          <FieldError errors={[errors.email]} />
-        </Field>
+          <Field className="gap-2!">
+            <Label htmlFor="edit-email">Email Address</Label>
+            <Input
+              {...register("email")}
+              id="edit-email"
+              type="email"
+              placeholder="john.doe@company.com"
+              disabled={true} // Email is locked for editing
+              className="bg-muted/50"
+            />
+            <FieldError errors={[errors.email]} />
+          </Field>
 
-        <Field>
-          <Label htmlFor="edit-position">Position</Label>
-          <Input
-            {...register("position")}
-            id="edit-position"
-            placeholder="Senior Developer"
-            disabled={isSubmitting}
-          />
-          <FieldError errors={[errors.position]} />
-        </Field>
+          <Field className="gap-2!">
+            <Label htmlFor="edit-position">Position</Label>
+            <Input
+              {...register("position")}
+              id="edit-position"
+              placeholder="Senior Developer"
+              disabled={isSubmitting}
+            />
+            <FieldError errors={[errors.position]} />
+          </Field>
 
-        <Field>
-          <Label htmlFor="edit-role">Access Role</Label>
-          <Controller
-            control={control}
-            name="role"
-            render={({ field }) => (
-              <Select
-                value={field.value?.value ?? "null"}
-                onValueChange={(val) => {
-                  const selectedOption = ROLE_OPTIONS.find(
-                    (o) => o.value === val,
-                  );
-                  field.onChange(selectedOption);
-                }}
-                disabled={isSubmitting}
-              >
-                <SelectTrigger id="edit-role" className="cursor-pointer">
-                  <SelectValue placeholder="Select a role" />
-                </SelectTrigger>
-                <SelectContent>
-                  {ROLE_OPTIONS.map((option) => (
-                    <SelectItem
-                      key={option.value}
-                      className="cursor-pointer"
-                      value={option.value}
-                    >
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          />
-          <FieldError errors={[errors.role]} />
-        </Field>
-      </FieldGroup>
-      <DialogFooter className="mt-4 flex flex-col sm:flex-row gap-2 rounded-b-md">
+          <Field className="gap-2!">
+            <Label htmlFor="edit-role">Access Role</Label>
+            <Controller
+              control={control}
+              name="role"
+              render={({ field }) => (
+                <Select
+                  value={field.value?.value ?? "null"}
+                  onValueChange={(val) => {
+                    const selectedOption = ROLE_OPTIONS.find(
+                      (o) => o.value === val,
+                    );
+                    field.onChange(selectedOption);
+                  }}
+                  disabled={isSubmitting}
+                >
+                  <SelectTrigger id="edit-role" className="cursor-pointer">
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {ROLE_OPTIONS.map((option) => (
+                      <SelectItem
+                        key={option.value}
+                        className="cursor-pointer"
+                        value={option.value}
+                      >
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            <FieldError errors={[errors.role]} />
+          </Field>
+        </FieldGroup>
+      </form>
+      <DialogFooter>
         <Button
           type="button"
           variant="destructive"
@@ -143,21 +145,16 @@ export function EditMemberForm({
             }
           />
           <Button
+            form="edit-member-form"
             type="submit"
             disabled={isSubmitting}
             className="cursor-pointer"
           >
-            {isSubmitting ? (
-              <>
-                <Loader className="animate-spin" />
-                Saving...
-              </>
-            ) : (
-              "Save Changes"
-            )}
+            {isSubmitting && <Loader className="animate-spin" />}
+            Save Changes
           </Button>
         </div>
       </DialogFooter>
-    </form>
+    </>
   );
 }

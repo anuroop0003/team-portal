@@ -62,126 +62,128 @@ export default function DashboardLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset className="min-h-screen">
-        <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 m-4 px-4 md:px-6 rounded-lg bg-muted shadow-sm sticky top-4 z-10 ring-1 ring-sidebar-border">
-          <div className="flex items-center gap-2">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-                </BreadcrumbItem>
-                {breadcrumbs.length > 0 &&
-                  breadcrumbs[0].title !== "Dashboard" &&
-                  breadcrumbs.map((crumb) => (
-                    <div key={crumb.href} className="flex items-center gap-2">
-                      <BreadcrumbSeparator className="hidden md:block" />
-                      <BreadcrumbItem>
-                        {crumb.isLast ? (
-                          <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
-                        ) : (
-                          <BreadcrumbLink href={crumb.href}>
-                            {crumb.title}
-                          </BreadcrumbLink>
-                        )}
-                      </BreadcrumbItem>
-                    </div>
-                  ))}
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+      <SidebarInset className="min-h-screen flex flex-col">
+        <div className="sticky top-0 z-10 bg-background px-4 py-4">
+          <header className="flex h-16 shrink-0 items-center justify-between transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4 md:px-6 rounded-lg bg-muted">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger className="-ml-1" />
+              <Separator orientation="vertical" className="mr-2" />
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem className="hidden md:block">
+                    <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  {breadcrumbs.length > 0 &&
+                    breadcrumbs[0].title !== "Dashboard" &&
+                    breadcrumbs.map((crumb) => (
+                      <div key={crumb.href} className="flex items-center gap-2">
+                        <BreadcrumbSeparator className="hidden md:block" />
+                        <BreadcrumbItem>
+                          {crumb.isLast ? (
+                            <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
+                          ) : (
+                            <BreadcrumbLink href={crumb.href}>
+                              {crumb.title}
+                            </BreadcrumbLink>
+                          )}
+                        </BreadcrumbItem>
+                      </div>
+                    ))}
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
 
-          <div className="flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="relative size-9"
-                  >
-                    <BellIcon className="size-4" />
-                    <span className="absolute top-1 right-1 flex size-2 rounded-full bg-primary" />
-                  </Button>
-                }
-              />
-              <DropdownMenuContent align="end" className="w-80">
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <div className="p-8 text-center">
-                  <p className="text-sm text-muted-foreground">
-                    No new notifications
-                  </p>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex items-center gap-4">
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="relative size-9"
+                    >
+                      <BellIcon className="size-4" />
+                      <span className="absolute top-1 right-1 flex size-2 rounded-full bg-primary" />
+                    </Button>
+                  }
+                />
+                <DropdownMenuContent align="end" className="w-80">
+                  <DropdownMenuGroup>
+                    <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <div className="p-8 text-center">
+                    <p className="text-sm text-muted-foreground">
+                      No new notifications
+                    </p>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <Button
-                    variant="ghost"
-                    className="relative size-9 rounded-full"
-                  >
-                    <Avatar className="size-9">
-                      <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback>SC</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                }
-              />
-              <DropdownMenuContent className="w-64" align="end">
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">
-                        {user.name}
-                      </p>
-                      <p className="text-xs leading-none text-muted-foreground">
-                        {user.email}
-                      </p>
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      className="relative size-9 rounded-full"
+                    >
+                      <Avatar className="size-9">
+                        <AvatarImage src={user.avatar} alt={user.name} />
+                        <AvatarFallback>SC</AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  }
+                />
+                <DropdownMenuContent className="w-64" align="end">
+                  <DropdownMenuGroup>
+                    <DropdownMenuLabel className="font-normal">
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          {user.name}
+                        </p>
+                        <p className="text-xs leading-none text-muted-foreground">
+                          {user.email}
+                        </p>
+                      </div>
+                    </DropdownMenuLabel>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      <UserIcon className="mr-2 size-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <SettingsIcon className="mr-2 size-4" />
+                      <span>Settings</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <div className="flex items-center justify-between px-2 py-2">
+                    <div className="flex items-center gap-2">
+                      <SunIcon className="size-4 text-muted-foreground" />
+                      <span className="text-sm font-medium">Light</span>
                     </div>
-                  </DropdownMenuLabel>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <UserIcon className="mr-2 size-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <SettingsIcon className="mr-2 size-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <div className="flex items-center justify-between px-2 py-2">
-                  <div className="flex items-center gap-2">
-                    <SunIcon className="size-4 text-muted-foreground" />
-                    <span className="text-sm font-medium">Light</span>
+                    <Switch
+                      checked={mode === "dark"}
+                      onCheckedChange={toggleMode}
+                    />
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium">Dark</span>
+                      <MoonIcon className="size-4 text-muted-foreground" />
+                    </div>
                   </div>
-                  <Switch
-                    checked={mode === "dark"}
-                    onCheckedChange={toggleMode}
-                  />
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">Dark</span>
-                    <MoonIcon className="size-4 text-muted-foreground" />
-                  </div>
-                </div>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">
-                  <LogOutIcon className="mr-2 size-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 md:p-6 m-4 rounded-lg bg-muted shadow-sm backdrop-blur-md ring-1 ring-sidebar-border">
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem variant="destructive">
+                    <LogOutIcon className="mr-2 size-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </header>
+        </div>
+        <main className="flex-1 mx-4 mb-4 bg-muted flex flex-col gap-4 p-4 md:p-6 rounded-lg overflow-auto">
           <Outlet />
         </main>
       </SidebarInset>

@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Mail, Calendar, Pencil } from "lucide-react";
+import { Mail, Calendar, SquarePen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EditMemberModal } from "./edit-member-modal";
@@ -45,24 +45,23 @@ export function MemberCard({ member }: MemberCardProps) {
 
   return (
     <>
-      <Card>
+      <Card className="bg-background rounded-lg">
         <CardHeader className="gap-0">
           <CardTitle className="line-clamp-1">
             {member.name}
             <Button
               variant="ghost"
-              size="icon-sm"
+              size="icon-xs"
               className="ml-2 cursor-pointer text-primary hover:text-primary"
               onClick={() => setIsEditModalOpen(true)}
             >
-              <Pencil />
+              <SquarePen />
             </Button>
           </CardTitle>
-          <CardDescription>{member.position}</CardDescription>
-          <Badge
-            variant={getStatusVariant(member.status)}
-            className="mt-2 rounded-sm"
-          >
+          <CardDescription className="text-xs">
+            {member.position}
+          </CardDescription>
+          <Badge variant={getStatusVariant(member.status)} className="mt-2">
             {member.status}
           </Badge>
           <CardAction>

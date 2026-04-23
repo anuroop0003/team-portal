@@ -1,7 +1,7 @@
 import { MemberCard } from "../../components/member-card";
 import { AddMemberModal } from "../../components/add-member-modal";
 import { MOCK_WORKFORCE } from "../../constants";
-import { Search, Users, Network, TrendingUp, Trophy } from "lucide-react";
+import { Search, Users, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { PATHS } from "@/routes/constants/paths";
@@ -13,9 +13,6 @@ import {
 } from "@/components/ui/input-group";
 
 export default function WorkforceDirectoryPage() {
-  const totalPoints = MOCK_WORKFORCE.reduce((acc, u) => acc + u.points, 0);
-  const avgPoints = Math.round(totalPoints / MOCK_WORKFORCE.length);
-
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
       {/* Page Header */}
@@ -44,9 +41,9 @@ export default function WorkforceDirectoryPage() {
           label="Total Members"
           value={MOCK_WORKFORCE.length.toString()}
           description="Integrated platform workforce"
-          icon={<Users className="size-4 text-primary" />}
+          icon={<Users className="size-6 text-primary" />}
         />
-        <StatsCard
+        {/* <StatsCard
           label="Global Team Points"
           value={totalPoints.toLocaleString()}
           description="Cumulative points earned"
@@ -57,7 +54,7 @@ export default function WorkforceDirectoryPage() {
           value={avgPoints.toLocaleString()}
           description="Average points per member"
           icon={<TrendingUp className="size-4 text-emerald-500" />}
-        />
+        /> */}
       </div>
 
       {/* Search Filter */}

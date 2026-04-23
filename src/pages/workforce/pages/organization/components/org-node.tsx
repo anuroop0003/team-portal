@@ -8,10 +8,14 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Plus, Minus } from "lucide-react";
+import type { HierarchyPointNode } from "d3-hierarchy";
+import type { TreeNodeDatum } from "react-d3-tree";
 
 interface OrgNodeProps {
-  nodeDatum: any;
+  nodeDatum: TreeNodeDatum;
   toggleNode: () => void;
+  hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>;
+  onNodeClick?: (node: HierarchyPointNode<TreeNodeDatum>) => void;
 }
 
 const getInitials = (name: string) => {
@@ -22,14 +26,22 @@ const getInitials = (name: string) => {
     .toUpperCase();
 };
 
-export function OrgNode({ nodeDatum, toggleNode }: OrgNodeProps) {
+export function OrgNode({
+  nodeDatum,
+  toggleNode,
+  hierarchyPointNode,
+  onNodeClick,
+}: OrgNodeProps) {
   const initials = getInitials(nodeDatum.name);
   const isExpanded = !nodeDatum.__rd3t.collapsed;
 
   return (
     <g>
       <foreignObject width="240" height="200" x="-120" y="-80">
-        <Card className="group relative m-px overflow-visible">
+        <Card
+          className="group relative m-px overflow-visible"
+          onClick={() => onNodeClick?.(hierarchyPointNode)}
+        >
           <CardHeader>
             <CardTitle>{nodeDatum.name}</CardTitle>
             <CardDescription>
@@ -37,7 +49,7 @@ export function OrgNode({ nodeDatum, toggleNode }: OrgNodeProps) {
             </CardDescription>
             <CardAction>
               <Avatar className="size-10">
-                <AvatarImage src={nodeDatum.attributes?.avatar} />
+                <AvatarImage src={nodeDatum.attributes?.avatar as string} />
                 <AvatarFallback>{initials}</AvatarFallback>
               </Avatar>
             </CardAction>
