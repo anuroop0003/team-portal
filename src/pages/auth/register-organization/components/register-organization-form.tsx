@@ -79,7 +79,7 @@ export function RegisterOrganizationForm() {
           Already have an account?{" "}
           <Link
             to={PATHS.AUTH.SIGN_IN}
-            className="text-foreground font-semibold hover:underline"
+            className="text-foreground hover:underline px-1"
           >
             Log in
           </Link>

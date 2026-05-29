@@ -232,7 +232,7 @@ export function SignInForm() {
             </Button>
           </FieldGroup>
         </form>
-        <p className="text-muted-foreground select-none">
+        <p className="text-muted-foreground text-sm">
           New on our platform?{" "}
           <Link
             to={PATHS.AUTH.REGISTER_ORGANIZATION}

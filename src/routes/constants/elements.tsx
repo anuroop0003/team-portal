@@ -14,6 +14,7 @@ export const ResetPasswordPage = lazy(
 export const VerifyEmailPage = lazy(
   () => import("@/pages/auth/verify-email/page"),
 );
+export const AuthLayout = lazy(() => import("@/pages/auth/auth-layout"));
 
 // Dashboard & Features
 export const DashboardPage = lazy(() => import("@/pages/dashboard/page"));

@@ -19,6 +19,7 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
+  AuthLayout,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -31,24 +32,29 @@ export const routes: RouteObject[] = [
     element: <PublicRoute />,
     children: [
       {
-        path: PATHS.AUTH.SIGN_IN,
-        element: <SignInPage />,
-      },
-      {
-        path: PATHS.AUTH.REGISTER_ORGANIZATION,
-        element: <RegisterOrganizationPage />,
-      },
-      {
-        path: PATHS.AUTH.FORGOT_PASSWORD,
-        element: <ForgotPasswordPage />,
-      },
-      {
-        path: PATHS.AUTH.RESET_PASSWORD,
-        element: <ResetPasswordPage />,
-      },
-      {
-        path: PATHS.AUTH.VERIFY_EMAIL,
-        element: <VerifyEmailPage />,
+        element: <AuthLayout />,
+        children: [
+          {
+            path: PATHS.AUTH.SIGN_IN,
+            element: <SignInPage />,
+          },
+          {
+            path: PATHS.AUTH.REGISTER_ORGANIZATION,
+            element: <RegisterOrganizationPage />,
+          },
+          {
+            path: PATHS.AUTH.FORGOT_PASSWORD,
+            element: <ForgotPasswordPage />,
+          },
+          {
+            path: PATHS.AUTH.RESET_PASSWORD,
+            element: <ResetPasswordPage />,
+          },
+          {
+            path: PATHS.AUTH.VERIFY_EMAIL,
+            element: <VerifyEmailPage />,
+          },
+        ],
       },
     ],
   },
