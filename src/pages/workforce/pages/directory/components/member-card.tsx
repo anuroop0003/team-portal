@@ -9,6 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Mail, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { getStatusVariant } from "@/lib/utils";
 
 interface MemberCardProps {
   member: {
@@ -23,19 +24,6 @@ interface MemberCardProps {
     points: number;
   };
 }
-
-const getStatusVariant = (status: string) => {
-  switch (status) {
-    case "In Office":
-      return "success";
-    case "WFH":
-      return "indigo";
-    case "On Leave":
-      return "destructive";
-    default:
-      return "secondary";
-  }
-};
 
 export function MemberCard({ member }: MemberCardProps) {
   return (

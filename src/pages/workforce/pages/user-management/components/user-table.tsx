@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
 import { EditMemberModal } from "./edit-member/edit-member-modal";
 import { DeleteMemberDialog } from "./edit-member/delete-member-dialog";
+import { getRoleVariant, getStatusVariant } from "@/lib/utils";
 
 interface Member {
   id: string;
@@ -29,30 +30,6 @@ interface Member {
 interface UserTableProps {
   members: Member[];
 }
-
-const getStatusVariant = (status: string) => {
-  switch (status) {
-    case "In Office":
-      return "success";
-    case "WFH":
-      return "indigo";
-    case "On Leave":
-      return "destructive";
-    default:
-      return "secondary";
-  }
-};
-
-const getRoleVariant = (role: string) => {
-  switch (role.toLowerCase()) {
-    case "admin":
-      return "destructive";
-    case "manager":
-      return "warning";
-    default:
-      return "outline";
-  }
-};
 
 export function UserTable({ members }: UserTableProps) {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
@@ -85,18 +62,20 @@ export function UserTable({ members }: UserTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[280px]">User</TableHead>
-              <TableHead>Position</TableHead>
-              <TableHead>System Role</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Joined Date</TableHead>
-              <TableHead className="w-[100px] text-right">Actions</TableHead>
+              <TableHead className="h-12 px-4">User</TableHead>
+              <TableHead className="h-12 px-4">Position</TableHead>
+              <TableHead className="h-12 px-4">System Role</TableHead>
+              <TableHead className="h-12 px-4">Status</TableHead>
+              <TableHead className="h-12 px-4">Joined Date</TableHead>
+              <TableHead className="w-[100px] text-right h-12 px-4">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {members.map((member) => (
               <TableRow key={member.id} className="hover:bg-muted/30">
-                <TableCell>
+                <TableCell className="py-3 px-4">
                   <div className="flex items-center gap-3">
                     <Avatar className="size-9 border border-border/40">
                       <AvatarImage src={member.avatar} alt={member.name} />
@@ -112,10 +91,10 @@ export function UserTable({ members }: UserTableProps) {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="font-medium text-muted-foreground text-sm">
+                <TableCell className="py-3 px-4 font-medium text-muted-foreground text-sm">
                   {member.position}
                 </TableCell>
-                <TableCell>
+                <TableCell className="py-3 px-4">
                   <Badge
                     variant={getRoleVariant(member.role)}
                     className="font-medium"
@@ -123,19 +102,19 @@ export function UserTable({ members }: UserTableProps) {
                     {member.role}
                   </Badge>
                 </TableCell>
-                <TableCell>
+                <TableCell className="py-3 px-4">
                   <Badge variant={getStatusVariant(member.status)}>
                     {member.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-muted-foreground text-sm">
+                <TableCell className="py-3 px-4 text-muted-foreground text-sm">
                   {new Date(member.joinedDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
                   })}
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="py-3 px-4 text-right">
                   <div className="flex items-center justify-end gap-1.5">
                     <Button
                       variant="ghost"

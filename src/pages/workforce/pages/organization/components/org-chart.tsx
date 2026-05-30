@@ -1,4 +1,4 @@
-import Tree, { type TreeNodeDatum } from "react-d3-tree";
+import Tree, { type Point, type TreeNodeDatum } from "react-d3-tree";
 import type { HierarchyPointNode } from "d3-hierarchy";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { OrgNode } from "./org-node";
@@ -102,7 +102,7 @@ export function OrgChart() {
           nodeSize={{ x: 280, y: 140 }}
           draggable={true}
           zoomable={true}
-          onUpdate={(state: any) => {
+          onUpdate={(state: { translate: Point; zoom: number }) => {
             transformRef.current = {
               translate: state.translate,
               zoom: state.zoom,

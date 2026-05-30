@@ -1,8 +1,4 @@
 import { AddMemberModal } from "./invite-member/add-member-modal";
-import { Network } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { PATHS } from "@/routes/constants/paths";
 
 export function ManagementHeader() {
   return (
@@ -14,15 +10,7 @@ export function ManagementHeader() {
           permissions, and monitor system access.
         </p>
       </div>
-      <div className="flex items-center gap-3">
-        <Link to={PATHS.WORKFORCE.ORGANIZATION}>
-          <Button variant="outline" className="cursor-pointer">
-            <Network />
-            Organization
-          </Button>
-        </Link>
-        <AddMemberModal />
-      </div>
+      <AddMemberModal />
     </div>
   );
 }
