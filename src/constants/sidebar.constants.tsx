@@ -5,6 +5,7 @@ import {
   LayoutDashboardIcon,
   TrophyIcon,
   UsersIcon,
+  CarIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { PATHS } from "@/routes/constants/paths";
@@ -101,6 +102,11 @@ export const SIDEBAR_DATA = {
           url: PATHS.WORKFORCE.USER_MANAGEMENT,
         },
       ],
+    },
+    {
+      title: "Parking",
+      url: PATHS.PARKING,
+      icon: <CarIcon />,
     },
   ],
 };

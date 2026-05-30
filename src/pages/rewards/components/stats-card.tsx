@@ -2,9 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface StatsCardProps {
   label: string;
-  value: string;
+  value: React.ReactNode;
   icon: React.ReactNode;
-  description: string;
+  description?: string;
 }
 
 export function StatsCard({ label, value, icon, description }: StatsCardProps) {
@@ -16,7 +16,9 @@ export function StatsCard({ label, value, icon, description }: StatsCardProps) {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
-        <p className="text-xs text-muted-foreground">{description}</p>
+        {description && (
+          <p className="text-xs text-muted-foreground">{description}</p>
+        )}
       </CardContent>
     </Card>
   );

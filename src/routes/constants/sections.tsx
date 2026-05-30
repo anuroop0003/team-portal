@@ -17,6 +17,7 @@ import {
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
   WorkforceUserManagementPage,
+  WorkforceParkingPage,
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
@@ -116,6 +117,10 @@ export const routes: RouteObject[] = [
                 element: <WorkforceUserManagementPage />,
               },
             ],
+          },
+          {
+            path: PATHS.PARKING,
+            element: <WorkforceParkingPage />,
           },
         ],
       },

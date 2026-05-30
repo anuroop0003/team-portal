@@ -26,7 +26,7 @@ export function UserDropdown() {
   const user = {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Sarah",
   };
 
   return (
@@ -37,7 +37,7 @@ export function UserDropdown() {
             variant="ghost"
             className="size-9 rounded-full cursor-pointer"
           >
-            <Avatar className="size-9">
+            <Avatar className="size-8">
               <AvatarImage src={user.avatar} alt={user.name} />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>

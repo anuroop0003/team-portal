@@ -20,4 +20,5 @@ export const PATHS = {
     ORGANIZATION: "/workforce/organization",
     USER_MANAGEMENT: "/workforce/user-management",
   },
+  PARKING: "/parking",
 };
