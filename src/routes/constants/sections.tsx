@@ -12,10 +12,11 @@ import {
   PointsHistoryPage,
   RedeemShopPage,
   GlobalLeaderboardPage,
-  DashboardLayout,
+  AppLayout,
   AddRewardPage,
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
+  WorkforceUserManagementPage,
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
@@ -63,7 +64,7 @@ export const routes: RouteObject[] = [
     element: <PrivateRoute />,
     children: [
       {
-        element: <DashboardLayout />,
+        element: <AppLayout />,
         children: [
           {
             path: PATHS.DASHBOARD,
@@ -109,6 +110,10 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.WORKFORCE.ORGANIZATION,
                 element: <WorkforceOrganizationPage />,
+              },
+              {
+                path: PATHS.WORKFORCE.USER_MANAGEMENT,
+                element: <WorkforceUserManagementPage />,
               },
             ],
           },

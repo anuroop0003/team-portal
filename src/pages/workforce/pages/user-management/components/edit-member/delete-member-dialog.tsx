@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AlertTriangle, Loader } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -42,7 +42,7 @@ export function DeleteMemberDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent showCloseButton={false} className="sm:max-w-md rounded-md">
+      <DialogContent showCloseButton={false} className="sm:max-w-md">
         <DialogHeader>
           <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-destructive/10 mb-2">
             <AlertTriangle className="size-6 text-destructive" />
@@ -63,18 +63,11 @@ export function DeleteMemberDialog({
           />
           <Button
             variant="destructive"
-            onClick={handleDelete}
-            disabled={isDeleting}
             className="cursor-pointer"
+            disabled={isDeleting}
+            onClick={handleDelete}
           >
-            {isDeleting ? (
-              <>
-                <Loader className="animate-spin" />
-                Deleting...
-              </>
-            ) : (
-              "Delete"
-            )}
+            Delete
           </Button>
         </DialogFooter>
       </DialogContent>
