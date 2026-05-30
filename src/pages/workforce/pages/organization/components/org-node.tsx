@@ -37,8 +37,9 @@ export function OrgNode({
 
   return (
     <g>
-      <foreignObject width="240" height="200" x="-120" y="-80">
+      <foreignObject width="260" height="96" x="-130" y="-38">
         <Card
+          size="sm"
           className="group relative m-px overflow-visible"
           onClick={() => onNodeClick?.(hierarchyPointNode)}
         >
@@ -47,7 +48,7 @@ export function OrgNode({
             <CardDescription>
               {nodeDatum.attributes?.position || "Position"}
             </CardDescription>
-            <CardAction>
+            <CardAction className="self-center">
               <Avatar className="size-10">
                 <AvatarImage src={nodeDatum.attributes?.avatar as string} />
                 <AvatarFallback>{initials}</AvatarFallback>

@@ -47,7 +47,7 @@ export function NavMain({ items }: { items: SidebarNavItem[] }) {
             <Collapsible
               key={item.title}
               defaultOpen={item.isActive || isItemActive}
-              className="group/collapsible"
+              className="group/collapsible space-y-1"
               render={<SidebarMenuItem />}
             >
               <CollapsibleTrigger
@@ -70,7 +70,7 @@ export function NavMain({ items }: { items: SidebarNavItem[] }) {
                       <SidebarMenuSubButton
                         render={<NavLink to={subItem.url} />}
                         isActive={pathname === subItem.url}
-                        className="hover:bg-primary hover:text-primary-foreground data-active:bg-primary data-active:text-primary-foreground"
+                        // className="hover:bg-primary hover:text-primary-foreground data-active:bg-primary data-active:text-primary-foreground"
                       >
                         <span>{subItem.title}</span>
                       </SidebarMenuSubButton>

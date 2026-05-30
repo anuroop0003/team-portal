@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ZoomIn, ZoomOut, Focus } from "lucide-react";
-import { CardAction } from "@/components/ui/card";
 
 interface OrgControlsProps {
   onZoomIn: () => void;
@@ -14,7 +13,7 @@ export function OrgControls({
   onRecenter,
 }: OrgControlsProps) {
   return (
-    <CardAction className="flex items-center gap-1">
+    <div className="flex items-center gap-1 absolute top-4 right-4 z-10">
       <Button
         variant="ghost"
         size="icon"
@@ -42,6 +41,6 @@ export function OrgControls({
       >
         <Focus />
       </Button>
-    </CardAction>
+    </div>
   );
 }

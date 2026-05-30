@@ -5,7 +5,7 @@ export const MOCK_WORKFORCE = [
     role: "Admin",
     position: "Chief Technology Officer",
     email: "alex.t@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Alex",
     status: "In Office",
     joinedDate: "2023-01-15",
     points: 1250,
@@ -16,7 +16,7 @@ export const MOCK_WORKFORCE = [
     role: "Manager",
     position: "Engineering Manager",
     email: "sarah.c@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Sarah",
     status: "WFH",
     joinedDate: "2023-03-10",
     points: 850,
@@ -27,7 +27,7 @@ export const MOCK_WORKFORCE = [
     role: "User",
     position: "Senior Frontend Developer",
     email: "michael.r@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Michael",
     status: "On Leave",
     joinedDate: "2023-05-20",
     points: 450,
@@ -38,7 +38,7 @@ export const MOCK_WORKFORCE = [
     role: "User",
     position: "UI/UX Designer",
     email: "emily.d@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Emily",
     status: "In Office",
     joinedDate: "2023-06-12",
     points: 600,
@@ -49,7 +49,7 @@ export const MOCK_WORKFORCE = [
     role: "Manager",
     position: "Product Manager",
     email: "david.w@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=David",
     status: "WFH",
     joinedDate: "2023-02-28",
     points: 920,
@@ -60,7 +60,7 @@ export const MOCK_WORKFORCE = [
     role: "User",
     position: "Backend Developer",
     email: "jessica.l@company.com",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jessica",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Jessica",
     status: "In Office",
     joinedDate: "2023-08-05",
     points: 300,
@@ -72,6 +72,7 @@ export const MOCK_ORG_DATA = {
   attributes: {
     position: "CTO",
     role: "Admin",
+    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Alex",
   },
   children: [
     {
@@ -79,6 +80,7 @@ export const MOCK_ORG_DATA = {
       attributes: {
         position: "Engineering Manager",
         role: "Manager",
+        avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Sarah",
       },
       children: [
         {
@@ -86,6 +88,7 @@ export const MOCK_ORG_DATA = {
           attributes: {
             position: "Sr. Frontend Dev",
             role: "User",
+            avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Michael",
           },
         },
         {
@@ -93,6 +96,7 @@ export const MOCK_ORG_DATA = {
           attributes: {
             position: "Backend Dev",
             role: "User",
+            avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Jessica",
           },
         },
       ],
@@ -102,6 +106,7 @@ export const MOCK_ORG_DATA = {
       attributes: {
         position: "Product Manager",
         role: "Manager",
+        avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=David",
       },
       children: [
         {
@@ -109,6 +114,7 @@ export const MOCK_ORG_DATA = {
           attributes: {
             position: "UI/UX Designer",
             role: "User",
+            avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Emily",
           },
         },
       ],

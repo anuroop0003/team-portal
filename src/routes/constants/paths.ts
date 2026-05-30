@@ -18,5 +18,6 @@ export const PATHS = {
   WORKFORCE: {
     ROOT: "/workforce",
     ORGANIZATION: "/workforce/organization",
+    USER_MANAGEMENT: "/workforce/user-management",
   },
 };

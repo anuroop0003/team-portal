@@ -96,6 +96,10 @@ export const SIDEBAR_DATA = {
           title: "Organization",
           url: PATHS.WORKFORCE.ORGANIZATION,
         },
+        {
+          title: "User Management",
+          url: PATHS.WORKFORCE.USER_MANAGEMENT,
+        },
       ],
     },
   ],

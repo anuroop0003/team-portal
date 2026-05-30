@@ -16,6 +16,7 @@ import {
   AddRewardPage,
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
+  WorkforceUserManagementPage,
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
@@ -109,6 +110,10 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.WORKFORCE.ORGANIZATION,
                 element: <WorkforceOrganizationPage />,
+              },
+              {
+                path: PATHS.WORKFORCE.USER_MANAGEMENT,
+                element: <WorkforceUserManagementPage />,
               },
             ],
           },

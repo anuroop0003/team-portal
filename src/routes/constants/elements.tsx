@@ -48,3 +48,6 @@ export const WorkforceDirectoryPage = lazy(
 export const WorkforceOrganizationPage = lazy(
   () => import("@/pages/workforce/pages/organization/page"),
 );
+export const WorkforceUserManagementPage = lazy(
+  () => import("@/pages/workforce/pages/user-management/page"),
+);
