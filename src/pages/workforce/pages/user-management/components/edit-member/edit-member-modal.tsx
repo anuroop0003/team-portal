@@ -67,10 +67,7 @@ export function EditMemberModal({
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent
-          showCloseButton={false}
-          className="sm:max-w-md rounded-md"
-        >
+        <DialogContent showCloseButton={false} className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Edit Member Profile</DialogTitle>
             <DialogDescription>
