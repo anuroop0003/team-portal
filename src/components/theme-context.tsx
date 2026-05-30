@@ -1,11 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 type ThemeMode = "light" | "dark";
-type ThemeColor = "teal" | "blue" | "orange" | "green" | "rose" | "default";
 
 interface ThemeContextType {
-  themeColor: ThemeColor;
-  setThemeColor: (color: ThemeColor) => void;
   mode: ThemeMode;
   toggleMode: () => void;
 }
@@ -13,28 +10,9 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [themeColor, setThemeColor] = useState<ThemeColor>(() => {
-    return (localStorage.getItem("theme-color") as ThemeColor) || "default";
-  });
-
   const [mode, setMode] = useState<ThemeMode>(() => {
-    return (localStorage.getItem("theme-mode") as ThemeMode) || "light";
+    return (localStorage.getItem("theme-mode") as ThemeMode) || "dark";
   });
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(
-      "theme-teal",
-      "theme-blue",
-      "theme-orange",
-      "theme-green",
-      "theme-rose",
-    );
-    if (themeColor !== "default") {
-      root.classList.add(`theme-${themeColor}`);
-    }
-    localStorage.setItem("theme-color", themeColor);
-  }, [themeColor]);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -51,9 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider
-      value={{ themeColor, setThemeColor, mode, toggleMode }}
-    >
+    <ThemeContext.Provider value={{ mode, toggleMode }}>
       {children}
     </ThemeContext.Provider>
   );
