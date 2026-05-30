@@ -91,9 +91,7 @@ export function UserTable({ members }: UserTableProps) {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="py-3 px-4 font-medium text-muted-foreground text-sm">
-                  {member.position}
-                </TableCell>
+                <TableCell className="py-3 px-4">{member.position}</TableCell>
                 <TableCell className="py-3 px-4">
                   <Badge
                     variant={getRoleVariant(member.role)}
@@ -107,7 +105,7 @@ export function UserTable({ members }: UserTableProps) {
                     {member.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="py-3 px-4 text-muted-foreground text-sm">
+                <TableCell className="py-3 px-4">
                   {new Date(member.joinedDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
@@ -118,19 +116,19 @@ export function UserTable({ members }: UserTableProps) {
                   <div className="flex items-center justify-end gap-1.5">
                     <Button
                       variant="ghost"
-                      size="icon-xs"
-                      className="cursor-pointer text-muted-foreground hover:text-foreground hover:bg-muted"
+                      size="icon-sm"
+                      className="cursor-pointer text-muted-foreground hover:text-foreground"
                       onClick={() => handleEditClick(member)}
                     >
-                      <Edit className="size-4" />
+                      <Edit />
                     </Button>
                     <Button
                       variant="ghost"
-                      size="icon-xs"
-                      className="cursor-pointer text-destructive/80 hover:text-destructive hover:bg-destructive/10"
+                      size="icon-sm"
+                      className="cursor-pointer text-destructive/80 hover:text-destructive"
                       onClick={() => handleDeleteClick(member)}
                     >
-                      <Trash2 className="size-4" />
+                      <Trash2 />
                     </Button>
                   </div>
                 </TableCell>
