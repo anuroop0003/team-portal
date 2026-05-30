@@ -18,7 +18,7 @@ export const AuthLayout = lazy(() => import("@/pages/auth/auth-layout"));
 
 // Dashboard & Features
 export const DashboardPage = lazy(() => import("@/pages/dashboard/page"));
-export const DashboardLayout = lazy(() => import("@/layouts/dashboard-layout"));
+export const AppLayout = lazy(() => import("@/layouts/app-layout"));
 
 // Rewards
 export const RewardsLayout = lazy(() => import("@/pages/rewards/pages/layout"));

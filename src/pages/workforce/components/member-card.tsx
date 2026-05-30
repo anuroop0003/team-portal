@@ -45,7 +45,7 @@ export function MemberCard({ member }: MemberCardProps) {
 
   return (
     <>
-      <Card className="bg-background rounded-lg">
+      <Card className="rounded-lg">
         <CardHeader className="gap-0">
           <CardTitle className="line-clamp-1">
             {member.name}

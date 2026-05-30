@@ -12,23 +12,11 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import type { SidebarNavItem } from "@/constants/sidebar.constants";
 import { ChevronRightIcon } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon?: React.ReactNode;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
-    }[];
-  }[];
-}) {
+export function NavMain({ items }: { items: SidebarNavItem[] }) {
   const { pathname } = useLocation();
 
   return (

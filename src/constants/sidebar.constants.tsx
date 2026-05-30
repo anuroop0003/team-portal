@@ -1,12 +1,3 @@
-import { NavMain } from "@/components/nav-main";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
 import {
   GalleryVerticalEndIcon,
   AudioLinesIcon,
@@ -15,10 +6,23 @@ import {
   TrophyIcon,
   UsersIcon,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { PATHS } from "@/routes/constants/paths";
 
-// This is sample data.
-const data = {
+export interface SidebarSubItem {
+  title: string;
+  url: string;
+}
+
+export interface SidebarNavItem {
+  title: string;
+  url: string;
+  icon?: ReactNode;
+  isActive?: boolean;
+  items?: SidebarSubItem[];
+}
+
+export const SIDEBAR_DATA = {
   user: {
     name: "shadcn",
     email: "m@example.com",
@@ -96,33 +100,3 @@ const data = {
     },
   ],
 };
-
-export function AppSidebar() {
-  return (
-    <Sidebar collapsible="icon" variant="floating" className="p-4 pr-0">
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                {data.teams[0].logo}
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
-                  {data.teams[0].name}
-                </span>
-                <span className="truncate text-xs">{data.teams[0].plan}</span>
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-      </SidebarContent>
-    </Sidebar>
-  );
-}

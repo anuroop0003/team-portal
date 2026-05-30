@@ -58,7 +58,7 @@ export function OrgChart() {
   }, []);
 
   return (
-    <Card className="h-[calc(100vh-240px)] bg-background rounded-lg overflow-hidden">
+    <Card className="h-[calc(100vh-240px)] rounded-lg overflow-hidden">
       <CardHeader>
         <OrgControls
           onZoomIn={handleZoomIn}

@@ -12,7 +12,7 @@ import {
   PointsHistoryPage,
   RedeemShopPage,
   GlobalLeaderboardPage,
-  DashboardLayout,
+  AppLayout,
   AddRewardPage,
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
@@ -63,7 +63,7 @@ export const routes: RouteObject[] = [
     element: <PrivateRoute />,
     children: [
       {
-        element: <DashboardLayout />,
+        element: <AppLayout />,
         children: [
           {
             path: PATHS.DASHBOARD,
