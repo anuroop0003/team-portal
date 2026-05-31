@@ -23,7 +23,7 @@ export function ParkingGrid({
 
         return (
           <div key={floor} className="space-y-4">
-            <div className="flex items-center gap-2 border-b pb-2">
+            <div className="flex items-center gap-2">
               <h3 className="font-semibold text-lg">{floor}</h3>
               <Badge variant="outline">{floorSpots.length} Spots</Badge>
             </div>

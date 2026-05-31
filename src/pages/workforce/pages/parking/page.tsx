@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MOCK_PARKING_SPOTS, type ParkingSpot } from "./constants";
 import { ParkingHeader } from "./components/parking-header";
 import { ParkingStats } from "./components/parking-stats";
@@ -6,8 +7,11 @@ import { ParkingSearch } from "./components/parking-search";
 import { ParkingGrid } from "./components/parking-grid";
 import { ParkingTable } from "./components/parking-table";
 import { AssignModal } from "./components/assign-spot/assign-modal";
+import { ManageTable } from "./components/manage-spots/manage-table";
+import { SpotModal } from "./components/manage-spots/spot-modal";
+import { DeleteSpotDialog } from "./components/manage-spots/delete-spot-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutGrid, List } from "lucide-react";
+import { LayoutGrid, List, Settings } from "lucide-react";
 import { MOCK_WORKFORCE } from "../../constants";
 
 export default function WorkforceParkingPage() {
@@ -15,6 +19,20 @@ export default function WorkforceParkingPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null);
   const [isAssignOpen, setIsAssignOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeTab = searchParams.get("tab") || "grid";
+  const setActiveTab = (tab: string) => {
+    setSearchParams((prev) => {
+      prev.set("tab", tab);
+      return prev;
+    });
+  };
+
+  const [isSpotModalOpen, setIsSpotModalOpen] = useState(false);
+  const [isDeleteSpotOpen, setIsDeleteSpotOpen] = useState(false);
+  const [selectedSpotForCrud, setSelectedSpotForCrud] =
+    useState<ParkingSpot | null>(null);
 
   // Stats calculation
   const totalSpots = spots.length;
@@ -111,10 +129,57 @@ export default function WorkforceParkingPage() {
     setIsAssignOpen(true);
   };
 
+  // Save Spot (Create / Edit)
+  const handleSaveSpot = (
+    spotData: Omit<ParkingSpot, "assignedTo" | "vehiclePlate" | "vehicleModel">,
+  ) => {
+    setSpots((prevSpots) => {
+      const exists = prevSpots.some((s) => s.id === spotData.id);
+      if (exists) {
+        return prevSpots.map((s) =>
+          s.id === spotData.id ? { ...s, ...spotData } : s,
+        );
+      } else {
+        return [...prevSpots, spotData as ParkingSpot];
+      }
+    });
+    setIsSpotModalOpen(false);
+    setSelectedSpotForCrud(null);
+  };
+
+  // Delete Spot
+  const handleDeleteSpot = () => {
+    if (!selectedSpotForCrud) return;
+    setSpots((prevSpots) =>
+      prevSpots.filter((s) => s.id !== selectedSpotForCrud.id),
+    );
+    setIsDeleteSpotOpen(false);
+    setSelectedSpotForCrud(null);
+  };
+
+  const handleEditSpotClick = (spot: ParkingSpot) => {
+    setSelectedSpotForCrud(spot);
+    setIsSpotModalOpen(true);
+  };
+
+  const handleDeleteSpotClick = (spot: ParkingSpot) => {
+    setSelectedSpotForCrud(spot);
+    setIsDeleteSpotOpen(true);
+  };
+
+  const handleOpenSpotModal = () => {
+    setSelectedSpotForCrud(null);
+    setIsSpotModalOpen(true);
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
       {/* Header */}
-      <ParkingHeader onAssignClick={() => handleOpenAssignModal(null)} />
+      <ParkingHeader
+        activeTab={activeTab}
+        onAssignClick={() => handleOpenAssignModal(null)}
+        onAddSpotClick={handleOpenSpotModal}
+      />
 
       {/* Stats Cards */}
       <ParkingStats
@@ -126,16 +191,24 @@ export default function WorkforceParkingPage() {
       />
 
       {/* Search Filter & View Switcher */}
-      <Tabs defaultValue="grid" className="space-y-4">
+      <Tabs
+        defaultValue="grid"
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="space-y-4"
+      >
         <div className="flex items-center justify-between gap-4">
           <ParkingSearch onSearch={setSearchQuery} />
 
-          <TabsList className="grid grid-cols-2 self-start sm:self-auto">
+          <TabsList className="grid grid-cols-3 self-start sm:self-auto">
             <TabsTrigger value="grid" className="cursor-pointer">
               <LayoutGrid />
             </TabsTrigger>
             <TabsTrigger value="table" className="cursor-pointer">
               <List />
+            </TabsTrigger>
+            <TabsTrigger value="manage" className="cursor-pointer">
+              <Settings />
             </TabsTrigger>
           </TabsList>
         </div>
@@ -155,9 +228,17 @@ export default function WorkforceParkingPage() {
             onReleaseClick={handleReleaseSpot}
           />
         </TabsContent>
+
+        <TabsContent value="manage">
+          <ManageTable
+            spots={filteredSpots}
+            onEditClick={handleEditSpotClick}
+            onDeleteClick={handleDeleteSpotClick}
+          />
+        </TabsContent>
       </Tabs>
 
-      {/* Modal Dialog */}
+      {/* Assign Modal */}
       <AssignModal
         open={isAssignOpen}
         onOpenChange={setIsAssignOpen}
@@ -165,6 +246,23 @@ export default function WorkforceParkingPage() {
         spots={spots}
         initialSpot={selectedSpot}
       />
+
+      {/* Spot CRUD Modals */}
+      <SpotModal
+        open={isSpotModalOpen}
+        onOpenChange={setIsSpotModalOpen}
+        onSave={handleSaveSpot}
+        initialSpot={selectedSpotForCrud}
+      />
+
+      {selectedSpotForCrud && (
+        <DeleteSpotDialog
+          spot={selectedSpotForCrud}
+          open={isDeleteSpotOpen}
+          onOpenChange={setIsDeleteSpotOpen}
+          onConfirm={handleDeleteSpot}
+        />
+      )}
     </div>
   );
 }
