@@ -13,19 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
 import { EditMemberModal } from "./edit-member/edit-member-modal";
 import { DeleteMemberDialog } from "./edit-member/delete-member-dialog";
-import { getRoleVariant, getStatusVariant } from "@/lib/utils";
-
-interface Member {
-  id: string;
-  name: string;
-  role: string;
-  position: string;
-  email: string;
-  avatar: string;
-  status: string;
-  joinedDate: string;
-  points: number;
-}
+import { getRoleVariant, getStatusVariant } from "@/lib/workforce";
+import { type Member } from "@/types/workforce";
 
 interface UserTableProps {
   members: Member[];

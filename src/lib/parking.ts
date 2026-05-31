@@ -1,4 +1,4 @@
-import { type ParkingSpot } from "@/pages/workforce/pages/parking/constants";
+import { type ParkingSpot } from "@/types/parking";
 import { Zap, Lock, Motorbike, Car } from "lucide-react";
 import React from "react";
 
