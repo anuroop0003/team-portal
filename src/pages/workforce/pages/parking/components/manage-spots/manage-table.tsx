@@ -1,4 +1,4 @@
-import { type ParkingSpot } from "../constants";
+import { type ParkingSpot } from "../../constants";
 import { getParkingStatusVariant, getSpotTypeVariant } from "@/lib/parking";
 import {
   Table,
@@ -8,22 +8,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Edit3, UserMinus } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Edit, Trash2, MapPin } from "lucide-react";
 
-interface ParkingTableProps {
+interface ManageTableProps {
   spots: ParkingSpot[];
-  onAssignClick: (spot: ParkingSpot) => void;
-  onReleaseClick: (spotId: string) => void;
+  onEditClick: (spot: ParkingSpot) => void;
+  onDeleteClick: (spot: ParkingSpot) => void;
 }
 
-export function ParkingTable({
+export function ManageTable({
   spots,
-  onAssignClick,
-  onReleaseClick,
-}: ParkingTableProps) {
+  onEditClick,
+  onDeleteClick,
+}: ManageTableProps) {
   if (spots.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 px-4 text-center rounded-lg border border-dashed bg-card/50">
@@ -41,8 +41,8 @@ export function ParkingTable({
           <TableRow>
             <TableHead className="h-12 px-4">Spot & Floor</TableHead>
             <TableHead className="h-12 px-4">Type</TableHead>
+            <TableHead className="h-12 px-4">Location</TableHead>
             <TableHead className="h-12 px-4">Assignee</TableHead>
-            <TableHead className="h-12 px-4">Vehicle Details</TableHead>
             <TableHead className="h-12 px-4">Status</TableHead>
             <TableHead className="w-[100px] text-right h-12 px-4">
               Actions
@@ -66,6 +66,27 @@ export function ParkingTable({
                 </Badge>
               </TableCell>
               <TableCell className="py-3 px-4">
+                {spot.locationName ? (
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="size-3.5" />
+                    {spot.locationMapUrl ? (
+                      <a
+                        href={spot.locationMapUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:underline"
+                      >
+                        {spot.locationName}
+                      </a>
+                    ) : (
+                      <span>{spot.locationName}</span>
+                    )}
+                  </div>
+                ) : (
+                  <span className="text-sm text-muted-foreground">—</span>
+                )}
+              </TableCell>
+              <TableCell className="py-3 px-4">
                 {spot.assignedTo ? (
                   <div className="flex items-center gap-3">
                     <Avatar className="size-8">
@@ -77,7 +98,7 @@ export function ParkingTable({
                         {spot.assignedTo.name.charAt(0)}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex flex-col gap-0.5">
+                    <div className="flex flex-col">
                       <span className="font-medium">
                         {spot.assignedTo.name}
                       </span>
@@ -91,55 +112,28 @@ export function ParkingTable({
                 )}
               </TableCell>
               <TableCell className="py-3 px-4">
-                {spot.vehiclePlate ? (
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-medium">{spot.vehiclePlate}</span>
-                    <span className="text-xs text-muted-foreground">
-                      {spot.vehicleModel}
-                    </span>
-                  </div>
-                ) : (
-                  <span className="text-sm text-muted-foreground">—</span>
-                )}
-              </TableCell>
-              <TableCell className="py-3 px-4">
                 <Badge variant={getParkingStatusVariant(spot.status)}>
                   {spot.status}
                 </Badge>
               </TableCell>
               <TableCell className="py-3 px-4 text-right">
                 <div className="flex items-center justify-end gap-1.5">
-                  {spot.assignedTo ? (
-                    <>
-                      <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        className="cursor-pointer text-muted-foreground hover:text-foreground"
-                        onClick={() => onAssignClick(spot)}
-                      >
-                        <Edit3 />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        className="cursor-pointer text-destructive/80 hover:text-destructive"
-                        onClick={() => onReleaseClick(spot.id)}
-                      >
-                        <UserMinus />
-                      </Button>
-                    </>
-                  ) : (
-                    spot.status !== "Maintenance" && (
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="cursor-pointer text-xs"
-                        onClick={() => onAssignClick(spot)}
-                      >
-                        Assign Spot
-                      </Button>
-                    )
-                  )}
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="cursor-pointer text-muted-foreground hover:text-foreground"
+                    onClick={() => onEditClick(spot)}
+                  >
+                    <Edit />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className="cursor-pointer text-destructive/80 hover:text-destructive"
+                    onClick={() => onDeleteClick(spot)}
+                  >
+                    <Trash2 />
+                  </Button>
                 </div>
               </TableCell>
             </TableRow>

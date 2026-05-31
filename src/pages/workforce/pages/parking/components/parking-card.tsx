@@ -1,17 +1,7 @@
 import { type ParkingSpot } from "../constants";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Zap,
-  Lock,
-  Wrench,
-  Car,
-  UserMinus,
-  Edit3,
-  MapPin,
-  ExternalLink,
-  Motorbike,
-} from "lucide-react";
+import { Wrench, UserMinus, Edit3, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,6 +12,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { getParkingStatusVariant, getSpotTypeIcon } from "@/lib/parking";
 
 interface ParkingCardProps {
   spot: ParkingSpot;
@@ -34,34 +25,6 @@ export function ParkingCard({
   onAssignClick,
   onReleaseClick,
 }: ParkingCardProps) {
-  const getStatusVariant = (status: ParkingSpot["status"]) => {
-    switch (status) {
-      case "Available":
-        return "success";
-      case "Occupied":
-        return "warning";
-      case "Reserved":
-        return "secondary";
-      case "Maintenance":
-        return "destructive";
-      default:
-        return "default";
-    }
-  };
-
-  const getSpotTypeIcon = (type: ParkingSpot["type"]) => {
-    switch (type) {
-      case "EV Charging":
-        return <Zap className="size-4 text-indigo-500" />;
-      case "Reserved":
-        return <Lock className="size-4 text-amber-500" />;
-      case "Bike":
-        return <Motorbike className="size-4 text-emerald-500" />;
-      default:
-        return <Car className="size-4 text-sky-500" />;
-    }
-  };
-
   return (
     <Card size="sm">
       <CardHeader className="gap-0">
@@ -75,9 +38,9 @@ export function ParkingCard({
         </CardAction>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="flex flex-col h-full">
         {spot.assignedTo ? (
-          <div className="flex items-start gap-4 w-full">
+          <div className="flex items-center gap-4 w-full">
             <Avatar className="size-8 shrink-0">
               <AvatarImage
                 src={spot.assignedTo.avatar}
@@ -95,9 +58,9 @@ export function ParkingCard({
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+          <div className="my-auto flex items-center justify-center gap-1.5 text-xs text-muted-foreground font-medium">
             {spot.status === "Maintenance" ? (
-              <span>Under maintenance</span>
+              <span className="text-destructive">Under maintenance</span>
             ) : spot.status === "Reserved" ? (
               <span>Reserved for VIPs</span>
             ) : (
@@ -107,7 +70,7 @@ export function ParkingCard({
             )}
           </div>
         )}
-        <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+        <div className="mt-auto pt-4 flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5 min-w-0">
             <MapPin className="size-3.5 shrink-0 text-primary" />
             <span className="truncate">{spot.locationName || spot.floor}</span>
@@ -126,8 +89,10 @@ export function ParkingCard({
         </div>
       </CardContent>
 
-      <CardFooter className="flex items-center justify-between mt-auto">
-        <Badge variant={getStatusVariant(spot.status)}>{spot.status}</Badge>
+      <CardFooter className="flex items-center justify-between">
+        <Badge variant={getParkingStatusVariant(spot.status)}>
+          {spot.status}
+        </Badge>
 
         <div className="flex items-center gap-1">
           {spot.assignedTo ? (

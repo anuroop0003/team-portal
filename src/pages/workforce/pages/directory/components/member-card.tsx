@@ -9,20 +9,11 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Mail, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { getStatusVariant } from "@/lib/utils";
+import { getStatusVariant } from "@/lib/workforce";
+import { type Member } from "@/types/workforce";
 
 interface MemberCardProps {
-  member: {
-    id: string;
-    name: string;
-    role: string;
-    position: string;
-    email: string;
-    avatar: string;
-    status: string;
-    joinedDate: string;
-    points: number;
-  };
+  member: Member;
 }
 
 export function MemberCard({ member }: MemberCardProps) {

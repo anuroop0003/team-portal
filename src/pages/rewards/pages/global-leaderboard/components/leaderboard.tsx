@@ -34,9 +34,7 @@ export function Leaderboard() {
             <div className="flex items-center gap-4">
               <Avatar className="size-10 border shadow-sm">
                 <AvatarImage src={person.avatar} alt={person.name} />
-                <AvatarFallback className="bg-muted text-muted-foreground font-bold">
-                  {person.avatar}
-                </AvatarFallback>
+                <AvatarFallback>{person.avatar}</AvatarFallback>
               </Avatar>
 
               <div>
