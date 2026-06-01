@@ -40,7 +40,7 @@ export function OrgNode({
       <foreignObject width="260" height="96" x="-130" y="-38">
         <Card
           size="sm"
-          className="group relative m-px overflow-visible"
+          className="group relative m-px overflow-visible bg-muted"
           onClick={() => onNodeClick?.(hierarchyPointNode)}
         >
           <CardHeader>

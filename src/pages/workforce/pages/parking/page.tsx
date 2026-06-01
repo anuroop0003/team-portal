@@ -197,18 +197,27 @@ export default function WorkforceParkingPage() {
         onValueChange={setActiveTab}
         className="space-y-4"
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <ParkingSearch onSearch={setSearchQuery} />
 
-          <TabsList className="grid grid-cols-3 self-start sm:self-auto">
-            <TabsTrigger value="grid" className="cursor-pointer">
-              <LayoutGrid />
+          <TabsList className="grid w-full grid-cols-3 sm:w-auto shrink-0">
+            <TabsTrigger value="grid" className="cursor-pointer shrink-0 gap-2">
+              <LayoutGrid className="h-4 w-4 shrink-0" />
+              <span>Grid</span>
             </TabsTrigger>
-            <TabsTrigger value="table" className="cursor-pointer">
-              <List />
+            <TabsTrigger
+              value="table"
+              className="cursor-pointer shrink-0 gap-2"
+            >
+              <List className="h-4 w-4 shrink-0" />
+              <span>Table</span>
             </TabsTrigger>
-            <TabsTrigger value="manage" className="cursor-pointer">
-              <Settings />
+            <TabsTrigger
+              value="manage"
+              className="cursor-pointer shrink-0 gap-2"
+            >
+              <Settings className="h-4 w-4 shrink-0" />
+              <span>Manage</span>
             </TabsTrigger>
           </TabsList>
         </div>
