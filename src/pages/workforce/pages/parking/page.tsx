@@ -201,22 +201,16 @@ export default function WorkforceParkingPage() {
           <ParkingSearch onSearch={setSearchQuery} />
 
           <TabsList className="grid w-full grid-cols-3 sm:w-auto shrink-0">
-            <TabsTrigger value="grid" className="cursor-pointer shrink-0 gap-2">
-              <LayoutGrid className="h-4 w-4 shrink-0" />
+            <TabsTrigger value="grid" className="cursor-pointer gap-2">
+              <LayoutGrid />
               <span>Grid</span>
             </TabsTrigger>
-            <TabsTrigger
-              value="table"
-              className="cursor-pointer shrink-0 gap-2"
-            >
-              <List className="h-4 w-4 shrink-0" />
+            <TabsTrigger value="table" className="cursor-pointer gap-2">
+              <List />
               <span>Table</span>
             </TabsTrigger>
-            <TabsTrigger
-              value="manage"
-              className="cursor-pointer shrink-0 gap-2"
-            >
-              <Settings className="h-4 w-4 shrink-0" />
+            <TabsTrigger value="manage" className="cursor-pointer gap-2">
+              <Settings />
               <span>Manage</span>
             </TabsTrigger>
           </TabsList>
