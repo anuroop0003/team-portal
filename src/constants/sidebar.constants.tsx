@@ -6,6 +6,7 @@ import {
   TrophyIcon,
   UsersIcon,
   CarIcon,
+  ClockIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { PATHS } from "@/routes/constants/paths";
@@ -107,6 +108,65 @@ export const SIDEBAR_DATA = {
       title: "Parking",
       url: PATHS.PARKING,
       icon: <CarIcon />,
+    },
+    {
+      title: "Time & Attendance",
+      url: PATHS.TIME_ATTENDANCE.TIMESHEET,
+      icon: <ClockIcon />,
+      items: [
+        {
+          title: "Timesheet",
+          url: PATHS.TIME_ATTENDANCE.TIMESHEET,
+        },
+        {
+          title: "Time Off",
+          url: PATHS.TIME_ATTENDANCE.TIME_OFF,
+        },
+        {
+          title: "Corrections",
+          url: PATHS.TIME_ATTENDANCE.CORRECTIONS,
+        },
+        {
+          title: "Holidays",
+          url: PATHS.TIME_ATTENDANCE.HOLIDAYS,
+        },
+        {
+          title: "Live Attendance",
+          url: PATHS.TIME_ATTENDANCE.LIVE_ATTENDANCE,
+        },
+        {
+          title: "Approvals",
+          url: PATHS.TIME_ATTENDANCE.APPROVALS,
+        },
+        {
+          title: "Team Timesheets",
+          url: PATHS.TIME_ATTENDANCE.OPERATIONS_TIMESHEETS,
+        },
+        {
+          title: "Team Calendar",
+          url: PATHS.TIME_ATTENDANCE.CALENDAR,
+        },
+        {
+          title: "Reports",
+          url: PATHS.TIME_ATTENDANCE.REPORTS,
+        },
+        {
+          title: "Accrual Policies",
+          url: PATHS.TIME_ATTENDANCE.POLICIES,
+        },
+        {
+          title: "Leave Types",
+          url: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
+        },
+        {
+          title: "Shifts",
+          url: PATHS.TIME_ATTENDANCE.SHIFTS,
+        },
+        {
+          title: "Holidays Setup",
+          url: PATHS.TIME_ATTENDANCE.SETUP_HOLIDAYS,
+        },
+      ],
     },
   ],
 };
