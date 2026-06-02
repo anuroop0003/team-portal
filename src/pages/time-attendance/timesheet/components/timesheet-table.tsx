@@ -47,9 +47,7 @@ export function TimesheetTable({
                 })}
               </TableCell>
               <TableCell className="py-3 px-4">{entry.clockIn}</TableCell>
-              <TableCell className="py-3 px-4">
-                {entry.clockOut || "—"}
-              </TableCell>
+              <TableCell className="py-3 px-4">{entry.clockOut}</TableCell>
               <TableCell className="py-3 px-4">
                 {entry.breaks[0]?.durationMinutes || 0}m
               </TableCell>

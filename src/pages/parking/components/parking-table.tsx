@@ -66,7 +66,7 @@ export function ParkingTable({
                 </Badge>
               </TableCell>
               <TableCell className="py-3 px-4">
-                {spot.assignedTo ? (
+                {spot.assignedTo && (
                   <div className="flex items-center gap-3">
                     <Avatar className="size-8">
                       <AvatarImage
@@ -86,20 +86,16 @@ export function ParkingTable({
                       </span>
                     </div>
                   </div>
-                ) : (
-                  <span className="text-sm text-muted-foreground">—</span>
                 )}
               </TableCell>
               <TableCell className="py-3 px-4">
-                {spot.vehiclePlate ? (
+                {spot.vehiclePlate && (
                   <div className="flex flex-col gap-0.5">
                     <span className="font-medium">{spot.vehiclePlate}</span>
                     <span className="text-xs text-muted-foreground">
                       {spot.vehicleModel}
                     </span>
                   </div>
-                ) : (
-                  <span className="text-sm text-muted-foreground">—</span>
                 )}
               </TableCell>
               <TableCell className="py-3 px-4">

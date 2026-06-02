@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ApprovalsHeader } from "./components/approvals-header";
-import { ApprovalsTabs } from "./components/approvals-tabs";
+import { LeavesTable } from "./components/leaves-table";
+import { CorrectionsTable } from "./components/corrections-table";
 import { RejectModal } from "./components/reject-modal";
 
 interface PendingLeave {
@@ -89,19 +91,39 @@ export default function ApprovalsPage() {
   };
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-      {/* Top action header */}
-      <ApprovalsHeader />
+    <Tabs
+      value={activeTab}
+      onValueChange={setActiveTab}
+      className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700"
+    >
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between">
+        <ApprovalsHeader />
 
-      <ApprovalsTabs
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        leaves={leaves}
-        corrections={corrections}
-        handleApproveLeave={handleApproveLeave}
-        handleApproveCorrection={handleApproveCorrection}
-        handleOpenReject={handleOpenReject}
-      />
+        <TabsList className="grid grid-cols-2 shrink-0">
+          <TabsTrigger value="leaves" className="cursor-pointer gap-2">
+            Leave Requests ({leaves.length})
+          </TabsTrigger>
+          <TabsTrigger value="corrections" className="cursor-pointer gap-2">
+            Timesheet ({corrections.length})
+          </TabsTrigger>
+        </TabsList>
+      </div>
+
+      <TabsContent value="leaves">
+        <LeavesTable
+          leaves={leaves}
+          handleApproveLeave={handleApproveLeave}
+          handleOpenReject={handleOpenReject}
+        />
+      </TabsContent>
+
+      <TabsContent value="corrections">
+        <CorrectionsTable
+          corrections={corrections}
+          handleApproveCorrection={handleApproveCorrection}
+          handleOpenReject={handleOpenReject}
+        />
+      </TabsContent>
 
       {/* Reject Comment Dialog */}
       <RejectModal
@@ -111,6 +133,6 @@ export default function ApprovalsPage() {
         setRejectionComment={setRejectionComment}
         handleRejectSubmit={handleRejectSubmit}
       />
-    </div>
+    </Tabs>
   );
 }

@@ -53,7 +53,7 @@ export function DeleteMemberDialog({
             action cannot be undone and will remove all associated data.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex gap-4 justify-end rounded-b-md">
+        <DialogFooter>
           <DialogClose
             render={
               <Button variant="outline" className="cursor-pointer">

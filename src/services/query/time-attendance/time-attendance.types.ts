@@ -103,6 +103,8 @@ export interface AttendanceCorrectionRequest {
   employeeId: string;
   employeeName: string;
   date: string;
+  originalClockIn?: string;
+  originalClockOut?: string;
   requestedClockIn?: string;
   requestedClockOut?: string;
   reason: string;

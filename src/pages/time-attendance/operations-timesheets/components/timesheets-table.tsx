@@ -122,7 +122,7 @@ export function TimesheetsTable({
                 <td className="p-4">{record.clockOut}</td>
                 <td className="p-4 font-semibold">{record.workHours} hrs</td>
                 <td className="p-4 text-emerald-600 font-semibold">
-                  {record.overtime > 0 ? `+${record.overtime} hrs` : "—"}
+                  {record.overtime > 0 && `+${record.overtime} hrs`}
                 </td>
                 <td className="p-4">{getStatusBadge(record.status)}</td>
                 <td className="p-4 text-right">
@@ -144,11 +144,6 @@ export function TimesheetsTable({
                         <X className="h-3.5 w-3.5" /> Reject / Adjust
                       </Button>
                     </div>
-                  )}
-                  {record.status !== "pending" && (
-                    <span className="text-xs text-muted-foreground font-semibold">
-                      —
-                    </span>
                   )}
                 </td>
               </tr>

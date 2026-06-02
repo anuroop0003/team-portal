@@ -66,7 +66,7 @@ export function ManageTable({
                 </Badge>
               </TableCell>
               <TableCell className="py-3 px-4">
-                {spot.locationName ? (
+                {spot.locationName && (
                   <div className="flex items-center gap-1.5">
                     <MapPin className="size-3.5" />
                     {spot.locationMapUrl ? (
@@ -82,12 +82,10 @@ export function ManageTable({
                       <span>{spot.locationName}</span>
                     )}
                   </div>
-                ) : (
-                  <span className="text-sm text-muted-foreground">—</span>
                 )}
               </TableCell>
               <TableCell className="py-3 px-4">
-                {spot.assignedTo ? (
+                {spot.assignedTo && (
                   <div className="flex items-center gap-3">
                     <Avatar className="size-8">
                       <AvatarImage
@@ -107,8 +105,6 @@ export function ManageTable({
                       </span>
                     </div>
                   </div>
-                ) : (
-                  <span className="text-sm text-muted-foreground">—</span>
                 )}
               </TableCell>
               <TableCell className="py-3 px-4">
