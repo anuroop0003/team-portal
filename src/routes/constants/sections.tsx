@@ -26,14 +26,12 @@ import {
   TimeOffPage,
   HolidaysPage,
   CorrectionsPage,
-  LiveAttendancePage,
   ApprovalsPage,
   OperationsTimesheetsPage,
   OperationsCalendarPage,
   ReportsPage,
   PoliciesPage,
   LeaveTypesPage,
-  ShiftsPage,
   SetupHolidaysPage,
 } from "./elements";
 
@@ -155,10 +153,6 @@ export const routes: RouteObject[] = [
                 element: <CorrectionsPage />,
               },
               {
-                path: PATHS.TIME_ATTENDANCE.LIVE_ATTENDANCE,
-                element: <LiveAttendancePage />,
-              },
-              {
                 path: PATHS.TIME_ATTENDANCE.APPROVALS,
                 element: <ApprovalsPage />,
               },
@@ -181,10 +175,6 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
                 element: <LeaveTypesPage />,
-              },
-              {
-                path: PATHS.TIME_ATTENDANCE.SHIFTS,
-                element: <ShiftsPage />,
               },
               {
                 path: PATHS.TIME_ATTENDANCE.SETUP_HOLIDAYS,

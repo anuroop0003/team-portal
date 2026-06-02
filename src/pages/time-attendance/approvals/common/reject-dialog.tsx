@@ -11,32 +11,29 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-interface DeleteMemberDialogProps {
-  member: {
-    name: string;
-  };
+interface RejectDialogProps {
+  employeeName: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSuccess?: () => void;
+  onConfirm: () => void;
+  requestType?: string;
 }
 
-export function DeleteMemberDialog({
-  member,
+export function RejectDialog({
+  employeeName,
   open,
   onOpenChange,
-  onSuccess,
-}: DeleteMemberDialogProps) {
-  const [isDeleting, setIsDeleting] = useState(false);
+  onConfirm,
+  requestType = "timesheet correction",
+}: RejectDialogProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleDelete = async () => {
-    setIsDeleting(true);
-    console.log("Deleting member:", member.name);
-
+  const handleConfirm = async () => {
+    setIsSubmitting(true);
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsDeleting(false);
-    onSuccess?.();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsSubmitting(false);
+    onConfirm();
     onOpenChange(false);
   };
 
@@ -47,11 +44,11 @@ export function DeleteMemberDialog({
           <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-destructive/10 mb-2">
             <AlertTriangle className="size-6 text-destructive" />
           </div>
-          <DialogTitle className="text-center">Delete Member</DialogTitle>
+          <DialogTitle className="text-center">Reject Request</DialogTitle>
           <DialogDescription className="text-center">
-            Are you sure you want to delete{" "}
-            <strong className="text-foreground">{member.name}</strong>? This
-            action cannot be undone and will remove all associated data.
+            Are you sure you want to reject the {requestType} request for{" "}
+            <strong className="text-foreground">{employeeName}</strong>? This
+            action cannot be undone.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -65,10 +62,10 @@ export function DeleteMemberDialog({
           <Button
             variant="destructive"
             className="cursor-pointer"
-            disabled={isDeleting}
-            onClick={handleDelete}
+            disabled={isSubmitting}
+            onClick={handleConfirm}
           >
-            Delete
+            {isSubmitting ? "Rejecting..." : "Reject"}
           </Button>
         </DialogFooter>
       </DialogContent>

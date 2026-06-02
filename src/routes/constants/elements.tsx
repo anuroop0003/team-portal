@@ -64,9 +64,6 @@ export const HolidaysPage = lazy(
 export const CorrectionsPage = lazy(
   () => import("@/pages/time-attendance/corrections/page"),
 );
-export const LiveAttendancePage = lazy(
-  () => import("@/pages/time-attendance/live/page"),
-);
 export const ApprovalsPage = lazy(
   () => import("@/pages/time-attendance/approvals/page"),
 );
@@ -84,9 +81,6 @@ export const PoliciesPage = lazy(
 );
 export const LeaveTypesPage = lazy(
   () => import("@/pages/time-attendance/leave-types/page"),
-);
-export const ShiftsPage = lazy(
-  () => import("@/pages/time-attendance/shifts/page"),
 );
 export const SetupHolidaysPage = lazy(
   () => import("@/pages/time-attendance/setup-holidays/page"),

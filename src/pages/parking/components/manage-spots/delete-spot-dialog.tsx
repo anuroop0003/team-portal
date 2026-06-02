@@ -39,8 +39,9 @@ export function DeleteSpotDialog({
           <DialogTitle className="text-center">Delete Parking Spot</DialogTitle>
           <DialogDescription className="text-center">
             Are you sure you want to delete parking spot{" "}
-            <strong>{spot.spotNumber}</strong>? This action cannot be undone and
-            will permanently remove this spot configuration.
+            <strong className="text-foreground">{spot.spotNumber}</strong>? This
+            action cannot be undone and will permanently remove this spot
+            configuration.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex gap-2 justify-end">

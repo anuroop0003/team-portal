@@ -14,7 +14,8 @@ export function InviteSuccess({ email }: InviteSuccessProps) {
       </div>
       <h3 className="text-xl font-bold tracking-tight">Invitation Sent!</h3>
       <p className="text-sm text-muted-foreground mt-2 max-w-[240px]">
-        We've sent an onboarding invitation to <strong>{email}</strong>.
+        We've sent an onboarding invitation to{" "}
+        <strong className="text-foreground">{email}</strong>.
       </p>
       <DialogClose
         render={

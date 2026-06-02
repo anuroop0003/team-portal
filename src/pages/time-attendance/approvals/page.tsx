@@ -101,10 +101,10 @@ export default function ApprovalsPage() {
 
         <TabsList className="grid grid-cols-2 shrink-0">
           <TabsTrigger value="leaves" className="cursor-pointer gap-2">
-            Leave Requests ({leaves.length})
+            Leaves ({leaves.length})
           </TabsTrigger>
           <TabsTrigger value="corrections" className="cursor-pointer gap-2">
-            Timesheet ({corrections.length})
+            Corrections ({corrections.length})
           </TabsTrigger>
         </TabsList>
       </div>

@@ -131,10 +131,6 @@ export const SIDEBAR_DATA = {
           url: PATHS.TIME_ATTENDANCE.HOLIDAYS,
         },
         {
-          title: "Live Attendance",
-          url: PATHS.TIME_ATTENDANCE.LIVE_ATTENDANCE,
-        },
-        {
           title: "Approvals",
           url: PATHS.TIME_ATTENDANCE.APPROVALS,
         },
@@ -157,10 +153,6 @@ export const SIDEBAR_DATA = {
         {
           title: "Leave Types",
           url: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
-        },
-        {
-          title: "Shifts",
-          url: PATHS.TIME_ATTENDANCE.SHIFTS,
         },
         {
           title: "Holidays Setup",

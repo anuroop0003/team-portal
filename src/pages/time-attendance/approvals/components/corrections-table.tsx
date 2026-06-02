@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -8,6 +9,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ApproveDialog } from "../common/approve-dialog";
+import { RejectDialog } from "../common/reject-dialog";
 
 interface PendingCorrection {
   id: string;
@@ -29,6 +32,11 @@ export function CorrectionsTable({
   handleApproveCorrection,
   handleOpenReject,
 }: CorrectionsTableProps) {
+  const [selectedCorrection, setSelectedCorrection] =
+    useState<PendingCorrection | null>(null);
+  const [isApproveOpen, setIsApproveOpen] = useState(false);
+  const [isRejectOpen, setIsRejectOpen] = useState(false);
+
   if (corrections.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-border bg-slate-500/5 p-8 text-center text-muted-foreground text-sm font-semibold">
@@ -38,72 +46,97 @@ export function CorrectionsTable({
   }
 
   return (
-    <div className="rounded-lg border bg-card overflow-hidden">
-      <Table className="w-full">
-        <TableHeader>
-          <TableRow className="bg-background hover:bg-background">
-            <TableHead className="h-12 px-4">Employee</TableHead>
-            <TableHead className="h-12 px-4">Date</TableHead>
-            <TableHead className="h-12 px-4">Original Entry</TableHead>
-            <TableHead className="h-12 px-4">Requested Correction</TableHead>
-            <TableHead className="h-12 px-4">Reason</TableHead>
-            <TableHead className="h-12 px-4 text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {corrections.map((req) => (
-            <TableRow key={req.id}>
-              <TableCell className="py-3 px-4">
-                <div className="flex items-center gap-3">
-                  <Avatar className="size-9 border border-border/40">
-                    <AvatarImage
-                      src={req.employeeName}
-                      alt={req.employeeName}
-                    />
-                    <AvatarFallback>
-                      {req.employeeName.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col gap-0.5 min-w-0">
-                    <span className="font-semibold text-sm tracking-tight text-foreground truncate max-w-[180px]">
-                      {req.employeeName}
-                    </span>
-                    <span className="text-xs text-muted-foreground truncate max-w-[180px]">
-                      {req.employeeName.toLowerCase().replace(/\s+/g, ".")}
-                      @example.com
-                    </span>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell className="py-3 px-4">{req.date}</TableCell>
-              <TableCell className="py-3 px-4">{req.original}</TableCell>
-              <TableCell className="py-3 px-4">{req.requested}</TableCell>
-              <TableCell className="min-w-90 whitespace-normal text-xs py-3 px-4">
-                {req.reason}
-              </TableCell>
-              <TableCell className="py-3 px-4 text-right">
-                <div className="flex gap-2 justify-end">
-                  <Button
-                    size="xs"
-                    onClick={() => handleApproveCorrection(req.id)}
-                    className="bg-emerald-600 hover:bg-emerald-700 cursor-pointer"
-                  >
-                    Approve
-                  </Button>
-                  <Button
-                    size="xs"
-                    variant="destructive"
-                    onClick={() => handleOpenReject(req.id)}
-                    className="cursor-pointer"
-                  >
-                    Reject
-                  </Button>
-                </div>
-              </TableCell>
+    <>
+      <div className="rounded-lg border bg-card overflow-hidden">
+        <Table className="w-full">
+          <TableHeader>
+            <TableRow className="bg-background hover:bg-background">
+              <TableHead className="h-12 px-4">Employee</TableHead>
+              <TableHead className="h-12 px-4">Date</TableHead>
+              <TableHead className="h-12 px-4">Original Entry</TableHead>
+              <TableHead className="h-12 px-4">Requested Correction</TableHead>
+              <TableHead className="h-12 px-4">Reason</TableHead>
+              <TableHead className="h-12 px-4 text-right">Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+          </TableHeader>
+          <TableBody>
+            {corrections.map((req) => (
+              <TableRow key={req.id}>
+                <TableCell className="py-3 px-4">
+                  <div className="flex items-center gap-3">
+                    <Avatar className="size-9 border border-border/40">
+                      <AvatarImage
+                        src={req.employeeName}
+                        alt={req.employeeName}
+                      />
+                      <AvatarFallback>
+                        {req.employeeName.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col gap-0.5 min-w-0">
+                      <span className="font-semibold text-sm tracking-tight text-foreground truncate max-w-[180px]">
+                        {req.employeeName}
+                      </span>
+                      <span className="text-xs text-muted-foreground truncate max-w-[180px]">
+                        {req.employeeName.toLowerCase().replace(/\s+/g, ".")}
+                        @example.com
+                      </span>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="py-3 px-4">{req.date}</TableCell>
+                <TableCell className="py-3 px-4">{req.original}</TableCell>
+                <TableCell className="py-3 px-4">{req.requested}</TableCell>
+                <TableCell className="min-w-90 whitespace-normal text-xs py-3 px-4">
+                  {req.reason}
+                </TableCell>
+                <TableCell className="py-3 px-4 text-right">
+                  <div className="flex gap-2 justify-end">
+                    <Button
+                      size="sm"
+                      onClick={() => {
+                        setSelectedCorrection(req);
+                        setIsApproveOpen(true);
+                      }}
+                      className="text-sm bg-emerald-600 hover:bg-emerald-700 cursor-pointer"
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => {
+                        setSelectedCorrection(req);
+                        setIsRejectOpen(true);
+                      }}
+                      className="text-sm cursor-pointer"
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      {selectedCorrection && (
+        <>
+          <ApproveDialog
+            employeeName={selectedCorrection.employeeName}
+            open={isApproveOpen}
+            onOpenChange={setIsApproveOpen}
+            onConfirm={() => handleApproveCorrection(selectedCorrection.id)}
+          />
+          <RejectDialog
+            employeeName={selectedCorrection.employeeName}
+            open={isRejectOpen}
+            onOpenChange={setIsRejectOpen}
+            onConfirm={() => handleOpenReject(selectedCorrection.id)}
+          />
+        </>
+      )}
+    </>
   );
 }
