@@ -154,10 +154,6 @@ export const SIDEBAR_DATA = {
           title: "Leave Types",
           url: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
         },
-        {
-          title: "Holidays Setup",
-          url: PATHS.TIME_ATTENDANCE.SETUP_HOLIDAYS,
-        },
       ],
     },
   ],

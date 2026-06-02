@@ -82,6 +82,3 @@ export const PoliciesPage = lazy(
 export const LeaveTypesPage = lazy(
   () => import("@/pages/time-attendance/leave-types/page"),
 );
-export const SetupHolidaysPage = lazy(
-  () => import("@/pages/time-attendance/setup-holidays/page"),
-);

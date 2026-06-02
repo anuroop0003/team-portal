@@ -33,6 +33,5 @@ export const PATHS = {
     REPORTS: "/time/reports",
     POLICIES: "/time/policies",
     LEAVE_TYPES: "/time/leave-types",
-    SETUP_HOLIDAYS: "/time/setup-holidays",
   },
 };

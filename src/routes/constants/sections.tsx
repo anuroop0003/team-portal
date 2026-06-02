@@ -32,7 +32,6 @@ import {
   ReportsPage,
   PoliciesPage,
   LeaveTypesPage,
-  SetupHolidaysPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -175,10 +174,6 @@ export const routes: RouteObject[] = [
               {
                 path: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
                 element: <LeaveTypesPage />,
-              },
-              {
-                path: PATHS.TIME_ATTENDANCE.SETUP_HOLIDAYS,
-                element: <SetupHolidaysPage />,
               },
             ],
           },

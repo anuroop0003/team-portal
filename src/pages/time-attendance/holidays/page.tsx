@@ -1,73 +1,60 @@
 import { useState } from "react";
 import { HolidaysHeader } from "./components/holidays-header";
-import { HolidaysList } from "./components/holidays-list";
-import { HolidaysInfo } from "./components/holidays-info";
-
-interface PersonalHoliday {
-  id: string;
-  name: string;
-  date: string;
-  dayOfWeek: string;
-  daysRemaining: number;
-  type: "mandatory" | "optional";
-  isPaid: boolean;
-}
+import { HolidaysGrid } from "./components/holidays-grid";
+import { ConfigureHolidayModal } from "./components/configure-holiday/configure-holiday-modal";
+import { type Holiday, INITIAL_HOLIDAYS } from "./constants";
 
 export default function HolidaysPage() {
-  const [holidays, setHolidays] = useState<PersonalHoliday[]>(
-    [
-      {
-        id: "h_1",
-        name: "Independence Day",
-        date: "2026-07-04",
-        dayOfWeek: "Saturday",
-        daysRemaining: 33,
-        type: "mandatory",
-        isPaid: true,
-      },
-      {
-        id: "h_2",
-        name: "Thanksgiving Day",
-        date: "2026-11-26",
-        dayOfWeek: "Thursday",
-        daysRemaining: 178,
-        type: "mandatory",
-        isPaid: true,
-      },
-      {
-        id: "h_3",
-        name: "Christmas Eve",
-        date: "2026-12-24",
-        dayOfWeek: "Thursday",
-        daysRemaining: 206,
-        type: "optional",
-        isPaid: true,
-      },
-      {
-        id: "h_4",
-        name: "New Year's Day",
-        date: "2027-01-01",
-        dayOfWeek: "Friday",
-        daysRemaining: 214,
-        type: "mandatory",
-        isPaid: true,
-      },
-    ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()),
-  );
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingHoliday, setEditingHoliday] = useState<Holiday | null>(null);
+  const [holidays, setHolidays] = useState<Holiday[]>(INITIAL_HOLIDAYS);
+
+  const handleOpenAdd = () => {
+    setEditingHoliday(null);
+    setIsAddModalOpen(true);
+  };
+
+  const handleOpenEdit = (holiday: Holiday) => {
+    setEditingHoliday(holiday);
+    setIsAddModalOpen(true);
+  };
+
+  const handleSubmitHoliday = (data: Omit<Holiday, "id">) => {
+    if (editingHoliday) {
+      setHolidays((prev) =>
+        prev.map((h) => (h.id === editingHoliday.id ? { ...h, ...data } : h)),
+      );
+    } else {
+      const newHoliday: Holiday = {
+        id: `h_${Date.now()}`,
+        ...data,
+      };
+      setHolidays((prev) => [...prev, newHoliday]);
+    }
+    setIsAddModalOpen(false);
+    setEditingHoliday(null);
+  };
+
+  const handleDeleteHoliday = (id: string) => {
+    setHolidays((prev) => prev.filter((h) => h.id !== id));
+  };
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
-      {/* Top Header Card */}
-      <HolidaysHeader />
+      <HolidaysHeader onConfigureClick={handleOpenAdd} />
 
-      {/* Grid of personal holiday list */}
-      <div className="grid gap-6 md:grid-cols-3">
-        {/* Main Upcoming Holidays List */}
-        <HolidaysList holidays={holidays} />
+      <HolidaysGrid
+        holidays={holidays}
+        onEditHoliday={handleOpenEdit}
+        onDeleteHoliday={handleDeleteHoliday}
+      />
 
-        {/* Informative Side Card */}
-        <HolidaysInfo />
-      </div>
+      <ConfigureHolidayModal
+        isOpen={isAddModalOpen}
+        onOpenChange={setIsAddModalOpen}
+        onSubmitHoliday={handleSubmitHoliday}
+        editingHoliday={editingHoliday}
+      />
     </div>
   );
 }
