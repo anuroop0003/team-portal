@@ -70,7 +70,7 @@ export function RegisterHeader() {
             className="dark:stroke-black"
           ></line>
         </svg>
-        <span className="text-xl font-semibold">shadcn/studio</span>
+        <span className="text-xl font-semibold">Team Portal</span>
       </div>
 
       <div>

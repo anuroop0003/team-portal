@@ -11,6 +11,8 @@ import type {
   RegisterOrganizationResponse,
   UserMeResponse,
 } from "./auth.types";
+import { compressImage } from "@/lib/image-compression";
+import { useUploadPublic } from "../upload/upload.query";
 
 export const useSignIn = () => {
   return useMutation<SignInResponse, AxiosError<ApiError>, SignInFormValues>({
@@ -35,26 +37,43 @@ export const useSignIn = () => {
 };
 
 export const useRegisterOrganization = () => {
+  const { mutateAsync: uploadPublic } = useUploadPublic();
+
   return useMutation<
     RegisterOrganizationResponse,
     AxiosError<ApiError>,
     RegisterOrganizationFormValues
   >({
-    mutationFn: async (user: RegisterOrganizationFormValues) => {
+    mutationFn: async (payload) => {
+      let logoUrl: string | null = null;
+
+      if (payload.logo) {
+        const compressedLogo = await compressImage(payload.logo, 512, 512, 0.8);
+
+        const uploadResult = await uploadPublic({
+          file: compressedLogo,
+          uploadType: "logo",
+        });
+
+        logoUrl = uploadResult.url;
+      }
+
       const { data } = await api.post<RegisterOrganizationResponse>(
         "/auth/register-organization",
         {
           organization: {
-            name: user.organizationName,
-            code: user.companyCode,
+            name: payload.organizationName,
+            code: payload.companyCode,
+            logo_url: logoUrl,
           },
           admin: {
-            name: user.userName,
-            email: user.userEmail,
-            password: user.password,
+            name: payload.userName,
+            email: payload.userEmail,
+            password: payload.password,
           },
         },
       );
+
       return data;
     },
   });

@@ -30,6 +30,15 @@ export const registerOrganizationSchema = z
       .regex(/[0-9]/, "Include at least one number"),
 
     confirmPassword: z.string().min(8, "Use at least 8 characters"),
+    logo: z
+      .file()
+      .max(2 * 1024 * 1024, {
+        message: "Logo must be smaller than 2 MB.",
+      })
+      .mime(["image/jpeg", "image/png", "image/webp"], {
+        message: "Only JPG, PNG, and WEBP images are allowed.",
+      })
+      .optional(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",

@@ -115,7 +115,7 @@ export function ForgotPasswordForm() {
             className="dark:stroke-black"
           ></line>
         </svg>
-        <span className="text-xl font-semibold">shadcn/studio</span>
+        <span className="text-xl font-semibold">Team Portal</span>
       </div>
       <div>
         <h2 className="mb-1.5 text-2xl font-semibold">Forgot Password?</h2>
@@ -125,7 +125,7 @@ export function ForgotPasswordForm() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
-          <Field className="gap-1" data-invalid={!!errors.email}>
+          <Field className="gap-2" data-invalid={!!errors.email}>
             <Label htmlFor="email">Email address*</Label>
             <Input
               {...register("email")}

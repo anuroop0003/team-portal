@@ -49,12 +49,10 @@ export function SignInForm() {
         navigate(PATHS.DASHBOARD);
       },
       onError: (error) => {
-        const detail = error.response?.data?.detail as {
-          code: string;
-          email: string;
-        };
+        const errorCode = error.response?.data?.code;
 
-        if (detail?.code === "EMAIL_NOT_VERIFIED") {
+        if (errorCode === "EMAIL_NOT_VERIFIED") {
+          sessionStorage.setItem("verification_email", data.email);
           navigate(PATHS.AUTH.VERIFY_EMAIL);
           toast.error(
             "Please verify your email to continue. Check your inbox.",
@@ -137,7 +135,7 @@ export function SignInForm() {
             className="dark:stroke-black"
           ></line>
         </svg>
-        <span className="text-xl font-semibold">shadcn/studio</span>
+        <span className="text-xl font-semibold">Team Portal</span>
       </div>
       <div>
         <h2 className="mb-1.5 text-2xl font-semibold">Welcome Back</h2>
@@ -161,7 +159,7 @@ export function SignInForm() {
       <div className="space-y-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
-            <Field className="gap-1" data-invalid={!!errors.email}>
+            <Field className="gap-2" data-invalid={!!errors.email}>
               <FieldLabel htmlFor="email">Email address*</FieldLabel>
               <Input
                 {...register("email")}
@@ -173,7 +171,7 @@ export function SignInForm() {
               />
               <FieldError errors={[errors.email]} />
             </Field>
-            <Field className="gap-1" data-invalid={!!errors.password}>
+            <Field className="gap-2" data-invalid={!!errors.password}>
               <Label htmlFor="password">Password*</Label>
               <div className="relative">
                 <Input
@@ -228,7 +226,7 @@ export function SignInForm() {
               className="cursor-pointer"
             >
               {isPending && <Loader className="animate-spin" />}
-              Sign in to Shadcn Studio
+              Sign In
             </Button>
           </FieldGroup>
         </form>

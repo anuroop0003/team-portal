@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import { useRegistrationStore } from "@/store/use-registration-store";
 export function OrganizationStep() {
   const setStep = useRegistrationStore((state) => state.setStep);
   const {
+    control,
     register,
     setValue,
     trigger,
@@ -29,7 +30,7 @@ export function OrganizationStep() {
 
   return (
     <FieldGroup className="gap-4">
-      <Field className="gap-1" data-invalid={!!errors.organizationName}>
+      <Field className="gap-2" data-invalid={!!errors.organizationName}>
         <FieldLabel htmlFor="organizationName">Organization Name*</FieldLabel>
         <Input
           {...register("organizationName")}
@@ -40,7 +41,7 @@ export function OrganizationStep() {
         <FieldError errors={[errors.organizationName]} />
       </Field>
 
-      <Field className="gap-1" data-invalid={!!errors.companyCode}>
+      <Field className="gap-2" data-invalid={!!errors.companyCode}>
         <FieldLabel htmlFor="companyCode">Company Code*</FieldLabel>
         <Input
           {...register("companyCode")}
@@ -56,11 +57,14 @@ export function OrganizationStep() {
         <FieldError errors={[errors.companyCode]} />
       </Field>
 
-      <Field className="gap-1">
+      <Field className="gap-2">
         <FieldLabel>Organization Logo (Optional)</FieldLabel>
-        <LogoUploader
-          label="logo"
-          onFilesChange={(files) => setValue("logo", files)}
+        <Controller
+          control={control}
+          name="logo"
+          render={({ field }) => (
+            <LogoUploader value={field.value} onChange={field.onChange} />
+          )}
         />
       </Field>
 

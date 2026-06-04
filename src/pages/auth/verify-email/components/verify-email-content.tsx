@@ -21,11 +21,12 @@ const RESEND_DELAY = 30;
 export function VerifyEmailContent() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [timer, setTimer] = useState<number>(0);
-
   const token = searchParams.get("token");
   const [email, setEmail] = useState<string>(
     () => sessionStorage.getItem("verification_email") || "",
+  );
+  const [timer, setTimer] = useState<number>(() =>
+    !token && email ? RESEND_DELAY : 0,
   );
 
   const { data: tokenInfo, isLoading: isLoadingTokenInfo } =

@@ -9,7 +9,7 @@ export function VerifyLayout({ children }: VerifyLayoutProps) {
     <div className="flex w-full flex-col gap-6 p-6 sm:max-w-lg">
       <div className="flex items-center gap-3">
         <Logo />
-        <span className="text-xl font-semibold">shadcn/studio</span>
+        <span className="text-xl font-semibold">Team Portal</span>
       </div>
       {children}
     </div>

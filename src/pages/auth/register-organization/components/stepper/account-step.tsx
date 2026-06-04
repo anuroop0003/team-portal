@@ -8,7 +8,6 @@ import {
   FieldLabel,
   FieldError,
 } from "@/components/ui/field";
-import { LogoUploader } from "../logo-uploader";
 import { useRegistrationStore } from "@/store/use-registration-store";
 
 interface AccountStepProps {
@@ -26,13 +25,12 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
 
   const {
     register,
-    setValue,
     formState: { errors },
   } = useFormContext();
 
   return (
     <FieldGroup className="gap-4">
-      <Field className="gap-1" data-invalid={!!errors.userName}>
+      <Field className="gap-2" data-invalid={!!errors.userName}>
         <FieldLabel htmlFor="userName">Name*</FieldLabel>
         <Input
           {...register("userName")}
@@ -45,7 +43,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
         <FieldError errors={[errors.userName]} />
       </Field>
 
-      <Field className="gap-1" data-invalid={!!errors.userEmail}>
+      <Field className="gap-2" data-invalid={!!errors.userEmail}>
         <FieldLabel htmlFor="userEmail">Email address*</FieldLabel>
         <Input
           {...register("userEmail")}
@@ -59,7 +57,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
       </Field>
 
       <FieldGroup className="flex-row gap-4">
-        <Field className="gap-1" data-invalid={!!errors.password}>
+        <Field className="gap-2" data-invalid={!!errors.password}>
           <FieldLabel htmlFor="password">Password*</FieldLabel>
           <div className="relative">
             <Input
@@ -82,7 +80,7 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
           </div>
           <FieldError errors={[errors.password]} />
         </Field>
-        <Field className="gap-1" data-invalid={!!errors.confirmPassword}>
+        <Field className="gap-2" data-invalid={!!errors.confirmPassword}>
           <FieldLabel htmlFor="confirmPassword">Confirm Password*</FieldLabel>
           <div className="relative">
             <Input
@@ -106,14 +104,6 @@ export function AccountStep({ isSubmitting }: AccountStepProps) {
           <FieldError errors={[errors.confirmPassword]} />
         </Field>
       </FieldGroup>
-
-      <Field className="gap-1">
-        <FieldLabel>Profile Avatar (Optional)</FieldLabel>
-        <LogoUploader
-          label="avatar"
-          onFilesChange={(files) => setValue("avatar", files)}
-        />
-      </Field>
 
       <FieldGroup className="flex-row gap-4">
         <Button

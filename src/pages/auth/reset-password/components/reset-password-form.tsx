@@ -131,7 +131,7 @@ export function ResetPasswordForm() {
             className="dark:stroke-black"
           ></line>
         </svg>
-        <span className="text-xl font-semibold">shadcn/studio</span>
+        <span className="text-xl font-semibold">Team Portal</span>
       </div>
       <div>
         <h2 className="mb-1.5 text-2xl font-semibold">Set new password</h2>
@@ -139,7 +139,7 @@ export function ResetPasswordForm() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
-          <Field className="gap-1" data-invalid={!!errors.password}>
+          <Field className="gap-2" data-invalid={!!errors.password}>
             <Label htmlFor="password">New Password*</Label>
             <div className="relative">
               <Input
@@ -161,7 +161,7 @@ export function ResetPasswordForm() {
             </div>
             <FieldError errors={[errors.password]} />
           </Field>
-          <Field className="gap-1" data-invalid={!!errors.confirmPassword}>
+          <Field className="gap-2" data-invalid={!!errors.confirmPassword}>
             <Label htmlFor="confirmPassword">Confirm Password*</Label>
             <div className="relative">
               <Input

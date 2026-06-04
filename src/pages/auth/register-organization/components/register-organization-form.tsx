@@ -16,6 +16,7 @@ import { useRegistrationStore } from "@/store/use-registration-store";
 
 export function RegisterOrganizationForm() {
   const navigate = useNavigate();
+
   const { step, reset } = useRegistrationStore();
 
   useEffect(() => {
@@ -59,6 +60,8 @@ export function RegisterOrganizationForm() {
       },
     });
   };
+
+  console.log("errors", methods.formState.errors);
 
   return (
     <div className="flex w-full flex-col gap-6 p-6 sm:max-w-lg">

@@ -35,13 +35,14 @@ export function VerificationFlow({
           {isInitialSend ? (
             <>
               To complete your account setup, please verify your email address.
-              A secure verification link will be sent to{" "}
+              We have sent a secure verification link to{" "}
               {email ? (
                 <strong className="text-foreground">{email}</strong>
               ) : (
                 "your registered email address"
               )}
-              .
+              . Please check your inbox and follow the instructions to activate
+              your account.
             </>
           ) : (
             <>
@@ -80,11 +81,7 @@ export function VerificationFlow({
               disabled={resendDisabled || isVerifying}
             >
               {isResending && <Loader className="animate-spin" />}
-              {timer > 0
-                ? `Resend in ${timer}s`
-                : isInitialSend
-                  ? "Send Verification Email"
-                  : "Resend email"}
+              {timer > 0 ? `Resend in ${timer}s` : "Resend email"}
             </Button>
           )}
 
