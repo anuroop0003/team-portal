@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ReportsHeader } from "./components/reports-header";
 import { ReportsStats } from "./components/reports-stats";
 import { ReportsList } from "./components/reports-list";
@@ -23,7 +17,7 @@ export default function ReportsPage() {
   const [reportType, setReportType] = useState("all");
   const [dateRange, setDateRange] = useState("this-month");
 
-  const [reports, setReports] = useState<AvailableReport[]>([
+  const reports: AvailableReport[] = [
     {
       id: "rep_1",
       title: "Monthly Attendance Summary",
@@ -60,7 +54,7 @@ export default function ReportsPage() {
       lastGenerated: "2026-06-01",
       format: "PDF",
     },
-  ]);
+  ];
 
   const filteredReports = reports.filter(
     (rep) => reportType === "all" || rep.type === reportType,

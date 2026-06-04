@@ -1,0 +1,81 @@
+
+> team-portal@0.0.0 build
+> tsc -b && vite build
+
+src/components/ui/calendar.tsx(91,9): error TS2353: Object literal may only specify known properties, and 'table' does not exist in type 'Partial<ClassNames>'.
+src/pages/time-attendance/calendar/components/calendar-grid.tsx(64,38): error TS2322: Type '(filter: string) => void' is not assignable to type '(value: string | null, eventDetails: SelectRootChangeEventDetails) => void'.
+  Types of parameters 'filter' and 'value' are incompatible.
+    Type 'string | null' is not assignable to type 'string'.
+      Type 'null' is not assignable to type 'string'.
+src/pages/time-attendance/holidays/components/configure-holiday/configure-holiday-form.tsx(181,15): error TS17001: JSX elements cannot have multiple attributes with the same name.
+src/pages/time-attendance/holidays/components/configure-holiday/configure-holiday-modal.tsx(49,5): error TS2322: Type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid?: boolean | undefined; }, any, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>' is not assignable to type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>'.
+  Types of parameters 'options' and 'options' are incompatible.
+    Type 'ResolverOptions<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>' is not assignable to type 'ResolverOptions<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid?: boolean | undefined; }>'.
+      Type 'boolean | undefined' is not assignable to type 'boolean'.
+        Type 'undefined' is not assignable to type 'boolean'.
+src/pages/time-attendance/holidays/components/configure-holiday/configure-holiday-modal.tsx(104,48): error TS2345: Argument of type '(data: HolidayFormValues) => Promise<void>' is not assignable to parameter of type 'SubmitHandler<TFieldValues>'.
+  Types of parameters 'data' and 'data' are incompatible.
+    Type 'TFieldValues' is not assignable to type '{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }'.
+      Type 'FieldValues' is missing the following properties from type '{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }': name, date, type, locationScope, isPaid
+src/pages/time-attendance/holidays/components/configure-holiday/configure-holiday-modal.tsx(122,13): error TS2322: Type 'Control<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, TFieldValues>' is not assignable to type 'Control<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>'.
+  The types of '_options.resolver' are incompatible between these types.
+    Type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, TFieldValues> | undefined' is not assignable to type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }> | undefined'.
+      Type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, TFieldValues>' is not assignable to type 'Resolver<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, any, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>'.
+        Type 'ResolverResult<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, TFieldValues> | Promise<...>' is not assignable to type 'ResolverResult<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }> | Promise<...>'.
+          Type 'ResolverSuccess<TFieldValues>' is not assignable to type 'ResolverResult<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }, { name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }> | Promise<...>'.
+            Type 'ResolverSuccess<TFieldValues>' is not assignable to type 'ResolverSuccess<{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }>'.
+              Type 'TFieldValues' is not assignable to type '{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }'.
+                Type 'FieldValues' is missing the following properties from type '{ name: string; date: string; type: "restricted" | "public" | "company-specific"; locationScope: string; isPaid: boolean; }': name, date, type, locationScope, isPaid
+src/pages/time-attendance/leave-types/components/leave-types-header.tsx(57,24): error TS2322: Type '{ children: Element; asChild: true; }' is not assignable to type 'IntrinsicAttributes & Props<unknown>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & Props<unknown>'.
+src/pages/time-attendance/operations-timesheets/components/timesheets-header.tsx(1,1): error TS6192: All imports in import declaration are unused.
+src/pages/time-attendance/operations-timesheets/components/timesheets-table.tsx(60,40): error TS2322: Type '(filter: string) => void' is not assignable to type '(value: string | null, eventDetails: SelectRootChangeEventDetails) => void'.
+  Types of parameters 'filter' and 'value' are incompatible.
+    Type 'string | null' is not assignable to type 'string'.
+      Type 'null' is not assignable to type 'string'.
+src/pages/time-attendance/policies/components/policies-header.tsx(71,24): error TS2322: Type '{ children: Element; asChild: true; }' is not assignable to type 'IntrinsicAttributes & Props<unknown>'.
+  Property 'asChild' does not exist on type 'IntrinsicAttributes & Props<unknown>'.
+src/pages/time-attendance/policies/components/policies-header.tsx(113,43): error TS2322: Type '(type: string) => void' is not assignable to type '(value: string | null, eventDetails: SelectRootChangeEventDetails) => void'.
+  Types of parameters 'type' and 'value' are incompatible.
+    Type 'string | null' is not assignable to type 'string'.
+      Type 'null' is not assignable to type 'string'.
+src/pages/time-attendance/reports/components/reports-list.tsx(41,38): error TS2322: Type '(type: string) => void' is not assignable to type '(value: string | null, eventDetails: SelectRootChangeEventDetails) => void'.
+  Types of parameters 'type' and 'value' are incompatible.
+    Type 'string | null' is not assignable to type 'string'.
+      Type 'null' is not assignable to type 'string'.
+src/pages/time-attendance/reports/components/reports-list.tsx(61,37): error TS2322: Type '(range: string) => void' is not assignable to type '(value: string | null, eventDetails: SelectRootChangeEventDetails) => void'.
+  Types of parameters 'range' and 'value' are incompatible.
+    Type 'string | null' is not assignable to type 'string'.
+      Type 'null' is not assignable to type 'string'.
+src/pages/time-attendance/reports/page.tsx(5,3): error TS6133: 'CardDescription' is declared but its value is never read.
+src/pages/time-attendance/reports/page.tsx(6,3): error TS6133: 'CardHeader' is declared but its value is never read.
+src/pages/time-attendance/reports/page.tsx(7,3): error TS6133: 'CardTitle' is declared but its value is never read.
+src/pages/time-attendance/reports/page.tsx(26,19): error TS6133: 'setReports' is declared but its value is never read.
+src/pages/time-attendance/time-off/components/request-time-off/request-modal.tsx(45,5): error TS2322: Type 'Resolver<{ leaveTypeId: string; startDate: string; reason: string; endDate?: string | undefined; halfDay?: boolean | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, { ...; }>' is not assignable to type 'Resolver<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, { leaveTypeId: string; ... 4 more ...; halfDaySession?: "morning" | ... 1 more ... | undefined; }>'.
+  Types of parameters 'options' and 'options' are incompatible.
+    Type 'ResolverOptions<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }>' is not assignable to type 'ResolverOptions<{ leaveTypeId: string; startDate: string; reason: string; endDate?: string | undefined; halfDay?: boolean | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }>'.
+      Type 'boolean | undefined' is not assignable to type 'boolean'.
+        Type 'undefined' is not assignable to type 'boolean'.
+src/pages/time-attendance/time-off/components/request-time-off/request-modal.tsx(80,48): error TS2345: Argument of type '(data: TimeOffFormValues) => Promise<void>' is not assignable to parameter of type 'SubmitHandler<TFieldValues>'.
+  Types of parameters 'data' and 'data' are incompatible.
+    Type 'TFieldValues' is not assignable to type '{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }'.
+      Type 'FieldValues' is missing the following properties from type '{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }': leaveTypeId, startDate, halfDay, reason
+src/pages/time-attendance/time-off/components/request-time-off/request-modal.tsx(101,13): error TS2322: Type 'Control<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, TFieldValues>' is not assignable to type 'Control<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }>'.
+  The types of '_options.resolver' are incompatible between these types.
+    Type 'Resolver<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, TFieldValues> | undefined' is not assignable to type 'Resolver<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, { leaveTypeId: string; ... 4 more ...; halfDaySession?: "morning" | ... 1 more ... | undefined; }> | undefined'.
+      Type 'Resolver<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, TFieldValues>' is not assignable to type 'Resolver<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, any, { leaveTypeId: string; ... 4 more ...; halfDaySession?: "morning" | ... 1 more ... | undefined; }>'.
+        Type 'ResolverResult<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, TFieldValues> | Promise<...>' is not assignable to type 'ResolverResult<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, { leaveTypeId: string; ... 4 more ...; halfDaySession?: "morning" | ... 1 more ... | undefined; }> | Promise<...>'.
+          Type 'ResolverSuccess<TFieldValues>' is not assignable to type 'ResolverResult<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }, { leaveTypeId: string; ... 4 more ...; halfDaySession?: "morning" | ... 1 more ... | undefined; }> | Promise<...>'.
+            Type 'ResolverSuccess<TFieldValues>' is not assignable to type 'ResolverSuccess<{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }>'.
+              Type 'TFieldValues' is not assignable to type '{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }'.
+                Type 'FieldValues' is missing the following properties from type '{ leaveTypeId: string; startDate: string; halfDay: boolean; reason: string; endDate?: string | undefined; halfDaySession?: "morning" | "afternoon" | undefined; }': leaveTypeId, startDate, halfDay, reason
+src/pages/time-attendance/timesheet/components/timesheet-stats.tsx(2,3): error TS6133: 'Hourglass' is declared but its value is never read.
+src/pages/time-attendance/timesheet/components/timesheet-stats.tsx(4,3): error TS6133: 'Clock' is declared but its value is never read.
+src/pages/time-attendance/timesheet/components/timesheet-stats.tsx(7,3): error TS6133: 'Info' is declared but its value is never read.
+src/pages/time-attendance/timesheet/components/timesheet-stats.tsx(8,3): error TS6133: 'ChevronDown' is declared but its value is never read.
+src/validations/holiday.schema.ts(6,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(values: readonly ["public", "restricted", "company-specific"], params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; }'.
+  Overload 2 of 2, '(entries: Readonly<Record<string, EnumValue>>, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Argument of type 'string[]' is not assignable to parameter of type 'Readonly<Record<string, EnumValue>>'.
+      Index signature for type 'string' is missing in type 'string[]'.

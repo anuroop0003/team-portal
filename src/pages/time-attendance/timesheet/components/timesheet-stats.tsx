@@ -1,12 +1,4 @@
-import {
-  Hourglass,
-  Coffee,
-  Clock,
-  User,
-  Users,
-  Info,
-  ChevronDown,
-} from "lucide-react";
+import { Coffee, User, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";

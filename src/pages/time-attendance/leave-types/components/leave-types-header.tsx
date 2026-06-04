@@ -54,13 +54,15 @@ export function LeaveTypesHeader({
       </div>
 
       <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-        <DialogTrigger asChild>
-          <Button className="cursor-pointer gap-2 bg-primary text-primary-foreground hover:bg-primary/95 font-semibold">
-            <Plus className="h-4 w-4" />
-            Add Leave Type
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[480px]">
+        <DialogTrigger
+          render={
+            <Button className="cursor-pointer">
+              <Plus />
+              Add Leave Type
+            </Button>
+          }
+        />
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               Add Custom Leave Type

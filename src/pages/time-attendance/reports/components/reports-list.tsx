@@ -38,7 +38,10 @@ export function ReportsList({
       <div className="flex flex-wrap gap-4 items-center justify-between p-3.5 border border-border rounded-lg bg-slate-500/5">
         <div className="flex flex-wrap gap-3 items-center">
           <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-          <Select value={reportType} onValueChange={setReportType}>
+          <Select
+            value={reportType}
+            onValueChange={(val) => val && setReportType(val)}
+          >
             <SelectTrigger className="w-[160px] cursor-pointer">
               <SelectValue placeholder="Report Category" />
             </SelectTrigger>
@@ -58,7 +61,10 @@ export function ReportsList({
             </SelectContent>
           </Select>
 
-          <Select value={dateRange} onValueChange={setDateRange}>
+          <Select
+            value={dateRange}
+            onValueChange={(val) => val && setDateRange(val)}
+          >
             <SelectTrigger className="w-[160px] cursor-pointer">
               <SelectValue placeholder="Date Range" />
             </SelectTrigger>

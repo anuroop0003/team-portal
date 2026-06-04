@@ -61,7 +61,10 @@ export function CalendarGrid({
         </div>
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
-          <Select value={deptFilter} onValueChange={setDeptFilter}>
+          <Select
+            value={deptFilter}
+            onValueChange={(val) => val && setDeptFilter(val)}
+          >
             <SelectTrigger className="w-[160px] cursor-pointer">
               <SelectValue placeholder="Department" />
             </SelectTrigger>

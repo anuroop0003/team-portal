@@ -5,7 +5,7 @@ export const timeOffSchema = z
     leaveTypeId: z.string().min(1, "Please select a leave category"),
     startDate: z.string().min(1, "Start date is required"),
     endDate: z.string().optional(),
-    halfDay: z.boolean().default(false),
+    halfDay: z.boolean(),
     halfDaySession: z.enum(["morning", "afternoon"]).optional(),
     reason: z.string().min(1, "Reason for absence is required"),
   })

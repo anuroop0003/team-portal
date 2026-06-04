@@ -68,13 +68,15 @@ export function PoliciesHeader({
       </div>
 
       <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-        <DialogTrigger asChild>
-          <Button className="cursor-pointer gap-2 bg-primary text-primary-foreground hover:bg-primary/95 font-semibold">
-            <Plus className="h-4 w-4" />
-            Create Accrual Policy
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[480px]">
+        <DialogTrigger
+          render={
+            <Button className="cursor-pointer">
+              <Plus />
+              Create Accrual Policy
+            </Button>
+          }
+        />
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-lg font-bold">
               New Accrual Policy
@@ -110,7 +112,11 @@ export function PoliciesHeader({
                 >
                   Leave Category
                 </Label>
-                <Select value={leaveType} onValueChange={setLeaveType} required>
+                <Select
+                  value={leaveType}
+                  onValueChange={(val) => val && setLeaveType(val)}
+                  required
+                >
                   <SelectTrigger id="leaveType" className="cursor-pointer">
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>

@@ -178,7 +178,6 @@ export function ConfigureHolidayForm({
             <Controller
               control={control}
               name="isPaid"
-              control={control}
               render={({ field }) => (
                 <Switch
                   id="isPaid"
