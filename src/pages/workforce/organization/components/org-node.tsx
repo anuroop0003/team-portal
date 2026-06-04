@@ -1,0 +1,76 @@
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Plus, Minus } from "lucide-react";
+import type { HierarchyPointNode } from "d3-hierarchy";
+import type { TreeNodeDatum } from "react-d3-tree";
+
+interface OrgNodeProps {
+  nodeDatum: TreeNodeDatum;
+  toggleNode: () => void;
+  hierarchyPointNode: HierarchyPointNode<TreeNodeDatum>;
+  onNodeClick?: (node: HierarchyPointNode<TreeNodeDatum>) => void;
+}
+
+const getInitials = (name: string) => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+};
+
+export function OrgNode({
+  nodeDatum,
+  toggleNode,
+  hierarchyPointNode,
+  onNodeClick,
+}: OrgNodeProps) {
+  const initials = getInitials(nodeDatum.name);
+  const isExpanded = !nodeDatum.__rd3t.collapsed;
+
+  return (
+    <g>
+      <foreignObject width="260" height="96" x="-130" y="-38">
+        <Card
+          size="sm"
+          className="group relative m-px overflow-visible bg-muted"
+          onClick={() => onNodeClick?.(hierarchyPointNode)}
+        >
+          <CardHeader>
+            <CardTitle>{nodeDatum.name}</CardTitle>
+            <CardDescription>
+              {nodeDatum.attributes?.position || "Position"}
+            </CardDescription>
+            <CardAction className="self-center">
+              <Avatar className="size-10">
+                <AvatarImage src={nodeDatum.attributes?.avatar as string} />
+                <AvatarFallback>{initials}</AvatarFallback>
+              </Avatar>
+            </CardAction>
+          </CardHeader>
+
+          {/* Expand/Collapse Button */}
+          {nodeDatum.children && nodeDatum.children.length > 0 && (
+            <Button
+              size="icon-xs"
+              className="absolute -bottom-3.5 left-1/2 z-20 -translate-x-1/2 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNode();
+              }}
+            >
+              {isExpanded ? <Minus /> : <Plus />}
+            </Button>
+          )}
+        </Card>
+      </foreignObject>
+    </g>
+  );
+}

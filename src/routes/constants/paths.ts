@@ -21,4 +21,17 @@ export const PATHS = {
     USER_MANAGEMENT: "/workforce/user-management",
   },
   PARKING: "/parking",
+  TIME_ATTENDANCE: {
+    ROOT: "/time",
+    TIMESHEET: "/time",
+    TIME_OFF: "/time/time-off",
+    HOLIDAYS: "/time/holidays",
+    CORRECTIONS: "/time/corrections",
+    APPROVALS: "/time/approvals",
+    OPERATIONS_TIMESHEETS: "/time/timesheets",
+    CALENDAR: "/time/calendar",
+    REPORTS: "/time/reports",
+    POLICIES: "/time/policies",
+    LEAVE_TYPES: "/time/leave-types",
+  },
 };

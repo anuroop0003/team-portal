@@ -17,11 +17,21 @@ import {
   WorkforceDirectoryPage,
   WorkforceOrganizationPage,
   WorkforceUserManagementPage,
-  WorkforceParkingPage,
+  ParkingPage,
   ForgotPasswordPage,
   ResetPasswordPage,
   VerifyEmailPage,
   AuthLayout,
+  TimesheetPage,
+  TimeOffPage,
+  HolidaysPage,
+  CorrectionsPage,
+  ApprovalsPage,
+  OperationsTimesheetsPage,
+  OperationsCalendarPage,
+  ReportsPage,
+  PoliciesPage,
+  LeaveTypesPage,
 } from "./elements";
 
 export const routes: RouteObject[] = [
@@ -120,7 +130,52 @@ export const routes: RouteObject[] = [
           },
           {
             path: PATHS.PARKING,
-            element: <WorkforceParkingPage />,
+            element: <ParkingPage />,
+          },
+          {
+            path: PATHS.TIME_ATTENDANCE.ROOT,
+            children: [
+              {
+                index: true,
+                element: <TimesheetPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.TIME_OFF,
+                element: <TimeOffPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.HOLIDAYS,
+                element: <HolidaysPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.CORRECTIONS,
+                element: <CorrectionsPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.APPROVALS,
+                element: <ApprovalsPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.OPERATIONS_TIMESHEETS,
+                element: <OperationsTimesheetsPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.CALENDAR,
+                element: <OperationsCalendarPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.REPORTS,
+                element: <ReportsPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.POLICIES,
+                element: <PoliciesPage />,
+              },
+              {
+                path: PATHS.TIME_ATTENDANCE.LEAVE_TYPES,
+                element: <LeaveTypesPage />,
+              },
+            ],
           },
         ],
       },

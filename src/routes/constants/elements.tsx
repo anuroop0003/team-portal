@@ -21,36 +21,64 @@ export const DashboardPage = lazy(() => import("@/pages/dashboard/page"));
 export const AppLayout = lazy(() => import("@/layouts/app-layout"));
 
 // Rewards
-export const RewardsLayout = lazy(() => import("@/pages/rewards/pages/layout"));
-export const RewardsPage = lazy(
-  () => import("@/pages/rewards/pages/overview/page"),
-);
+export const RewardsLayout = lazy(() => import("@/pages/rewards/layout"));
+export const RewardsPage = lazy(() => import("@/pages/rewards/overview/page"));
 export const MyRewardsPage = lazy(
-  () => import("@/pages/rewards/pages/my-rewards/page"),
+  () => import("@/pages/rewards/my-rewards/page"),
 );
 export const PointsHistoryPage = lazy(
-  () => import("@/pages/rewards/pages/points-history/page"),
+  () => import("@/pages/rewards/points-history/page"),
 );
 export const RedeemShopPage = lazy(
-  () => import("@/pages/rewards/pages/redeem-shop/page"),
+  () => import("@/pages/rewards/redeem-shop/page"),
 );
 export const GlobalLeaderboardPage = lazy(
-  () => import("@/pages/rewards/pages/global-leaderboard/page"),
+  () => import("@/pages/rewards/global-leaderboard/page"),
 );
 export const AddRewardPage = lazy(
-  () => import("@/pages/rewards/pages/add-reward/page"),
+  () => import("@/pages/rewards/add-reward/page"),
 );
 
 // Workforce
 export const WorkforceDirectoryPage = lazy(
-  () => import("@/pages/workforce/pages/directory/page"),
+  () => import("@/pages/workforce/directory/page"),
 );
 export const WorkforceOrganizationPage = lazy(
-  () => import("@/pages/workforce/pages/organization/page"),
+  () => import("@/pages/workforce/organization/page"),
 );
 export const WorkforceUserManagementPage = lazy(
-  () => import("@/pages/workforce/pages/user-management/page"),
+  () => import("@/pages/workforce/user-management/page"),
 );
-export const WorkforceParkingPage = lazy(
-  () => import("@/pages/workforce/pages/parking/page"),
+export const ParkingPage = lazy(() => import("@/pages/parking/page"));
+
+// Time & Attendance
+export const TimesheetPage = lazy(
+  () => import("@/pages/time-attendance/timesheet/page"),
+);
+export const TimeOffPage = lazy(
+  () => import("@/pages/time-attendance/time-off/page"),
+);
+export const HolidaysPage = lazy(
+  () => import("@/pages/time-attendance/holidays/page"),
+);
+export const CorrectionsPage = lazy(
+  () => import("@/pages/time-attendance/corrections/page"),
+);
+export const ApprovalsPage = lazy(
+  () => import("@/pages/time-attendance/approvals/page"),
+);
+export const OperationsTimesheetsPage = lazy(
+  () => import("@/pages/time-attendance/operations-timesheets/page"),
+);
+export const OperationsCalendarPage = lazy(
+  () => import("@/pages/time-attendance/calendar/page"),
+);
+export const ReportsPage = lazy(
+  () => import("@/pages/time-attendance/reports/page"),
+);
+export const PoliciesPage = lazy(
+  () => import("@/pages/time-attendance/policies/page"),
+);
+export const LeaveTypesPage = lazy(
+  () => import("@/pages/time-attendance/leave-types/page"),
 );

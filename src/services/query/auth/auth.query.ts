@@ -15,10 +15,20 @@ import type {
 export const useSignIn = () => {
   return useMutation<SignInResponse, AxiosError<ApiError>, SignInFormValues>({
     mutationFn: async (user: SignInFormValues) => {
-      const { data } = await api.post<SignInResponse>("/auth/sign-in", {
-        email: user.email,
-        password: user.password,
-      });
+      const formData = new FormData();
+
+      formData.append("username", user.email);
+      formData.append("password", user.password);
+
+      const { data } = await api.post<SignInResponse>(
+        "/auth/sign-in",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
       return data;
     },
   });
