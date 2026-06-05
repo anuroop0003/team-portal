@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useUserStore } from "@/features/auth/stores/use-user-store";
 import api from "@/services/interceptor";
 import type { AxiosError } from "axios";
 import type { ApiError } from "@/services/query/api.types";
@@ -31,6 +32,7 @@ export const useSignIn = () => {
           },
         },
       );
+
       return data;
     },
   });
@@ -80,11 +82,17 @@ export const useRegisterOrganization = () => {
 };
 
 export const useMe = () => {
+  const setUser = useUserStore((state) => state.setUser);
+
   return useQuery<UserMeResponse, AxiosError<ApiError>>({
     queryKey: ["auth", "me"],
     queryFn: async () => {
       const response = await api.get<UserMeResponse>("/auth/me");
       return response.data;
+    },
+    select(data) {
+      setUser(data);
+      return data;
     },
   });
 };

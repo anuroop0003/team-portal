@@ -9,8 +9,17 @@ import type {
   UserUpdate,
 } from "./user-management.types";
 
-export const useUsers = (orgId: string, options?: any) => {
-  return useQuery<UserResponse[], AxiosError<ApiError>>({
+import { type Member } from "@/features/workforce/types/workforce";
+
+export const useUsers = (
+  orgId?: string,
+  options?: {
+    skip?: number;
+    limit?: number;
+    search?: string;
+  },
+) => {
+  return useQuery<UserResponse[], AxiosError<ApiError>, Member[]>({
     queryKey: ["users", "list", orgId, options],
     queryFn: async () => {
       const { data } = await api.get<UserResponse[]>("/users/", {
@@ -23,6 +32,18 @@ export const useUsers = (orgId: string, options?: any) => {
       });
       return data;
     },
+    select: (data) =>
+      data.map((user) => ({
+        id: user.id,
+        name: user.name,
+        role: user.role,
+        position: user.designation || "N/A",
+        email: user.email,
+        avatar: `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(user.name)}`,
+        status: user.is_active ? "In Office" : "On Leave",
+        joinedDate: user.date_of_joining || new Date().toISOString(),
+        points: 0,
+      })),
     enabled: !!orgId,
   });
 };

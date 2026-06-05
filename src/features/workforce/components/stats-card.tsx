@@ -3,10 +3,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface StatsCardProps {
   label: string;
-  value: string | React.ReactNode;
+  value: string;
   icon: React.ReactNode;
-  description?: string;
-  isLoading: boolean;
+  description: string;
+  isLoading?: boolean;
 }
 
 export function StatsCard({
@@ -14,7 +14,7 @@ export function StatsCard({
   value,
   icon,
   description,
-  isLoading,
+  isLoading = false,
 }: StatsCardProps) {
   if (isLoading) return <StatsCardSkeleton />;
 

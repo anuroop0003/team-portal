@@ -32,7 +32,7 @@ export function ParkingSearch({ onSearch }: ParkingSearchProps) {
   };
 
   return (
-    <InputGroup className="max-w-sm">
+    <InputGroup className="max-w-md bg-card">
       <InputGroupInput
         placeholder="Search by spot number, floor, type, assignee, plate..."
         value={value}

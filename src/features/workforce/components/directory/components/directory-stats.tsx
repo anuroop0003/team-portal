@@ -1,16 +1,21 @@
 import { Users } from "lucide-react";
-import { StatsCard } from "@/features/rewards/components/components/stats-card";
+import { StatsCard } from "@/features/workforce/components/stats-card";
 
 interface DirectoryStatsProps {
   totalMembers: number;
+  isLoading?: boolean;
 }
 
-export function DirectoryStats({ totalMembers }: DirectoryStatsProps) {
+export function DirectoryStats({
+  totalMembers,
+  isLoading,
+}: DirectoryStatsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
       <StatsCard
         label="Total Members"
         value={totalMembers.toString()}
+        isLoading={isLoading}
         description="Integrated platform workforce"
         icon={<Users className="size-6 text-primary" />}
       />

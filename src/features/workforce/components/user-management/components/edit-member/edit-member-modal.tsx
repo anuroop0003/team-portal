@@ -10,8 +10,12 @@ import { type AddMemberFormValues } from "@/features/workforce/validations/membe
 import { EditMemberForm } from "./edit-member-form";
 import { DeleteMemberDialog } from "./delete-member-dialog";
 
+import { useUserStore } from "@/features/auth/stores/use-user-store";
+import { useUpdateUser } from "@/features/workforce/api/user-management.query";
+
 interface EditMemberModalProps {
   member: {
+    id: string;
     name: string;
     email: string;
     position: string;
@@ -31,6 +35,9 @@ export function EditMemberModal({
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState<boolean>(false);
 
+  const userStore = useUserStore((state) => state.user);
+  const updateUser = useUpdateUser();
+
   // Map member role string to schema object
   const initialValues: AddMemberFormValues = {
     name: member.name,
@@ -43,15 +50,28 @@ export function EditMemberModal({
   };
 
   const onSubmit = async (data: AddMemberFormValues) => {
+    if (!userStore?.organization_id) return;
     setIsSubmitting(true);
     console.log("Updating member data:", data);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await updateUser.mutateAsync({
+        userId: member.id,
+        orgId: userStore.organization_id,
+        data: {
+          name: data.name,
+          designation: data.position,
+          role: data.role.value,
+        },
+      });
 
-    setIsSubmitting(false);
-    onOpenChange(false);
-    onSuccess?.();
+      onOpenChange(false);
+      onSuccess?.();
+    } catch (error) {
+      console.error("Failed to update user:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleOpenDeleteDialog = () => {

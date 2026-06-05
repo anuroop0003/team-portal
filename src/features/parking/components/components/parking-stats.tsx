@@ -21,23 +21,26 @@ export function ParkingStats({
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
       <StatsCard
         label="Total Parking Spots"
+        isLoading={false}
         value={totalSpots.toString()}
         description="Full corporate inventory"
         icon={<Car className="size-6 text-primary" />}
       />
-      <CardStatsWrapper
+      <StatsCard
         label="Car Parking Slots"
         value={totalCarSpots.toString()}
+        isLoading={false}
         description="Standard, EV & Compact"
         icon={<Car className="size-6 text-indigo-500" />}
       />
-      <CardStatsWrapper
+      <StatsCard
         label="Bike Parking Slots"
         value={totalBikeSpots.toString()}
+        isLoading={false}
         description="Dedicated two-wheelers"
         icon={<Motorbike className="size-6 text-emerald-500" />}
       />
-      <CardStatsWrapper
+      <StatsCard
         label="Occupied Spots"
         value={
           <div className="flex items-center justify-between w-full mt-1 font-normal">
@@ -56,30 +59,9 @@ export function ParkingStats({
             </div>
           </div>
         }
+        isLoading={false}
         icon={<CheckCircle className="size-6 text-amber-500" />}
       />
     </div>
-  );
-}
-
-// Private local wrapper to map StatsCard if named StatsCard in project
-function CardStatsWrapper({
-  label,
-  value,
-  description,
-  icon,
-}: {
-  label: string;
-  value: React.ReactNode;
-  description?: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <StatsCard
-      label={label}
-      value={value}
-      description={description}
-      icon={icon}
-    />
   );
 }

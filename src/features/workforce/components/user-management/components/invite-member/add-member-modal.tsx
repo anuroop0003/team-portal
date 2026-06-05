@@ -18,11 +18,21 @@ import {
 import { InviteForm } from "./invite-form";
 import { InviteSuccess } from "./invite-success";
 
+import { useUserStore } from "@/features/auth/stores/use-user-store";
+import {
+  useCreateUser,
+  useCreateAdmin,
+} from "@/features/workforce/api/user-management.query";
+
 export function AddMemberModal() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
   const formId = useId();
+
+  const userStore = useUserStore((state) => state.user);
+  const createUser = useCreateUser();
+  const createAdmin = useCreateAdmin();
 
   const {
     control,
@@ -41,16 +51,34 @@ export function AddMemberModal() {
   });
 
   const onSubmit = async (data: AddMemberFormValues) => {
+    if (!userStore?.organization_id) return;
     setIsSubmitting(true);
     setSubmittedEmail(data.email);
     console.log("Creating workforce member with data:", data);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const payload = {
+        name: data.name,
+        email: data.email,
+        password: "TempPassword123!", // temporary password
+        role: data.role.value,
+        organization_id: userStore.organization_id,
+        designation: data.position,
+      };
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
+      if (data.role.value === "admin") {
+        await createAdmin.mutateAsync(payload);
+      } else {
+        await createUser.mutateAsync(payload);
+      }
+
+      setIsSuccess(true);
+      reset();
+    } catch (error) {
+      console.error("Failed to create user:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleOpenChange = (open: boolean) => {

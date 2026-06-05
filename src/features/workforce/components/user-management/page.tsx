@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { MOCK_WORKFORCE } from "../constants";
+import { useMemo, useState } from "react";
+import { useUserStore } from "@/features/auth/stores/use-user-store";
+import { useUsers } from "@/features/workforce/api/user-management.query";
 import { ManagementHeader } from "./components/management-header";
 import { ManagementStats } from "./components/management-stats";
 import { ManagementSearch } from "./components/management-search";
@@ -7,26 +8,25 @@ import { UserTable } from "./components/user-table";
 
 export default function WorkforceUserManagementPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const user = useUserStore((state) => state.user);
 
-  const filteredMembers = MOCK_WORKFORCE.filter((member) => {
-    const query = searchQuery.toLowerCase().trim();
-    if (!query) return true;
-
-    return (
-      member.name.toLowerCase().includes(query) ||
-      member.email.toLowerCase().includes(query) ||
-      member.position.toLowerCase().includes(query) ||
-      member.role.toLowerCase().includes(query)
-    );
+  const { data: members = [], isLoading } = useUsers(user?.organization_id, {
+    search: searchQuery,
   });
 
-  const totalAdmins = MOCK_WORKFORCE.filter(
-    (member) => member.role.toLowerCase() === "admin",
-  ).length;
+  const totalAdmins = useMemo(
+    () =>
+      members.filter((member) => member.role.toLowerCase() === "admin").length,
+    [members],
+  );
 
-  const totalActive = MOCK_WORKFORCE.filter(
-    (member) => member.status === "In Office" || member.status === "WFH",
-  ).length;
+  const totalActive = useMemo(
+    () =>
+      members.filter(
+        (member) => member.status === "In Office" || member.status === "WFH",
+      ).length,
+    [members],
+  );
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
@@ -35,7 +35,8 @@ export default function WorkforceUserManagementPage() {
 
       {/* Stats Overview */}
       <ManagementStats
-        totalMembers={MOCK_WORKFORCE.length}
+        isLoading={isLoading}
+        totalMembers={members.length}
         totalAdmins={totalAdmins}
         totalActive={totalActive}
       />
@@ -44,7 +45,7 @@ export default function WorkforceUserManagementPage() {
       <ManagementSearch onSearch={setSearchQuery} />
 
       {/* User Table */}
-      <UserTable members={filteredMembers} />
+      <UserTable members={members} isLoading={isLoading} />
     </div>
   );
 }

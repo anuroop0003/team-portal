@@ -32,7 +32,7 @@ export function DirectorySearch({ onSearch }: DirectorySearchProps) {
   };
 
   return (
-    <InputGroup className="max-w-md">
+    <InputGroup className="max-w-md bg-card">
       <InputGroupInput
         placeholder="Search by name, email or department..."
         value={value}

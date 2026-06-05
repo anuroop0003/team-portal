@@ -11,7 +11,7 @@ import { SIDEBAR_DATA } from "@/constants/sidebar.constants";
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" variant="floating" className="p-4 pr-0">
+    <Sidebar collapsible="icon" variant="floating" className="p-4">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
