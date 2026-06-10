@@ -5,7 +5,7 @@ import { MOCK_HISTORY, columns } from "../constants";
 import { PATHS } from "@/routes/constants/paths";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { StatsCard } from "../components/stats-card";
+import { StatsCard } from "@/components/stats-card";
 
 export default function PointsHistoryPage() {
   const totalEarned = MOCK_HISTORY.filter((h) => h.type === "Earned").reduce(

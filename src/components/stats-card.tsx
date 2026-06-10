@@ -6,7 +6,7 @@ interface StatsCardProps {
   value: string | React.ReactNode;
   icon: React.ReactNode;
   description?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 export function StatsCard({
@@ -14,12 +14,12 @@ export function StatsCard({
   value,
   icon,
   description,
-  isLoading,
+  isLoading = false,
 }: StatsCardProps) {
   if (isLoading) return <StatsCardSkeleton />;
 
   return (
-    <Card className="rounded-lg">
+    <Card size="sm" className="rounded-lg">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{label}</CardTitle>
         {icon}
@@ -36,7 +36,7 @@ export function StatsCard({
 
 function StatsCardSkeleton() {
   return (
-    <Card className="rounded-lg">
+    <Card className="rounded-lg bg-card/40 backdrop-blur-sm border-muted/50 shadow-xs">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-1">
         <Skeleton className="h-4 w-24" />
         <Skeleton className="size-6 rounded-md" />

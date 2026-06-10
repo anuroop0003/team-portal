@@ -21,6 +21,7 @@ export const PATHS = {
     USER_MANAGEMENT: "/workforce/user-management",
   },
   PARKING: "/parking",
+  TASKS: "/tasks",
   TIME_ATTENDANCE: {
     ROOT: "/time",
     TIMESHEET: "/time",

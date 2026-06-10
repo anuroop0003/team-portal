@@ -1,5 +1,5 @@
 import { Car, CheckCircle, Motorbike } from "lucide-react";
-import { StatsCard } from "@/features/rewards/components/components/stats-card";
+import { StatsCard } from "@/components/stats-card";
 import { Separator } from "@/components/ui/separator";
 
 interface ParkingStatsProps {
@@ -43,7 +43,7 @@ export function ParkingStats({
       <StatsCard
         label="Occupied Spots"
         value={
-          <div className="flex items-center justify-between w-full mt-1 font-normal">
+          <div className="flex items-center justify-between w-full font-normal">
             <div className="flex flex-col items-center flex-1">
               <span className="text-2xl font-bold">{occupiedCars}</span>
               <span className="text-xs text-muted-foreground font-medium">

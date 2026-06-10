@@ -1,16 +1,5 @@
 import { useState } from "react";
-import { AlertTriangle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-} from "@/components/ui/dialog";
-
+import { ConfirmDialog } from "@/components/confirm-dialog";
 import { useUserStore } from "@/features/auth/stores/use-user-store";
 import { useDeleteUser } from "@/features/workforce/api/user-management.query";
 
@@ -54,37 +43,20 @@ export function DeleteMemberDialog({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent showCloseButton={false} className="sm:max-w-md">
-        <DialogHeader>
-          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-destructive/10 mb-2">
-            <AlertTriangle className="size-6 text-destructive" />
-          </div>
-          <DialogTitle className="text-center">Delete Member</DialogTitle>
-          <DialogDescription className="text-center">
-            Are you sure you want to delete{" "}
-            <strong className="text-foreground">{member.name}</strong>? This
-            action cannot be undone and will remove all associated data.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose
-            render={
-              <Button variant="outline" className="cursor-pointer">
-                Cancel
-              </Button>
-            }
-          />
-          <Button
-            variant="destructive"
-            className="cursor-pointer"
-            disabled={isDeleting}
-            onClick={handleDelete}
-          >
-            Delete
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <ConfirmDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      title="Delete Member"
+      description={
+        <>
+          Are you sure you want to delete{" "}
+          <strong className="text-foreground">{member.name}</strong>? This
+          action cannot be undone and will remove all associated data.
+        </>
+      }
+      confirmText="Delete"
+      isLoading={isDeleting}
+      onConfirm={handleDelete}
+    />
   );
 }

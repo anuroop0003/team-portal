@@ -14,11 +14,11 @@ import { type Member } from "@/features/workforce/types/workforce";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface MemberCardProps {
-  member?: Member;
-  isLoading: boolean;
+  member: Member;
+  isLoading?: boolean;
 }
 
-export function MemberCard({ member, isLoading }: MemberCardProps) {
+export function MemberCard({ member, isLoading = false }: MemberCardProps) {
   if (isLoading) return <MemberCardSkeleton />;
 
   return (

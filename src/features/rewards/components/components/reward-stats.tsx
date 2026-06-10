@@ -1,5 +1,5 @@
 import { Star, Trophy, ChartColumn } from "lucide-react";
-import { StatsCard } from "./stats-card";
+import { StatsCard } from "@/components/stats-card";
 import { MOCK_STATS } from "../constants";
 
 export function RewardStats() {

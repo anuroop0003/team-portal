@@ -1,5 +1,5 @@
 import { Users, Shield, CheckCircle } from "lucide-react";
-import { StatsCard } from "@/features/workforce/components/stats-card";
+import { StatsCard } from "@/components/stats-card";
 
 interface ManagementStatsProps {
   totalMembers: number;

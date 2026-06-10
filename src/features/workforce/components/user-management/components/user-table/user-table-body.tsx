@@ -63,7 +63,7 @@ export function UserTableBody({
               <Button
                 variant="ghost"
                 size="icon-sm"
-                className="cursor-pointer text-muted-foreground hover:text-foreground"
+                className="cursor-pointer"
                 onClick={() => onEditClick(member)}
               >
                 <Edit />

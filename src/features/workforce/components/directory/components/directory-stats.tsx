@@ -1,5 +1,5 @@
 import { Users } from "lucide-react";
-import { StatsCard } from "@/features/workforce/components/stats-card";
+import { StatsCard } from "@/components/stats-card";
 
 interface DirectoryStatsProps {
   totalMembers: number;

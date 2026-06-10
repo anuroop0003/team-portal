@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search } from "lucide-react";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
+import { SearchInput } from "@/components/search-input";
 import debounce from "lodash.debounce";
 
 interface ManagementSearchProps {
@@ -32,15 +27,11 @@ export function ManagementSearch({ onSearch }: ManagementSearchProps) {
   };
 
   return (
-    <InputGroup className="max-w-md bg-card">
-      <InputGroupInput
-        placeholder="Search by name, email, position or role..."
-        value={value}
-        onChange={handleChange}
-      />
-      <InputGroupAddon>
-        <Search />
-      </InputGroupAddon>
-    </InputGroup>
+    <SearchInput
+      wrapperClassName="max-w-md bg-card"
+      placeholder="Search by name, email, position or role..."
+      value={value}
+      onChange={handleChange}
+    />
   );
 }

@@ -11,6 +11,7 @@ import { rewardsRoutes } from "@/features/rewards";
 import { workforceRoutes } from "@/features/workforce";
 import { parkingRoutes } from "@/features/parking";
 import { timeAttendanceRoutes } from "@/features/time-attendance";
+import { tasksRoutes } from "@/features/tasks";
 
 // Layouts
 const AuthLayout = lazy(() => import("@/layouts/auth-layout"));
@@ -43,6 +44,7 @@ export const routes: RouteObject[] = [
           ...workforceRoutes,
           ...parkingRoutes,
           ...timeAttendanceRoutes,
+          ...tasksRoutes,
         ],
       },
     ],

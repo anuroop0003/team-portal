@@ -6,7 +6,7 @@ interface MemberGridProps {
   isLoading?: boolean;
 }
 
-export function MemberGrid({ members, isLoading }: MemberGridProps) {
+export function MemberGrid({ members, isLoading = false }: MemberGridProps) {
   if (isLoading)
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 animate-in fade-in duration-300">
