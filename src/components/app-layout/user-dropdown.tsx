@@ -26,7 +26,7 @@ export function UserDropdown() {
   const user = {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=Sarah",
+    avatar: "https://api.dicebear.com/10.x/stripes/svg?seed=Sarah",
   };
 
   return (

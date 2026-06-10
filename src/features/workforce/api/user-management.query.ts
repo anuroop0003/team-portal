@@ -39,7 +39,7 @@ export const useUsers = (
         role: user.role,
         position: user.designation || "N/A",
         email: user.email,
-        avatar: `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(user.name)}`,
+        avatar: `https://api.dicebear.com/10.x/stripes/svg?seed=${encodeURIComponent(user.name)}`,
         status: user.is_active ? "In Office" : "On Leave",
         joinedDate: user.date_of_joining || new Date().toISOString(),
         points: 0,
