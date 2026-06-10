@@ -15,10 +15,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface MemberCardProps {
   member: Member;
-  isLoading?: boolean;
+  isLoading: boolean;
 }
 
-export function MemberCard({ member, isLoading = false }: MemberCardProps) {
+export function MemberCard({ member, isLoading }: MemberCardProps) {
   if (isLoading) return <MemberCardSkeleton />;
 
   return (
