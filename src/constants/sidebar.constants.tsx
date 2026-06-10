@@ -7,6 +7,7 @@ import {
   UsersIcon,
   CarIcon,
   ClockIcon,
+  ListTodoIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { PATHS } from "@/routes/constants/paths";
@@ -108,6 +109,11 @@ export const SIDEBAR_DATA = {
       title: "Parking",
       url: PATHS.PARKING,
       icon: <CarIcon />,
+    },
+    {
+      title: "Tasks",
+      url: PATHS.TASKS,
+      icon: <ListTodoIcon />,
     },
     {
       title: "Time & Attendance",
